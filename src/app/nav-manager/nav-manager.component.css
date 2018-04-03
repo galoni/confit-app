@@ -1,0 +1,31 @@
+
+.navbar{
+  background-color:#006e8c;
+
+}
+
+.navbar-brand{
+  color:#fec63d;
+}
+
+.nav-link{
+  color:#fec63d;
+
+
+}
+.btn-outline-success ,.form-control{
+  float:right!important;
+}
+
+.navbar-nav{
+  list-style-type: none;
+  float:none;
+  margin:7.5px -15px;
+}
+.nav-item{
+  width:15%;
+}
+
+.navbar-nav[_ngcontent-qns-5]{
+  float:none!important;
+}

@@ -1,0 +1,21 @@
+<form class="form-inline my-2 my-lg-0" (ngSubmit)="createConference(f)" #f="ngForm">
+  <div class="form-group"><label>Conf name:</label><input ngModel="new name" name="name" class="form-control mr-sm-2" type="search" placeholder="Conf name" aria-label="Search"></div>
+  <br><div class="form-group"><label>Conf type:</label><select ngModel="type" name="type"class="form-control">
+    <option>academic</option>
+  <option>technology</option>
+
+</select></div>
+  <br><div class="form-group"><label>Conf Logo:</label><input ngModel="logo" class="form-control mr-sm-2" name="logo" accept="image/*"></div>
+  <br><div class="form-group"><label>Conf start date:</label><input ngModel="start date" type="date" class="form-control mr-sm-2" name="start_date"></div>
+  <br><div class="form-group"><label>Conf end date:</label><input ngModel="end date" class="form-control mr-sm-2" type="date" name="end_date"></div>
+  <br><div class="form-group"><label>Conf address:</label><input ngModel="address" class="form-control mr-sm-2" type="search" name="location" placeholder="address" aria-label="Search"></div>
+  <br><div class="form-group"><label>Conf audience:</label><select name="audience" ngModel="new audience" class="form-control">
+  <option>student</option>
+  <option>B.A</option>
+</select></div><br>
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-success" type="submit">CREATE</button>
+    </div>
+  </div>
+</form>

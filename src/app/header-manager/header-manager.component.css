@@ -1,0 +1,23 @@
+.navbar{
+  color: black;
+  background-image: url("../../assets/logo.png");
+  background-size: cover;
+  background-position-y: center;
+  height: 150px;
+  margin-bottom:0px !important;
+  border:none;
+}
+
+.navbar-default .navbar-nav>li>a{
+   color:black;
+ }
+.navbar-default .navbar-nav>li>a:hover{
+  color:#fdb813;
+}
+
+a.dropdown-toggle {
+  color:black;
+}
+ul .dropdown-menu {
+  margin-right: 20px;
+}
