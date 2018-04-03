@@ -1,3 +1,43 @@
-<p>
-  new-conf-lectures works!
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <h2>Lectures from inventory</h2>
+    <form class="form-inline my-2 my-lg-0" #f="ngForm">
+      <div class="form-group">
+        <select title="choose" name="lecture" class="form-control" [(ngModel)]="selectedLecture">
+          <option *ngFor="let lct of lectures; let i=index" [ngValue]="lct">{{lct.name}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-3" *ngIf="selectedLecture != null">
+    <h2>{{selectedLecture.name}}</h2>
+    <h3>{{selectedLecture.lecturer_name}}</h3>
+    <h4>{{selectedLecture.description}}</h4>
+    <button class="bg-primary" (click)="addLecture()">ADD</button>
+  </div>
+  <div class="col-md-4">
+    <h2>Conf Lectures</h2>
+    <ul>
+      <li *ngFor="let lct of confLectures">
+        {{lct.name}} <button class="bg-danger" (click)="removeLecture(lct)">remove</button>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h2>New Lecture</h2>
+    <form class="form-inline my-2 my-lg-0" (ngSubmit)="createLecture(f)" #f="ngForm">
+      <div class="form-group"><label>Lecture name:</label><input ngModel="new lecture" name="name" class="form-control mr-sm-2"></div>
+      <br><div class="form-group"><label>Lecturer name:</label><input ngModel="lecturer_name" class="form-control mr-sm-2" name="lecturer_name"></div>
+      <br><div class="form-group"><label>Duration:</label><input ngModel="duration" class="form-control mr-sm-2" type="number" name="duration"></div>
+      <br><div class="form-group"><label>description:</label><input ngModel="description" class="form-control mr-sm-2" name="description"></div>
+      <br><div class="form-group"><label>ratings:</label><input ngModel="ratings" type="number" class="form-control mr-sm-2" name="ratings"></div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success" type="submit">CREATE</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
