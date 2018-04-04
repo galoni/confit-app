@@ -27,4 +27,10 @@ export class NewConfService {
     console.log(body);
     return this.http.post(this.base_url + '/createLecture', body, this.options).toPromise().then((res) => res.json() as Lecture);
   }
+
+  addManyLectures(data, confId): Promise<Conf> {
+    let body = JSON.stringify(data);
+    console.log(body);
+    return this.http.post(this.base_url + '/addManyLectures', {'confId':confId, 'confLectures':data}, this.options).toPromise().then((res) => res.json() as Conf);
+  }
 }

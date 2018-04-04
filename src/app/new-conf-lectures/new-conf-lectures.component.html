@@ -9,19 +9,30 @@
       </div>
     </form>
   </div>
-  <div class="col-md-3" *ngIf="selectedLecture != null">
-    <h2>{{selectedLecture.name}}</h2>
-    <h3>{{selectedLecture.lecturer_name}}</h3>
-    <h4>{{selectedLecture.description}}</h4>
-    <button class="bg-primary" (click)="addLecture()">ADD</button>
-  </div>
-  <div class="col-md-4">
-    <h2>Conf Lectures</h2>
-    <ul>
-      <li *ngFor="let lct of confLectures">
-        {{lct.name}} <button class="bg-danger" (click)="removeLecture(lct)">remove</button>
-      </li>
-    </ul>
+  <div class="col-md-5">
+    <div *ngIf="selectedLecture != null">
+      <h2>{{selectedLecture.name}}</h2>
+      <h3>{{selectedLecture.lecturer_name}}</h3>
+      <h4>{{selectedLecture.description}}</h4>
+      <button class="bg-primary" (click)="addLecture()">ADD</button>
+    </div>
+    <div>
+      <h2>Conf Lectures</h2>
+      <table>
+        <tr>
+          <th>Lecture Name</th>
+          <th>Lecturer Name</th>
+        </tr>
+        <tr *ngFor="let lct of confLectures">
+          <td>{{lct.name}}</td>
+          <td>{{lct.lecturer_name}}</td>
+          <td><button class="bg-danger" (click)="removeLecture(lct)">remove</button></td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <button class="bg-success" (click)="addManyLectures()">NEXT</button>
+    </div>
   </div>
 </div>
 <div class="row">

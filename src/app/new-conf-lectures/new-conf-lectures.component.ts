@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NewConfService } from "../services/newConf.service";
 import { Lecture } from "../models/lecture";
 import {NgForm} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-conf-lectures',
@@ -13,14 +14,26 @@ export class NewConfLecturesComponent implements OnInit {
   selectedLecture: Lecture = null;
   confLectures: Lecture[]=[];
   data:any= {};
-
-  constructor(private newConfService: NewConfService) { }
+  confId:string;
+  constructor(private newConfService: NewConfService,
+              private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
-    this.newConfService.getAllLectures().then((lectures)=>{
-      console.log(lectures);
-      this.lectures = lectures;
-    })
+    this.confId = localStorage.getItem('confId');
+    this.lectures = JSON.parse(localStorage.getItem('lectures'));
+    if (this.confId){
+      console.log("confId: " + this.confId);
+    }
+    if(this.lectures){
+      console.log("found stash");
+      this.confLectures = JSON.parse(localStorage.getItem('confLectures'))
+    }
+    else{
+      this.newConfService.getAllLectures().then((lectures)=>{
+        console.log(lectures);
+        this.lectures = lectures;
+      })
+    }
   }
   addLecture(){
     this.confLectures.push(this.selectedLecture);
@@ -28,6 +41,7 @@ export class NewConfLecturesComponent implements OnInit {
     if (index !== -1) {
       this.lectures.splice(index, 1);
     }
+    this.selectedLecture = null;
   }
   removeLecture(lct){
     this.lectures.push(lct);
@@ -45,6 +59,15 @@ export class NewConfLecturesComponent implements OnInit {
     this.newConfService.createLecture(this.data).then((lct) => {
       console.log(lct);
       this.lectures.push(lct);
+    });
+  }
+  addManyLectures(){
+    console.log(this.confLectures);
+    this.newConfService.addManyLectures(this.confLectures, this.confId).then((conf) =>{
+      console.log(conf);
+      localStorage.setItem('lectures', JSON.stringify(this.lectures));
+      localStorage.setItem('confLectures', JSON.stringify(this.confLectures));
+      this.router.navigate(["../sessions"], { relativeTo: this.r });
     });
   }
 }
