@@ -22,13 +22,14 @@ export class NewConfDetailsComponent implements OnInit {
     this.data.type = form.value.type;
     this.data.logo = form.value.logo;
     this.data.start_date = form.value.start_date;
-    this.data.end_date = form.value.end_date;
+    this.data.duration = form.value.duration;
     this.data.location = form.value.location;
     this.data.audience = form.value.audience;
     this.newConfService.createConference(this.data).then((conf) => {
       if(conf){
         this.conf = conf;
         localStorage.setItem('confId', this.conf._id);
+        localStorage.setItem('confDuration', (this.data.duration).toString());
         console.log(this.conf._id);
         this.router.navigate(["../lectures"], { relativeTo: this.r });
       }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import { Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import { Conf } from "../models/conf";
 import { Lecture } from "../models/lecture";
@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class NewConfService {
+  newConf = new EventEmitter<Conf>();
   headers = new Headers({ "content-type": "application/json" });
   options = new RequestOptions({ headers: this.headers });
   private base_url: String = 'http://localhost:3000/manager';
