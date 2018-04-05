@@ -18,6 +18,13 @@ import { NavManagerComponent } from './nav-manager/nav-manager.component';
 import { NewConfLecturesComponent } from './new-conf-lectures/new-conf-lectures.component';
 import { NewConfSessionsComponent } from './new-conf-sessions/new-conf-sessions.component';
 import { NewConfDetailsComponent } from './new-conf-details/new-conf-details.component';
+import { VisitorLandingComponent } from './visitor-landing/visitor-landing.component';
+import { SigninSelectionComponent } from './signin-selection/signin-selection.component';
+import { NavVisitorComponent } from './nav-visitor/nav-visitor.component';
+import { RecentConfVisitorComponent } from './recent-conf-visitor/recent-conf-visitor.component';
+import { RegisterConfComponent } from './register-conf/register-conf.component';
+import { RegisterConfDetailsComponent } from './register-conf-details/register-conf-details.component';
+import { RegisterConfLecturesComponent } from './register-conf-lectures/register-conf-lectures.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +37,14 @@ import { NewConfDetailsComponent } from './new-conf-details/new-conf-details.com
     NavManagerComponent,
     NewConfLecturesComponent,
     NewConfSessionsComponent,
-    NewConfDetailsComponent
+    NewConfDetailsComponent,
+    VisitorLandingComponent,
+    SigninSelectionComponent,
+    NavVisitorComponent,
+    RecentConfVisitorComponent,
+    RegisterConfComponent,
+    RegisterConfDetailsComponent,
+    RegisterConfLecturesComponent
   ],
   imports: [
     BrowserModule,
