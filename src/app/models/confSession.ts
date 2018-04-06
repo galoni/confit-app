@@ -5,5 +5,6 @@ export class ConfSession {
 
   constructor(public name: string, public session_type: string,
               public duration: number, public dayNum: number,
-              public time: number){}
+              public time: number
+  ){}
 }

@@ -11,10 +11,13 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./new-conf-sessions.component.css']
 })
 export class NewConfSessionsComponent implements OnInit {
-  confSessions: ConfSession[]=[];
+  confSessions: ConfSession[][]=[];
   data:any= {};
   confId:string;
   numDays: number;
+  timeTable: number[] = [];
+  selectedDay:number;
+  startTime: number= 9;
 
   constructor(private newConfService: NewConfService,
               private router: Router, private r:ActivatedRoute) { }
@@ -28,23 +31,41 @@ export class NewConfSessionsComponent implements OnInit {
     else{
       this.numDays = 3;
     }
+    for(let i=0; i< this.numDays; i++){
+      this.timeTable[i] = this.startTime;
+      this.confSessions[i] = [];
+    }
+  }
+  onChange(day){
+    console.log("day: " + day);
+    this.selectedDay = day;
   }
   counter(i: number) {
     return new Array(i);
   }
   removeSession(sess){
-    const index: number = this.confSessions.indexOf(sess);
+    console.log("sess: " + JSON.stringify(sess));
+    const index: number = this.confSessions[sess.dayNum-1].indexOf(sess);
     if (index !== -1) {
-      this.confSessions.splice(index, 1);
+      for(let i = index; i< this.confSessions[sess.dayNum-1].length; i++){
+        this.confSessions[sess.dayNum-1][i].time -= sess.duration;
+      }
+      this.timeTable[sess.dayNum-1] -= sess.duration;
+      this.confSessions[sess.dayNum-1].splice(index, 1);
     }
   }
   createSession(form: NgForm) {
+    console.log("time table: "+ this.timeTable);
     this.data.name = form.value.name;
     this.data.session_type = form.value.session_type;
     this.data.duration = form.value.duration;
-    this.data.dayNum = form.value.dayNum;
-    this.data.time = form.value.time;
-    this.confSessions.push(this.data);
+    this.data.dayNum = this.selectedDay+1;
+    this.data.time = this.timeTable[this.selectedDay];
+    this.timeTable[this.selectedDay] = this.timeTable[this.selectedDay] + this.data.duration;
+    console.log("dynum: " + this.selectedDay);
+    let insertData = Object.assign({}, this.data);
+    this.confSessions[this.selectedDay].push(insertData);
+    console.log("conf session: "+ JSON.stringify(this.confSessions));
   }
   // addManyLectures(){
   //   console.log(this.confLectures);
