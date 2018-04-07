@@ -1,3 +1,18 @@
-<p>
-  register-conf-details works!
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <h2>Register To Conf</h2>
+    <form class="form-inline my-2 my-lg-0" #f="ngForm">
+      <div class="form-group">
+        <select title="choose" name="conf" class="form-control" [(ngModel)]="selectedConf">
+          <option *ngFor="let conf of confs; let i=index" [ngValue]="conf">{{conf.name}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-5">
+    <div *ngIf="selectedLecture != null">
+      <h2>{{selectedConf.name}}</h2>
+      <button class="bg-primary" (click)="addLecture()">ADD</button>
+    </div>
+  </div>
+</div>

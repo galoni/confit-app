@@ -8,6 +8,7 @@ import {RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppDropdownDirective } from './directives/app-dropdown.directive';
 import { NewConfService } from "./services/newConf.service";
+import { RegToConfService } from "./services/regToConf.service";
 
 
 import { NewConfComponent } from './new-conf/new-conf.component';
@@ -53,7 +54,8 @@ import { RegisterConfLecturesComponent } from './register-conf-lectures/register
     HttpModule
   ],
   providers: [
-    NewConfService
+    NewConfService,
+    RegToConfService
   ],
   bootstrap: [AppComponent]
 })
