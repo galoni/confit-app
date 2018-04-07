@@ -14,14 +14,8 @@ import { RegisterConfDetailsComponent } from './register-conf-details/register-c
 import { RegisterConfLecturesComponent } from './register-conf-lectures/register-conf-lectures.component';
 
 const appRoutes: Routes =[
-    { path: 'visitorLanding', component: VisitorLandingComponent},
-    { path: 'RegisterToConf', component: RegisterConfComponent,
-      children:[
-        { path: '', redirectTo: 'details', pathMatch: 'full' },
-        { path: 'details', component: RegisterConfDetailsComponent },
-        { path: 'lectures', component: RegisterConfLecturesComponent }
-      ]},
     { path: '', redirectTo: '/signinSelection', pathMatch:'full'},
+    { path: 'registerToConf', component: RegisterConfComponent},
     { path: 'signinSelection', component: SigninSelectionComponent},
     { path: 'landing', component: LandingPageComponent},
     { path: 'newConf', component: NewConfComponent,
