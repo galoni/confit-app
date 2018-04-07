@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5">
-      <h2>Conf Sessions</h2>
+      <h2>Conf Program</h2>
       <div *ngFor="let in of counter(numDays); let i = index" value="i+1">
         <h3>Day {{i+1}}</h3>
           <table class="table table-hover">
@@ -33,6 +33,9 @@
           </div>
         </div>
       </form>
+    </div>
+    <div class="col-md-3">
+      <button class="bg-primary" (click)="createProgram()">CREATE PROGRAM</button>
     </div>
   </div>
 </div>
