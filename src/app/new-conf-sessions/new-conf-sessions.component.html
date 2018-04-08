@@ -1,19 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5">
-      <h2>Conf Sessions</h2>
-      <table class="table table-hover">
-        <tr>
-          <th>Session Name</th>
-          <th>Session Time</th>
-          <th></th>
-        </tr>
-        <tr *ngFor="let sess of confSessions">
-          <td>{{sess.name}}</td>
-          <td>{{sess.time}}</td>
-          <td><button class="bg-danger" (click)="removeSession(sess)">remove</button></td>
-        </tr>
-      </table>
+      <h2>Conf Program</h2>
+      <div *ngFor="let in of counter(numDays); let i = index" value="i+1">
+        <h3>Day {{i+1}}</h3>
+          <table class="table table-hover">
+            <tr>
+              <th>Session Name</th>
+              <th>Session Time</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let sess of confSessions[i]; let j = index">
+              <td>{{sess.name}}</td>
+              <td>{{sess.time}}:00</td>
+              <td><button class="bg-danger" (click)="removeSession(sess)">remove</button></td>
+            </tr>
+          </table>
+      </div>
     </div>
     <div class="col-md-5">
       <h2>New Session</h2>
@@ -21,16 +24,18 @@
         <div class="form-group"><label>Session name:</label><input ngModel="new Session" name="name" class="form-control mr-sm-2"></div>
         <br><div class="form-group"><label>Session Type:</label><input ngModel="session_type" class="form-control mr-sm-2" name="session_type"></div>
         <br><div class="form-group"><label>Duration:</label><input ngModel="duration" class="form-control mr-sm-2" type="number" name="duration"></div>
-        <br><label>Day Num</label><select title="choose" name="dayNum" class="form-control" [(ngModel)]="numDays">
+        <br><label>Day Num</label><select name="dayNum" class="form-control" [(ngModel)]="selectedDay" (ngModelChange)="onChange($event)">
           <option *ngFor="let in of counter(numDays); let i = index" [ngValue]="i">{{i+1}}</option>
         </select>
-        <br><div class="form-group"><label>time:</label><input ngModel="time" type="number" class="form-control mr-sm-2" name="time"></div>
         <div class="row">
           <div class="col-xs-12">
             <button class="btn btn-success" type="submit">CREATE</button>
           </div>
         </div>
       </form>
+    </div>
+    <div class="col-md-3">
+      <button class="bg-primary" (click)="createProgram()">CREATE PROGRAM</button>
     </div>
   </div>
 </div>
