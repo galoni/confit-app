@@ -26,7 +26,7 @@ export class NewConfSessionsComponent implements OnInit {
   ngOnInit() {
     this.confId = localStorage.getItem('confId');
     if(!this.confId) {
-      this.confId = "5ac93dab41bbaa14700fb08c";
+      this.confId = "5aca7954e525c61f543c91e9";
     }
     this.confSessions = JSON.parse(localStorage.getItem('confSessions'));
     console.log("conf session 1: " + JSON.stringify(this.confSessions));
@@ -93,7 +93,7 @@ export class NewConfSessionsComponent implements OnInit {
     }
     this.newConfService.createProgram(this.program, this.confId).then((conf) =>{
       console.log(conf);
-      this.router.navigate(["../sessions"], { relativeTo: this.r });
+      this.router.navigate(["../program"], { relativeTo: this.r });
     });
   }
 

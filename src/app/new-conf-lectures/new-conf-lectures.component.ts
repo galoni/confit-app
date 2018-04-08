@@ -19,6 +19,7 @@ export class NewConfLecturesComponent implements OnInit {
               private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
+    this.data.topics = [];
     this.confId = localStorage.getItem('confId');
     this.lectures = JSON.parse(localStorage.getItem('lectures'));
     if (this.confId){
@@ -56,9 +57,15 @@ export class NewConfLecturesComponent implements OnInit {
     this.data.duration = form.value.duration;
     this.data.description = form.value.description;
     this.data.ratings = form.value.ratings;
+    this.data.topics.push(form.value.topic1);
+    this.data.topics.push(form.value.topic2);
+    this.data.topics.push(form.value.topic3);
+    this.data.lectures = [];
+    console.log("data: " + this.data.topics);
     this.newConfService.createLecture(this.data).then((lct) => {
       console.log(lct);
       this.lectures.push(lct);
+      this.data.topics = [];
     });
   }
   addManyLectures(){
