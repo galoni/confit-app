@@ -40,4 +40,8 @@ export class NewConfService {
     console.log(body);
     return this.http.post(this.base_url + '/createProgram', {'confId':confId, 'confSessions':data}, this.options).toPromise().then((res) => res.json() as Conf);
   }
+
+  buildProgram(confId): Promise<Conf> {
+    return this.http.post(this.base_url + '/buildProgram', {'confId':confId}, this.options).toPromise().then((res) => res.json() as Conf);
+  }
 }

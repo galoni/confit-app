@@ -16,6 +16,7 @@ import { ScanQRCodeComponent } from './scan-qr-code/scan-qr-code.component';
 import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-details.component';
 import { MyConfComponent } from './my-conf/my-conf.component';
 import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
+import { NewConfProgramComponent} from "./new-conf-program/new-conf-program.component";
 
 
 const appRoutes: Routes =[
@@ -28,7 +29,8 @@ const appRoutes: Routes =[
         { path: '', redirectTo: 'details', pathMatch: 'full' },
         { path: 'details', component: NewConfDetailsComponent },
         { path: 'lectures', component: NewConfLecturesComponent },
-        { path: 'sessions', component: NewConfSessionsComponent }
+        { path: 'sessions', component: NewConfSessionsComponent },
+        { path: 'program', component: NewConfProgramComponent }
       ]
     },
     { path: 'ScanQRCode', component: ScanQRCodeComponent,
