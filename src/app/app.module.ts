@@ -33,6 +33,8 @@ import { ScanQRCodeComponent } from './scan-qr-code/scan-qr-code.component';
 import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-details.component';
 import { MyConfComponent } from './my-conf/my-conf.component';
 import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
+import { MyConfLectureComponent } from './my-conf-lecture/my-conf-lecture.component';
+import { MyConfVisitorComponent } from './my-conf-visitor/my-conf-visitor.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
     ScanQRCodeComponent,
     ScanQRCodeDetailsComponent,
     MyConfComponent,
-    MyConfPathComponent
+    MyConfPathComponent,
+    MyConfLectureComponent,
+    MyConfVisitorComponent
   ],
   imports: [
     BrowserModule,

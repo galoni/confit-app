@@ -1,5 +1,6 @@
 import {Component, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
 import {QrScannerComponent} from 'angular2-qrscanner';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-scan-qr-code-details',
@@ -11,7 +12,8 @@ export class ScanQRCodeDetailsComponent implements OnInit {
   data:any= {};
 
     @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent ;
-
+    constructor(
+                private router: Router, private r:ActivatedRoute){}
     ngOnInit() {
         this.qrScannerComponent.getMediaDevices().then(devices => {
             console.log(devices);
@@ -43,7 +45,8 @@ export class ScanQRCodeDetailsComponent implements OnInit {
             console.log(this.data);
             if (this.data.data && this.data.id && this.data.type){
               console.log("good Input");
-              localStorage.setItem('confId', this.data.id);
+              localStorage.setItem('QRCode', JSON.stringify(this.data));
+              this.router.navigate(["../../MyConference"], { relativeTo: this.r });
             }
 
 

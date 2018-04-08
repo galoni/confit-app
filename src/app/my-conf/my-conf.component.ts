@@ -3,7 +3,7 @@ import { Visitor } from "../models/visitor";
 import { myConfService } from "../services/myConf.service";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import {Conf} from "../models/conf";
+import { Conf } from "../models/conf";
 
 @Component({
   selector: 'app-my-conf',
@@ -14,14 +14,46 @@ export class MyConfComponent implements OnInit {
   visitor: Visitor;
   visitorId: string;
   confId: string;
-  data:any= {};
-  conf:Conf;
+  data: any = {};
+  conf: Conf;
+  qrcode:any={};
   //
-  custom_path:any= {};
+  custom_path: any = {};
   constructor(private myConfService: myConfService,
     private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
+    if (localStorage.getItem('confId') === null) {
+      localStorage.setItem('confId', '5a85ff12734d1d1523dcef75');
+      console.log("created local storage");
+    }
+    if (localStorage.getItem('visitorId') === null) {
+      localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
+      console.log("created local storage");
+    }
+    this.qrcode = JSON.parse(localStorage.getItem('QRCode'));
+    console.log(this.qrcode.type);
+    }
+
+    // this.data.visitorid = localStorage.getItem('visitorId');
+    // console.log(localStorage.getItem('QRCode'));
+    // this.myConfService.getVisitorById(this.data.visitorid).then((visitor) => {
+    //   if (visitor) {
+    //     this.visitor = visitor;
+    //     console.log(visitor);
+    //
+    //     localStorage.setItem('visitorId', this.visitor._id);
+    //     for (let i = 0; i < this.visitor.confs.length; i++) {
+    //       if (this.visitor.confs[i].confId === this.confId) {
+    //         this.custom_path = this.visitor.confs[i].custome_path;
+    //         console.log(this.custom_path);
+    //       }
+    //     }
+    //   }
+    //   else {
+    //     console.log("error");
+    //   }
+    // });
   }
   // Submitvisitor(form: NgForm) {
   //   console.log("user typed: " + form.value.visitorId);
@@ -56,29 +88,3 @@ export class MyConfComponent implements OnInit {
   //   //})[0];
   //   //console.log(item);
   // }
-  Submitvisitor(form: NgForm) {
-    this.confId=form.value.confId;
-    // this.data.visitorid = form.value.visitorId;
-    localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
-    this.data.visitorid = localStorage.getItem('visitorId');
-    console.log(localStorage.getItem('confId'));
-    this.myConfService.getVisitorById(this.data.visitorid).then((visitor) => {
-      if(visitor){
-        this.visitor = visitor;
-        console.log(visitor);
-
-        localStorage.setItem('visitorId', this.visitor._id);
-        for(let i=0;i<this.visitor.confs.length;i++){
-          if (this.visitor.confs[i].confId === this.confId){
-            this.custom_path=this.visitor.confs[i].custome_path;
-            console.log(this.custom_path);
-          }
-        }
-      }
-      else{
-        console.log("error");
-      }
-    });
-  }
-
-}
