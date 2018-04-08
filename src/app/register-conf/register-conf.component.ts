@@ -12,28 +12,37 @@ import { Lecture } from "../models/lecture";
 })
 export class RegisterConfComponent implements OnInit {
   data:any= {};
+  lectures_data:any={};
   confs: Conf[];
   selectedConf: Conf = null;
-  visitor_id="5ac62e3a12de1e24fc5a936e"
+  selectedLecture1:Lecture;
+  selectedLecture2:Lecture;
+  selectedLecture3:Lecture;
+  //localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
+
+  visitor_id: string;
+  //localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
   constructor(private RegToConfService: RegToConfService,
               private router: Router, private r:ActivatedRoute) { }
 
-  ngOnInit() {   
-
+  ngOnInit() {
+localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
+this.visitor_id = localStorage.getItem('visitorId');
     this.RegToConfService.getAllConfs().then((confs)=>{
             console.log(confs);
             this.confs = confs;
       })
   }
-  
+
     register(form: NgForm) {
+
     console.log("inside register.ts");
     this.data.visitorid=this.visitor_id;
     this.data.confid = this.selectedConf._id;
     this.data.connection_precent = form.value.connection;
+    console.log(form.value.connection);
     this.data.learn_precent = form.value.learn;
     this.data.explore_precent = form.value.explore;
-    console.log(this.data)
     this.RegToConfService.registerToConf(this.data,(data)=>{
       if(data==='error') console.log("error")
       else console.log("success")
@@ -41,5 +50,19 @@ export class RegisterConfComponent implements OnInit {
     form.reset();
     }
 
-}
+    addLectures(form: NgForm) {
+    console.log("inside addLectures.ts");
+    this.lectures_data.visitorid=this.visitor_id;
+    this.lectures_data.confid = this.selectedConf._id;
+    this.lectures_data.lecture1 = this.selectedLecture1._id;
+    this.lectures_data.lecture2 = this.selectedLecture2._id;
+    this.lectures_data.lecture3 = this.selectedLecture3._id;
+    console.log(this.lectures_data)
+    this.RegToConfService.addLectures(this.lectures_data,(lectures_data)=>{
+      if(lectures_data==='error') console.log("error")
+      else console.log("success")
+    });
+    form.reset();
+    }
 
+}

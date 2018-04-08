@@ -21,24 +21,24 @@
       <div class="form-group"><label>Learn precent:</label>0%<input oninput="y.value=b.value" type="range" min="0" max="100" step="10" ngModel="learnPrecent" name="learn" id="b" class="form-control mr-sm-2" placeholder="LearnPrecent">100%</div>
       <output name="y" for="b"></output>
       <div class="form-group"><label>Explore precent:</label>0%<input oninput="z.value=c.value" type="range" min="0" max="100" step="10" ngModel="explorePrecent" name="explore" id="c" class="form-control mr-sm-2" placeholder="ExplorePrecent">100%</div>
-      <output name="z" for="c"></output><br>
-          <h2>select preferred lectures</h2>
-        <form class="form-inline my-2 my-lg-0" #f="ngForm">
+      <output name="z" for="c"></output><br> 
+      <button class="bg-primary" type="submit">Register to {{selectedConf.name}}</button>
+      </form>
+      <h2>Select preferred lectures</h2>
+        <form class="form-inline my-2 my-lg-0" (ngSubmit)="addLectures(d)" #d="ngForm">
           <div class="form-group">
             <label>1.</label><select title="choose" name="lecture" class="form-control" [(ngModel)]="selectedLecture1">
               <option *ngFor="let lecture of selectedConf.lectures; let i=index" [ngValue]="lecture">{{lecture.name}}</option>
-            </select>
+            </select><br>
             <label>2.</label><select title="choose" name="lecture" class="form-control" [(ngModel)]="selectedLecture2">
               <option *ngFor="let lecture of selectedConf.lectures; let i=index" [ngValue]="lecture">{{lecture.name}}</option>
-            </select>
+            </select><br>
             <label>3.</label><select title="choose" name="lecture" class="form-control" [(ngModel)]="selectedLecture3">
               <option *ngFor="let lecture of selectedConf.lectures; let i=index" [ngValue]="lecture">{{lecture.name}}</option>
-            </select>
+            </select><br>
+            <button class="bg-primary" type="submit">Add prefferred lectures to {{selectedConf.name}}</button>
           </div>
-        </form>      
-          
-      <button class="bg-primary" type="submit">Register to {{selectedConf.name}}</button>
-      </form>
+        </form> 
     </div>
   </div>
 </div>

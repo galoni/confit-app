@@ -20,6 +20,6 @@ export class MyConfPathComponent implements OnInit {
     private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
-    
+
   }
 }
