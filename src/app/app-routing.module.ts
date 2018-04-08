@@ -12,16 +12,15 @@ import { RecentConfVisitorComponent } from './recent-conf-visitor/recent-conf-vi
 import { RegisterConfComponent } from './register-conf/register-conf.component';
 import { RegisterConfDetailsComponent } from './register-conf-details/register-conf-details.component';
 import { RegisterConfLecturesComponent } from './register-conf-lectures/register-conf-lectures.component';
+import { ScanQRCodeComponent } from './scan-qr-code/scan-qr-code.component';
+import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-details.component';
+import { MyConfComponent } from './my-conf/my-conf.component';
+import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
+
 
 const appRoutes: Routes =[
-    { path: 'visitorLanding', component: VisitorLandingComponent},
-    { path: 'RegisterToConf', component: RegisterConfComponent,
-      children:[
-        { path: '', redirectTo: 'details', pathMatch: 'full' },
-        { path: 'details', component: RegisterConfDetailsComponent },
-        { path: 'lectures', component: RegisterConfLecturesComponent }
-      ]},
     { path: '', redirectTo: '/signinSelection', pathMatch:'full'},
+    { path: 'registerToConf', component: RegisterConfComponent},
     { path: 'signinSelection', component: SigninSelectionComponent},
     { path: 'landing', component: LandingPageComponent},
     { path: 'newConf', component: NewConfComponent,
@@ -31,7 +30,19 @@ const appRoutes: Routes =[
         { path: 'lectures', component: NewConfLecturesComponent },
         { path: 'sessions', component: NewConfSessionsComponent }
       ]
-    }
+    },
+    { path: 'ScanQRCode', component: ScanQRCodeComponent,
+      children:[
+        { path: '', redirectTo: 'details', pathMatch: 'full' },
+        { path: 'details', component: ScanQRCodeDetailsComponent }
+      ]
+    },
+    { path: 'MyConference', component: MyConfComponent,
+      children:[
+        { path: '', redirectTo: 'myConfPath', pathMatch: 'full' },
+        { path: 'myConfPath', component: MyConfPathComponent }
+      ]
+    },
 ];
 
 @NgModule({

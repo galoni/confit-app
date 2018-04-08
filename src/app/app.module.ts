@@ -2,12 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgQrScannerModule } from 'angular2-qrscanner';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import {RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppDropdownDirective } from './directives/app-dropdown.directive';
 import { NewConfService } from "./services/newConf.service";
+import { myConfService } from "./services/myConf.service";
+import { RegToConfService } from "./services/regToConf.service";
 
 
 import { NewConfComponent } from './new-conf/new-conf.component';
@@ -25,6 +29,10 @@ import { RecentConfVisitorComponent } from './recent-conf-visitor/recent-conf-vi
 import { RegisterConfComponent } from './register-conf/register-conf.component';
 import { RegisterConfDetailsComponent } from './register-conf-details/register-conf-details.component';
 import { RegisterConfLecturesComponent } from './register-conf-lectures/register-conf-lectures.component';
+import { ScanQRCodeComponent } from './scan-qr-code/scan-qr-code.component';
+import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-details.component';
+import { MyConfComponent } from './my-conf/my-conf.component';
+import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
 
 @NgModule({
   declarations: [
@@ -44,16 +52,24 @@ import { RegisterConfLecturesComponent } from './register-conf-lectures/register
     RecentConfVisitorComponent,
     RegisterConfComponent,
     RegisterConfDetailsComponent,
-    RegisterConfLecturesComponent
+    RegisterConfLecturesComponent,
+    ScanQRCodeComponent,
+    ScanQRCodeDetailsComponent,
+    MyConfComponent,
+    MyConfPathComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    NgQrScannerModule,
+    CommonModule
   ],
   providers: [
-    NewConfService
+    NewConfService,
+    RegToConfService,
+    myConfService
   ],
   bootstrap: [AppComponent]
 })
