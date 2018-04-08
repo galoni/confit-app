@@ -24,7 +24,7 @@
       <output name="z" for="c"></output><br> 
       <button class="bg-primary" type="submit">Register to {{selectedConf.name}}</button>
       </form>
-      <h2>select preferred lectures</h2>
+      <h2>Select preferred lectures</h2>
         <form class="form-inline my-2 my-lg-0" (ngSubmit)="addLectures(d)" #d="ngForm">
           <div class="form-group">
             <label>1.</label><select title="choose" name="lecture" class="form-control" [(ngModel)]="selectedLecture1">
