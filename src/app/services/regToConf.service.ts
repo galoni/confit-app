@@ -18,7 +18,7 @@ export class RegToConfService {
   }
   
   registerToConf(data, callback: Function){
-  console.log("inside registrt in service");
+  console.log("inside register in service");
     let body=JSON.stringify(data) ;
     console.log(body)
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -34,5 +34,21 @@ export class RegToConfService {
       });
   }
   
+  addLectures(data, callback: Function){
+  console.log("inside addLectures in service");
+    let body=JSON.stringify(data) ;
+    console.log(body)
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: this.headers });
+    this.http.post(this.visitor_url +'/updatePreffered_lectures', body, options)
+      .subscribe((response: Response)=> {
+        let obj = response.json();
+        if(!obj.error) {
+          callback(obj);
+        }else{
+          callback('error');
+        }
+      });
+  }
   
 }
