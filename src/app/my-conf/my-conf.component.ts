@@ -58,7 +58,9 @@ export class MyConfComponent implements OnInit {
   // }
   Submitvisitor(form: NgForm) {
     this.confId=form.value.confId;
-    this.data.visitorid = form.value.visitorId;
+    // this.data.visitorid = form.value.visitorId;
+    localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
+    this.data.visitorid = localStorage.getItem('visitorId');
     console.log(localStorage.getItem('confId'));
     this.myConfService.getVisitorById(this.data.visitorid).then((visitor) => {
       if(visitor){

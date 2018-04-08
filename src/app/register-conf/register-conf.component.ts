@@ -18,19 +18,24 @@ export class RegisterConfComponent implements OnInit {
   selectedLecture1:Lecture;
   selectedLecture2:Lecture;
   selectedLecture3:Lecture;
-  visitor_id="5ac62e3a12de1e24fc5a936e"
+  //localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
+
+  visitor_id: string;
+  //localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
   constructor(private RegToConfService: RegToConfService,
               private router: Router, private r:ActivatedRoute) { }
 
-  ngOnInit() {   
-
+  ngOnInit() {
+localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
+this.visitor_id = localStorage.getItem('visitorId');
     this.RegToConfService.getAllConfs().then((confs)=>{
             console.log(confs);
             this.confs = confs;
       })
   }
-  
+
     register(form: NgForm) {
+
     console.log("inside register.ts");
     this.data.visitorid=this.visitor_id;
     this.data.confid = this.selectedConf._id;
@@ -44,7 +49,7 @@ export class RegisterConfComponent implements OnInit {
     });
     form.reset();
     }
-    
+
     addLectures(form: NgForm) {
     console.log("inside addLectures.ts");
     this.lectures_data.visitorid=this.visitor_id;
@@ -59,6 +64,5 @@ export class RegisterConfComponent implements OnInit {
     });
     form.reset();
     }
-    
-}
 
+}
