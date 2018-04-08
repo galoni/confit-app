@@ -43,6 +43,7 @@ export class ScanQRCodeDetailsComponent implements OnInit {
             console.log(this.data);
             if (this.data.data && this.data.id && this.data.type){
               console.log("good Input");
+              localStorage.setItem('confId', this.data.id);
             }
 
 
