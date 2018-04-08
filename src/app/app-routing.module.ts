@@ -12,6 +12,8 @@ import { RecentConfVisitorComponent } from './recent-conf-visitor/recent-conf-vi
 import { RegisterConfComponent } from './register-conf/register-conf.component';
 import { RegisterConfDetailsComponent } from './register-conf-details/register-conf-details.component';
 import { RegisterConfLecturesComponent } from './register-conf-lectures/register-conf-lectures.component';
+import { ScanQRCodeComponent } from './scan-qr-code/scan-qr-code.component';
+import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-details.component';
 
 const appRoutes: Routes =[
     { path: '', redirectTo: '/signinSelection', pathMatch:'full'},
@@ -24,6 +26,12 @@ const appRoutes: Routes =[
         { path: 'details', component: NewConfDetailsComponent },
         { path: 'lectures', component: NewConfLecturesComponent },
         { path: 'sessions', component: NewConfSessionsComponent }
+      ]
+    },
+    { path: 'ScanQRCode', component: ScanQRCodeComponent,
+      children:[
+        { path: '', redirectTo: 'details', pathMatch: 'full' },
+        { path: 'details', component: ScanQRCodeDetailsComponent }
       ]
     }
 ];

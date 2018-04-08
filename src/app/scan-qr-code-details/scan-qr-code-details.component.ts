@@ -8,7 +8,7 @@ import {QrScannerComponent} from 'angular2-qrscanner';
 })
 
 export class ScanQRCodeDetailsComponent implements OnInit {
-
+  data:any= {};
 
     @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent ;
 
@@ -39,6 +39,15 @@ export class ScanQRCodeDetailsComponent implements OnInit {
 
         this.qrScannerComponent.capturedQr.subscribe(result => {
             console.log(result);
+            this.data = JSON.parse(result);
+            console.log(this.data);
+            if (this.data.data && this.data.id && this.data.type){
+              console.log("good Input");
+            }
+
+
+
+
         });
     }
 }

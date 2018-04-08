@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScanQRCode } from './scan-qr-code.component';
+import { ScanQRCodeComponent } from './scan-qr-code.component';
 
 describe('ScanQRCodeComponent', () => {
   let component: ScanQRCodeComponent;
