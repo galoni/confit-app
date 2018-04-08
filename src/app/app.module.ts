@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgQrScannerModule } from 'angular2-qrscanner';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import {RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppDropdownDirective } from './directives/app-dropdown.directive';
 import { NewConfService } from "./services/newConf.service";
+import { myConfService } from "./services/myConf.service";
 import { RegToConfService } from "./services/regToConf.service";
 
 
@@ -30,6 +31,8 @@ import { RegisterConfDetailsComponent } from './register-conf-details/register-c
 import { RegisterConfLecturesComponent } from './register-conf-lectures/register-conf-lectures.component';
 import { ScanQRCodeComponent } from './scan-qr-code/scan-qr-code.component';
 import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-details.component';
+import { MyConfComponent } from './my-conf/my-conf.component';
+import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-
     RegisterConfDetailsComponent,
     RegisterConfLecturesComponent,
     ScanQRCodeComponent,
-    ScanQRCodeDetailsComponent
+    ScanQRCodeDetailsComponent,
+    MyConfComponent,
+    MyConfPathComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,8 @@ import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-
   ],
   providers: [
     NewConfService,
-    RegToConfService
+    RegToConfService,
+    myConfService
   ],
   bootstrap: [AppComponent]
 })
