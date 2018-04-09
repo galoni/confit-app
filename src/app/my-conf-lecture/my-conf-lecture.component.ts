@@ -10,6 +10,10 @@ export class MyConfLectureComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
+    //   if (visitor) {
+    //     this.myConfService.visitorSelected.emit(visitor);
+    //   }});
   }
 
 }

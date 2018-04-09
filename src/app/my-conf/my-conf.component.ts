@@ -19,6 +19,7 @@ export class MyConfComponent implements OnInit {
   data: any = {};
   conf: Conf;
   qrcode:any={};
+  wrongConf:boolean=false;
   //
   custom_path: any = {};
   constructor(private myConfService: myConfService,
@@ -33,12 +34,24 @@ export class MyConfComponent implements OnInit {
       localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
       console.log("created local storage");
     }
-    this.qrcode = JSON.parse(localStorage.getItem('QRCode'));
-    console.log(this.qrcode.type);
+
     this.visitorId = localStorage.getItem('visitorId');
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
       if (visitor) {
         this.myConfService.visitorSelected.emit(visitor);
+        this.qrcode = JSON.parse(localStorage.getItem('QRCode'));
+        if (this.qrcode.type == 'conference'){
+          if (visitor.confs.some(x => x.confId === this.qrcode.id)){
+            localStorage.setItem('confId', this.qrcode.id);
+
+          }
+          else{
+            this.wrongConf = true;
+            this.qrcode.type = '';
+          }
+
+        }
+        console.log(this.qrcode.type);
       }});
     }
 
