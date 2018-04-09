@@ -39,6 +39,21 @@
             <button class="bg-primary" type="submit">Add prefferred lectures to {{selectedConf.name}}</button>
           </div>
         </form> 
+        <h2>Select main topics</h2>
+        <form class="form-inline my-2 my-lg-0" (ngSubmit)="addTopics(t)" #t="ngForm">
+          <div class="form-group">
+            <label>1.</label><select title="choose" name="topic" class="form-control" [(ngModel)]="topic1">
+              <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
+            </select><br>
+            <label>2.</label><select title="choose" name="topic" class="form-control" [(ngModel)]="topic2">
+              <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
+            </select><br>
+            <label>3.</label><select title="choose" name="topic" class="form-control" [(ngModel)]="topic3">
+              <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
+            </select><br>
+            <button class="bg-primary" type="submit">Add main topics to {{selectedConf.name}}</button>
+          </div>
+        </form> 
     </div>
   </div>
 </div>

@@ -51,4 +51,21 @@ export class RegToConfService {
       });
   }
   
+    setTopics(data, callback: Function){
+  console.log("inside setTopics in service");
+    let body=JSON.stringify(data) ;
+    console.log(body)
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: this.headers });
+    this.http.post(this.visitor_url +'/setTopics', body, options)
+      .subscribe((response: Response)=> {
+        let obj = response.json();
+        if(!obj.error) {
+          callback(obj);
+        }else{
+          callback('error');
+        }
+      });
+  }
+  
 }
