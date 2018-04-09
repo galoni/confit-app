@@ -15,6 +15,7 @@ export class NewConfLecturesComponent implements OnInit {
   confLectures: Lecture[]=[];
   data:any= {};
   confId:string;
+  confTopics: string[]=[];
   constructor(private newConfService: NewConfService,
               private router: Router, private r:ActivatedRoute) { }
 
@@ -70,6 +71,9 @@ export class NewConfLecturesComponent implements OnInit {
   }
   addManyLectures(){
     console.log(this.confLectures);
+    for (let i = 0; i < this.confLectures.length; i++){
+
+    }
     this.newConfService.addManyLectures(this.confLectures, this.confId).then((conf) =>{
       console.log(conf);
       localStorage.setItem('lectures', JSON.stringify(this.lectures));
