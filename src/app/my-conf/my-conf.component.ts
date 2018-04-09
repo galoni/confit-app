@@ -4,11 +4,13 @@ import { myConfService } from "../services/myConf.service";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Conf } from "../models/conf";
+// import { MyConfPathComponent } from "../my-conf-path/my-conf-path.component";
 
 @Component({
   selector: 'app-my-conf',
   templateUrl: './my-conf.component.html',
-  styleUrls: ['./my-conf.component.css']
+  styleUrls: ['./my-conf.component.css'],
+  // directives: [MyConfPathComponent]
 })
 export class MyConfComponent implements OnInit {
   visitor: Visitor;
@@ -33,14 +35,16 @@ export class MyConfComponent implements OnInit {
     }
     this.qrcode = JSON.parse(localStorage.getItem('QRCode'));
     console.log(this.qrcode.type);
+    this.visitorId = localStorage.getItem('visitorId');
+    this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
+      if (visitor) {
+        this.myConfService.visitorSelected.emit(visitor);
+      }});
     }
 
     // this.data.visitorid = localStorage.getItem('visitorId');
     // console.log(localStorage.getItem('QRCode'));
-    // this.myConfService.getVisitorById(this.data.visitorid).then((visitor) => {
-    //   if (visitor) {
-    //     this.visitor = visitor;
-    //     console.log(visitor);
+
     //
     //     localStorage.setItem('visitorId', this.visitor._id);
     //     for (let i = 0; i < this.visitor.confs.length; i++) {

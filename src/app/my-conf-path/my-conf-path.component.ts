@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { myConfService } from "../services/myConf.service";
 import { Lecture } from "../models/lecture";
 import { Visitor } from "../models/visitor";
@@ -14,12 +14,24 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 
 export class MyConfPathComponent implements OnInit {
-  visitor: string;
-  visitorId: string;
+  qrcode:any={};
+  conf: Conf;
+  visitorSon: Visitor;
+  @Input() title:string;
+
   constructor(private myConfService: myConfService,
-    private router: Router, private r: ActivatedRoute) { }
+    private router: Router, private r: ActivatedRoute) {
+      // this.visitorq = this.visitor;
+     }
 
   ngOnInit() {
+    this.myConfService.visitorSelected.subscribe((visitor) => {
+      this.visitorSon = visitor;
+      if (this.visitorSon == null){
+        return;
+      }
+        console.log(this.visitorSon._id);
+    })
 
   }
 }
