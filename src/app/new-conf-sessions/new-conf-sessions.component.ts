@@ -26,7 +26,7 @@ export class NewConfSessionsComponent implements OnInit {
   ngOnInit() {
     this.confId = localStorage.getItem('confId');
     if(!this.confId) {
-      this.confId = "5aca7954e525c61f543c91e9";
+      this.confId = "5aca81ae58bd880510606ad4";
     }
     this.confSessions = JSON.parse(localStorage.getItem('confSessions'));
     console.log("conf session 1: " + JSON.stringify(this.confSessions));
@@ -77,7 +77,8 @@ export class NewConfSessionsComponent implements OnInit {
     this.data.time = this.timeTable[this.selectedDay];
     this.timeTable[this.selectedDay] = this.timeTable[this.selectedDay] + this.data.duration;
     // console.log("dynum: " + this.selectedDay);
-    let sess = new ConfSession(this.data.name, this.data.session_type, this.data.duration, this.data.dayNum, this.data.time);
+    this.data.lectures = [];
+    let sess = new ConfSession(this.data.name, this.data.session_type, this.data.duration, this.data.dayNum, this.data.time, this.data.lectures);
     // console.log("sess: " + JSON.stringify(sess));
     // let insertData = Object.assign({}, this.data);
     this.confSessions[this.selectedDay].push(sess);

@@ -3,3 +3,49 @@
     <button (click)="buildProgram()">Create Program</button>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-4" *ngFor="let day of data; let i = index">
+    <h3>Day {{i + 1}}</h3>
+    <table class="table">
+      <tr *ngFor="let sess of day; let j = index">
+        <td>
+          {{sess.time}}:00
+        </td>
+        <td>
+          <div *ngFor="let lct of sess.lectures">
+            <h4>{{lct.name}}</h4>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+    <!--<table class="table">-->
+      <!--<tr >-->
+        <!--<th *ngFor="let sess of confSession; let i = index">-->
+          <!--{{sess.name}}-->
+        <!--</th>-->
+      <!--</tr>-->
+      <!--<tr *ngFor="let in of counter(rows)+1; let j = index">-->
+        <!--<td>-->
+          <!--Day {{j+1}}-->
+        <!--</td>-->
+        <!--<td *ngFor="let lecture of lectures|slice :(j*3):(j*3+3);">-->
+          <!--{{lecture.name}}-->
+        <!--</td>-->
+      <!--</tr>-->
+    <!--</table>-->
+    <!--<table class="table">-->
+      <!--<tr *ngFor="let in of counter(numDays); let i = index">-->
+        <!--<td>-->
+          <!--Day {{i+1}}-->
+        <!--</td>-->
+        <!--<td *ngFor="let sess of confSession; let j = index">-->
+          <!--<div *ngFor="let lecture of sess.lectures;">-->
+            <!--<div *ngIf="sess.dayNum === i+1">-->
+              <!--{{lecture.name}}-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</td>-->
+      <!--</tr>-->
+    <!--</table>-->
+</div>

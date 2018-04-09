@@ -2,6 +2,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import { Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import { Conf } from "../models/conf";
 import { Lecture } from "../models/lecture";
+import { ConfSession } from "../models/confSession";
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -41,7 +42,7 @@ export class NewConfService {
     return this.http.post(this.base_url + '/createProgram', {'confId':confId, 'confSessions':data}, this.options).toPromise().then((res) => res.json() as Conf);
   }
 
-  buildProgram(confId): Promise<Conf> {
-    return this.http.post(this.base_url + '/buildProgram', {'confId':confId}, this.options).toPromise().then((res) => res.json() as Conf);
+  buildProgram(confId): Promise<ConfSession[]> {
+    return this.http.post(this.base_url + '/buildProgram', {'confId':confId}, this.options).toPromise().then((res) => res.json() as ConfSession[]);
   }
 }
