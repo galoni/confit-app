@@ -23,8 +23,8 @@ export class NewConfLecturesComponent implements OnInit {
     this.data.topics = [];
     this.confId = localStorage.getItem('confId');
     this.lectures = JSON.parse(localStorage.getItem('lectures'));
-    if (this.confId){
-      console.log("confId: " + this.confId);
+    if(!this.confId) {
+      this.confId = "5aca81ae58bd880510606ad4";
     }
     if(this.lectures){
       console.log("found stash");
@@ -72,9 +72,15 @@ export class NewConfLecturesComponent implements OnInit {
   addManyLectures(){
     console.log(this.confLectures);
     for (let i = 0; i < this.confLectures.length; i++){
-
+      console.log("i: " + this.confLectures[i].topic.length);
+      for (let j = 0; j < this.confLectures[i].topic.length; j++){
+        if(this.confTopics.indexOf(this.confLectures[i].topic[j]) === -1){
+          this.confTopics.push(this.confLectures[i].topic[j]);
+        }
+      }
     }
-    this.newConfService.addManyLectures(this.confLectures, this.confId).then((conf) =>{
+    console.log("conf topics: " + this.confTopics);
+    this.newConfService.addManyLectures(this.confLectures, this.confId, this.confTopics).then((conf) =>{
       console.log(conf);
       localStorage.setItem('lectures', JSON.stringify(this.lectures));
       localStorage.setItem('confLectures', JSON.stringify(this.confLectures));
