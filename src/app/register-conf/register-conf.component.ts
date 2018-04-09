@@ -64,5 +64,20 @@ this.visitor_id = localStorage.getItem('visitorId');
     });
     form.reset();
     }
+    
+        addTopics(form: NgForm) {
+
+    console.log("inside addTopics.ts");
+    this.data.visitorid=this.visitor_id;
+    this.data.confid = this.selectedConf._id;
+    this.data.topic1 = form.value.topic1;
+    this.data.topic2 = form.value.topic2;
+    this.data.topic3 = form.value.topic3;
+    this.RegToConfService.setTopics(this.data,(data)=>{
+      if(data==='error') console.log("error")
+      else console.log("success")
+    });
+    form.reset();
+    }
 
 }

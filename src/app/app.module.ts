@@ -33,6 +33,8 @@ import { ScanQRCodeComponent } from './scan-qr-code/scan-qr-code.component';
 import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-details.component';
 import { MyConfComponent } from './my-conf/my-conf.component';
 import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
+import { MyConfLectureComponent } from './my-conf-lecture/my-conf-lecture.component';
+import { MyConfVisitorComponent } from './my-conf-visitor/my-conf-visitor.component';
 import { NewConfProgramComponent } from './new-conf-program/new-conf-program.component';
 
 @NgModule({
@@ -58,6 +60,8 @@ import { NewConfProgramComponent } from './new-conf-program/new-conf-program.com
     ScanQRCodeDetailsComponent,
     MyConfComponent,
     MyConfPathComponent,
+    MyConfLectureComponent,
+    MyConfVisitorComponent,
     NewConfProgramComponent
   ],
   imports: [

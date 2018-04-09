@@ -41,7 +41,6 @@ const appRoutes: Routes =[
     },
     { path: 'MyConference', component: MyConfComponent,
       children:[
-        { path: '', redirectTo: 'myConfPath', pathMatch: 'full' },
         { path: 'myConfPath', component: MyConfPathComponent }
       ]
     },

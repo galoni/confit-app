@@ -20,6 +20,7 @@ export class NewConfSessionsComponent implements OnInit {
   startTime: number= 9;
   program: ConfSession[]= [];
 
+
   constructor(private newConfService: NewConfService,
               private router: Router, private r:ActivatedRoute) { }
 
@@ -78,7 +79,7 @@ export class NewConfSessionsComponent implements OnInit {
     this.timeTable[this.selectedDay] = this.timeTable[this.selectedDay] + this.data.duration;
     // console.log("dynum: " + this.selectedDay);
     this.data.lectures = [];
-    let sess = new ConfSession(this.data.name, this.data.session_type, this.data.duration, this.data.dayNum, this.data.time, this.data.lectures);
+    let sess = new ConfSession(this.data.name, this.data.session_type, this.data.duration, this.data.dayNum, this.data.time,this.data.lectures);
     // console.log("sess: " + JSON.stringify(sess));
     // let insertData = Object.assign({}, this.data);
     this.confSessions[this.selectedDay].push(sess);
