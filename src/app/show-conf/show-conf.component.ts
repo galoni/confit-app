@@ -13,7 +13,6 @@ import {Lecture} from "../models/lecture";
 export class ShowConfComponent implements OnInit {
   confId: string;
   confSession: ConfSession[];
-  numDays: number;
   lectures: Lecture[] = [];
   data: any = [];
   conf:Conf;
