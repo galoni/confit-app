@@ -16,7 +16,6 @@ export class NewConfProgramComponent implements OnInit {
   confSession: ConfSession[];
   numDays: number;
   lectures: Lecture[] = [];
-  EOS_lecture: Lecture;
   data: any = [];
   rows:number;
   cols:number;
@@ -26,7 +25,6 @@ export class NewConfProgramComponent implements OnInit {
 
   ngOnInit() {
     // this.data.sessDay = [];
-    this.EOS_lecture = new Lecture("EOS", "lct", 0, "no", 0);
     this.confId = localStorage.getItem('confId');
     if(!this.confId) {
       this.confId = "5aca81ae58bd880510606ad4";
