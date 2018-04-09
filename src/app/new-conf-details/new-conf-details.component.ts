@@ -28,6 +28,7 @@ export class NewConfDetailsComponent implements OnInit {
     this.newConfService.createConference(this.data).then((conf) => {
       if(conf){
         this.conf = conf;
+        this.newConfService.newConf.emit(conf);
         localStorage.setItem('confId', this.conf._id);
         localStorage.setItem('confDuration', (this.data.duration).toString());
         console.log(this.conf._id);
