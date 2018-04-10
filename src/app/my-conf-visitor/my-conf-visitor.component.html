@@ -1,8 +1,10 @@
-<h1>{{this.visitorSon.name.first_name}}</h1>
-<h4>Your Friend's Conferences:</h4>
+
+<h1>Meet {{this.visitorSon.name.first_name}} {{this.visitorSon.name.last_name}}</h1>
+<h4>{{this.visitorSon.name.first_name}} {{this.visitorSon.name.last_name}} signed up
+to these conferences:</h4>
 <div *ngFor="let conf of this.visitorSon.confs">
-  <span>conf name : </span>{{conf.confname}}<br>
-  <span>profile pie on {{conf.confname}} conference :</span>{{conf.profile_pie}}
+  <span><b>conf name :</b> </span>{{conf.confname}}<br>
+  <span><b>profile pie on {{conf.confname}} conference :</b></span>{{conf.profile_pie}}
 </div>
-<h4>Prectage matching with : {{this.visitorSon.name.first_name}}</h4>
-<h5>this.precetage (no formatting): {{this.precetage  | number}}<h5>
+<h4>Percent matching with : {{this.visitorSon.name.first_name}}</h4>
+<h4>Percent : {{this.percent  | number}}<h4>

@@ -17,7 +17,7 @@ export class MyConfVisitorComponent implements OnInit {
   confId: string;
   visitorSon: Visitor;
   visitorId: string;
-  precetage:number;
+  percent:number;
   biggestnumber:number;
   smallestnumber:number;
 
@@ -54,15 +54,18 @@ this.myConfService.getVisitorById(this.visitorSonId).then((visitor) => {
     console.log("indexofconf_visitor = "+indexofconf_visitor);
     var indexofconf_visitorSon = this.visitorSon.confs.map(function(e) { return e.confId; }).indexOf(this.confId);
     console.log("indexofconf_visitorSon = "+indexofconf_visitorSon);
-    this.smallestnumber=Math.min(this.visitorSon.confs[indexofconf_visitorSon].profile_pie, this.visitorChild.confs[indexofconf_visitor].profile_pie);
-    this.biggestnumber=Math.max(this.visitorSon.confs[indexofconf_visitorSon].profile_pie, this.visitorChild.confs[indexofconf_visitor].profile_pie);
-console.log(this.smallestnumber);
-console.log(this.biggestnumber);
-    this.precetage=this.smallestnumber/this.biggestnumber;
-    //this.precetage=(this.smallestnumber/this.biggestnumber)-((this.smallestnumber%this.biggestnumber)/this.biggestnumber)
-//this.precetage=(4/6)-((4%6)/6);
-  //this.precetage=0.4/0.6;
-    console.log(this.precetage);
+    if(indexofconf_visitor && indexofconf_visitorSon !=-1){
+      this.smallestnumber=Math.min(this.visitorSon.confs[indexofconf_visitorSon].profile_pie, this.visitorChild.confs[indexofconf_visitor].profile_pie);
+      this.biggestnumber=Math.max(this.visitorSon.confs[indexofconf_visitorSon].profile_pie, this.visitorChild.confs[indexofconf_visitor].profile_pie);
+      console.log(this.smallestnumber);
+      console.log(this.biggestnumber);
+
+      this.percent=this.smallestnumber/this.biggestnumber;
+      console.log(this.percent);
+    }
+    else
+    console.log("Not on the same conference")
+
 
   }});
     //this.myConfService.visitorSelected.subscribe((data:any)=>{
