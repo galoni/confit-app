@@ -17,6 +17,7 @@ import { ScanQRCodeDetailsComponent } from './scan-qr-code-details/scan-qr-code-
 import { MyConfComponent } from './my-conf/my-conf.component';
 import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
 import { NewConfProgramComponent} from "./new-conf-program/new-conf-program.component";
+import { ShowConfComponent } from "./show-conf/show-conf.component";
 
 
 const appRoutes: Routes =[
@@ -24,6 +25,7 @@ const appRoutes: Routes =[
     { path: 'registerToConf', component: RegisterConfComponent},
     { path: 'signinSelection', component: SigninSelectionComponent},
     { path: 'landing', component: LandingPageComponent},
+    { path: 'showConf', component: ShowConfComponent},
     { path: 'newConf', component: NewConfComponent,
       children:[
         { path: '', redirectTo: 'details', pathMatch: 'full' },

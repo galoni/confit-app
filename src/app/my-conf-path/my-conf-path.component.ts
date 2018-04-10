@@ -17,6 +17,7 @@ export class MyConfPathComponent implements OnInit {
   confId: string;
   visitorId: string;
   visitorSon: Visitor;
+
   program: any = {};
   sessions: any = [];
   data: any = [];
