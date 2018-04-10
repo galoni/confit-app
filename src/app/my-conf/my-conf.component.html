@@ -1,18 +1,13 @@
 <app-nav-visitor></app-nav-visitor>
 <h4 [hidden]="!wrongConf">you did not sign to this conf</h4>
 <div>
-  <h2>Data</h2>
-  <table class="table table-hover">
-    <tr>
-      <th>data</th>
-
-    </tr>
-
-  </table>
+<h4>Your Conferences:</h4>
 </div>
+
 <app-my-conf-path *ngIf="qrcode.type==='conference'"></app-my-conf-path>
+
 <app-my-conf-lecture *ngIf="qrcode.type==='lecture'"></app-my-conf-lecture>
-<app-my-conf-lecture *ngIf="qrcode.type==='visitor'"></app-my-conf-lecture>
+<app-my-conf-visitor *ngIf="qrcode.type==='visitor'"></app-my-conf-visitor>
 
 
 <router-outlet></router-outlet>

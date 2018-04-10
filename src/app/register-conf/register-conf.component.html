@@ -21,7 +21,7 @@
       <div class="form-group"><label>Learn precent:</label>0%<input oninput="y.value=b.value" type="range" min="0" max="100" step="10" ngModel="learnPrecent" name="learn" id="b" class="form-control mr-sm-2" placeholder="LearnPrecent">100%</div>
       <output name="y" for="b"></output>
       <div class="form-group"><label>Explore precent:</label>0%<input oninput="z.value=c.value" type="range" min="0" max="100" step="10" ngModel="explorePrecent" name="explore" id="c" class="form-control mr-sm-2" placeholder="ExplorePrecent">100%</div>
-      <output name="z" for="c"></output><br> 
+      <output name="z" for="c"></output><br>
       <button class="bg-primary" type="submit">Register to {{selectedConf.name}}</button>
       </form>
       <h2>Select preferred lectures</h2>
@@ -38,22 +38,22 @@
             </select><br>
             <button class="bg-primary" type="submit">Add prefferred lectures to {{selectedConf.name}}</button>
           </div>
-        </form> 
+        </form>
         <h2>Select main topics</h2>
         <form class="form-inline my-2 my-lg-0" (ngSubmit)="addTopics(t)" #t="ngForm">
           <div class="form-group">
-            <label>1.</label><select title="choose" name="topic" class="form-control" [(ngModel)]="topic1">
+            <label>1.</label><select title="choose" name="topic1" class="form-control" [(ngModel)]="topic1">
               <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
             </select><br>
-            <label>2.</label><select title="choose" name="topic" class="form-control" [(ngModel)]="topic2">
+            <label>2.</label><select title="choose" name="topic2" class="form-control" [(ngModel)]="topic2">
               <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
             </select><br>
-            <label>3.</label><select title="choose" name="topic" class="form-control" [(ngModel)]="topic3">
+            <label>3.</label><select title="choose" name="topic3" class="form-control" [(ngModel)]="topic3">
               <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
             </select><br>
             <button class="bg-primary" type="submit">Add main topics to {{selectedConf.name}}</button>
           </div>
-        </form> 
+        </form>
     </div>
   </div>
 </div>
