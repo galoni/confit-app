@@ -26,7 +26,7 @@ export class MyConfComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('confId') === null) {
-      localStorage.setItem('confId', '5a85ff12734d1d1523dcef75');
+      localStorage.setItem('confId', '5ac62e3a12de1e24fc5a936e');
       console.log("created local storage");
     }
     if (localStorage.getItem('visitorId') === null) {
@@ -38,57 +38,10 @@ export class MyConfComponent implements OnInit {
     this.visitorId = localStorage.getItem('visitorId');
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
       if (visitor) {
+        this.visitor=visitor;
+        console.log(this.visitor);
         this.myConfService.visitorSelected.emit(visitor);
       }});
     }
 
-    // this.data.visitorid = localStorage.getItem('visitorId');
-    // console.log(localStorage.getItem('QRCode'));
-
-    //
-    //     localStorage.setItem('visitorId', this.visitor._id);
-    //     for (let i = 0; i < this.visitor.confs.length; i++) {
-    //       if (this.visitor.confs[i].confId === this.confId) {
-    //         this.custom_path = this.visitor.confs[i].custome_path;
-    //         console.log(this.custom_path);
-    //       }
-    //     }
-    //   }
-    //   else {
-    //     console.log("error");
-    //   }
-    // });
   }
-  // Submitvisitor(form: NgForm) {
-  //   console.log("user typed: " + form.value.visitorId);
-  //   console.log("user typed: " + form.value.confId);
-  //   localStorage.setItem('visitorId', form.value.visitorId);
-  //   localStorage.setItem('confId', form.value.confId);
-  //   this.myConfService.getVisitorById(form.value.visitorId).then((visitor) => {
-  //     if (!visitor) {
-  //       console.log("Bad Input");
-  //     }
-  //     else {
-  //       localStorage.setItem('visitor', JSON.stringify(visitor));
-  //       this.visitor = JSON.stringify(visitor);
-  //       console.log(JSON.stringify(visitor));
-  //       let confs = visitor.confs
-  //       for(let i=0;i<confs.length;i++){
-  //         if(confs[i].confid===form.value.confId){
-  //           console.log(confs[i].confid);
-  //         }
-  //       }
-  //     }
-  //
-  //
-  //
-  //   })
-  //   // this.visitor = localStorage.getItem('visitor');
-  //   // this.path = JSON.parse(this.visitor);
-  //   // console.log(this.path);
-  //
-  //   //var item = this.path["confs"].filter(function(item) {
-  //     //return item.confId === form.value.confId;
-  //   //})[0];
-  //   //console.log(item);
-  // }

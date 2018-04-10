@@ -62,7 +62,7 @@ import { NewConfProgramComponent } from './new-conf-program/new-conf-program.com
     MyConfPathComponent,
     MyConfLectureComponent,
     MyConfVisitorComponent,
-    NewConfProgramComponent
+    NewConfProgramComponent,
   ],
   imports: [
     BrowserModule,

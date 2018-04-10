@@ -17,11 +17,9 @@ export class MyConfPathComponent implements OnInit {
   qrcode:any={};
   conf: Conf;
   visitorSon: Visitor;
-  @Input() title:string;
 
   constructor(private myConfService: myConfService,
     private router: Router, private r: ActivatedRoute) {
-      // this.visitorq = this.visitor;
      }
 
   ngOnInit() {
