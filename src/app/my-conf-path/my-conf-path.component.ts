@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 export class MyConfPathComponent implements OnInit {
   confId: string;
+  visitorId: string;
   visitorSon: Visitor;
   program: any = {};
   sessions: any = [];
@@ -25,12 +26,17 @@ export class MyConfPathComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myConfService.visitorSelected.subscribe((visitor) => {
+    this.confId = localStorage.getItem('confId');
+    console.log(this.confId);
+    this.visitorId = localStorage.getItem('visitorId');
+    // this.myConfService.visitorSelected.subscribe((visitor) => {
+    this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
       this.visitorSon = visitor;
       if (this.visitorSon == null) {
         return;
       }
-      this.confId = localStorage.getItem('confId');
+      console.log(this.visitorSon);
+
       this.program =  this.visitorSon.confs.find(x => x.confId == this.confId);
       for (let i = 0; i< this.program.custome_path.length;i++){
         this.sessions.push(this.program.custome_path[i].sessions);
