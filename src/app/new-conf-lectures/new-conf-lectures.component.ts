@@ -3,6 +3,7 @@ import { NewConfService } from "../services/newConf.service";
 import { Lecture } from "../models/lecture";
 import {NgForm} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Conf} from "../models/conf";
 
 @Component({
   selector: 'app-new-conf-lectures',
@@ -16,10 +17,16 @@ export class NewConfLecturesComponent implements OnInit {
   data:any= {};
   confId:string;
   confTopics: string[]=[];
+  newConf: Conf;
   constructor(private newConfService: NewConfService,
               private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
+    // this.newConf.lectures=[];
+    this.newConfService.newConf.subscribe((conf:Conf)=>{
+      this.newConf = conf;
+      console.log("newConf: " + JSON.stringify(this.newConf));
+    });
     this.data.topics = [];
     this.confId = localStorage.getItem('confId');
     this.lectures = JSON.parse(localStorage.getItem('lectures'));
@@ -71,7 +78,7 @@ export class NewConfLecturesComponent implements OnInit {
   }
   addManyLectures(){
     console.log(this.confLectures);
-    for (let i = 0; i < this.confLectures.length; i++){
+    for (let i = 0; i < this.confLectures.length; i++){ //calculate all topics
       console.log("i: " + this.confLectures[i].topic.length);
       for (let j = 0; j < this.confLectures[i].topic.length; j++){
         if(this.confTopics.indexOf(this.confLectures[i].topic[j]) === -1){
@@ -80,6 +87,10 @@ export class NewConfLecturesComponent implements OnInit {
       }
     }
     console.log("conf topics: " + this.confTopics);
+    // for(let i = 0; i < this.confLectures.length; i++){
+    //   this.newConf.lectures.push(this.confLectures[i]);
+    // }
+    console.log("newConf: " + this.newConf);
     this.newConfService.addManyLectures(this.confLectures, this.confId, this.confTopics).then((conf) =>{
       console.log(conf);
       localStorage.setItem('lectures', JSON.stringify(this.lectures));

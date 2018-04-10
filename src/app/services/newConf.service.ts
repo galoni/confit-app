@@ -8,6 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class NewConfService {
   newConf = new EventEmitter<Conf>();
+  confProgram = new EventEmitter<any>();
   headers = new Headers({ "content-type": "application/json" });
   options = new RequestOptions({ headers: this.headers });
   private base_url: String = 'http://localhost:3000/manager';
@@ -44,5 +45,9 @@ export class NewConfService {
 
   buildProgram(confId): Promise<ConfSession[]> {
     return this.http.post(this.base_url + '/buildProgram', {'confId':confId}, this.options).toPromise().then((res) => res.json() as ConfSession[]);
+  }
+
+  getConfById(confId): Promise<Conf> {
+    return this.http.post(this.base_url + '/getConfById', {'confId':confId}, this.options).toPromise().then((res) => res.json() as Conf);
   }
 }

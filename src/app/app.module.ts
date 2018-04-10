@@ -36,6 +36,8 @@ import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
 import { MyConfLectureComponent } from './my-conf-lecture/my-conf-lecture.component';
 import { MyConfVisitorComponent } from './my-conf-visitor/my-conf-visitor.component';
 import { NewConfProgramComponent } from './new-conf-program/new-conf-program.component';
+import { ShowConfComponent } from './show-conf/show-conf.component';
+import { NewConfProgramShowComponent } from './new-conf-program-show/new-conf-program-show.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { NewConfProgramComponent } from './new-conf-program/new-conf-program.com
     MyConfLectureComponent,
     MyConfVisitorComponent,
     NewConfProgramComponent,
+    ShowConfComponent,
+    NewConfProgramShowComponent
   ],
   imports: [
     BrowserModule,

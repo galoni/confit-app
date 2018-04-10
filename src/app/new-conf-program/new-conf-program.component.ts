@@ -47,13 +47,13 @@ export class NewConfProgramComponent implements OnInit {
   buildProgram(){
     this.newConfService.buildProgram(this.confId).then((confSession) =>{
       this.confSession = confSession;
-      console.log(this.confSession);
-      console.log("data: "+ JSON.stringify(this.data));
+      // console.log(this.confSession);
+      // console.log("data: "+ JSON.stringify(this.data));
       for(let i = 0; i < this.confSession.length; i++){
-        let dayNum = this.confSession[i].dayNum;
-        this.data[dayNum-1].push(this.confSession[i]);
+        this.data[this.confSession[i].dayNum-1].push(this.confSession[i]);
       }
-      console.log("data: "+ JSON.stringify(this.data[0]));
+      this.newConfService.confProgram.emit(this.data);
+
       // for(let k=1;k<this.numDays+1;k++) {
       //     for (let i = 0; i < this.confSession.length; i++) {
       //       for (let j = 0; j < this.confSession[i].lectures.length; j++) {
