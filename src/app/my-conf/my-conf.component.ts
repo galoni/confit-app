@@ -14,6 +14,7 @@ import { Conf } from "../models/conf";
 })
 export class MyConfComponent implements OnInit {
   visitor: Visitor;
+  visitorSonId:string;
   visitorId: string;
   confId: string;
   data: any = {};
@@ -26,13 +27,15 @@ export class MyConfComponent implements OnInit {
     private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
+    this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
+
     if (localStorage.getItem('confId') === null) {
-      localStorage.setItem('confId', '5ac62e3a12de1e24fc5a936e');
-      console.log("created local storage");
+          localStorage.setItem('confId', '5aca81ae58bd880510606ad4');
+          console.log("created local storage CONFID");
     }
     if (localStorage.getItem('visitorId') === null) {
-      localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
-      console.log("created local storage");
+            localStorage.setItem('visitorId', '5acca3aea57fc6025890f4d6');
+            console.log("created local storage VISITORID");
     }
 
     this.visitorId = localStorage.getItem('visitorId');
@@ -40,7 +43,6 @@ export class MyConfComponent implements OnInit {
       if (visitor) {
         this.visitor=visitor;
         console.log(this.visitor);
-        this.myConfService.visitorSelected.emit(visitor);
         this.qrcode = JSON.parse(localStorage.getItem('QRCode'));
         if (this.qrcode.type == 'conference'){
           if (visitor.confs.some(x => x.confId === this.qrcode.id)){
@@ -53,7 +55,12 @@ export class MyConfComponent implements OnInit {
           }
 
         }
+        if (this.qrcode.type == 'visitor'){
+          this.visitorSonId=this.qrcode.id;
+          console.log("visitorSonId:  "+this.visitorSonId);
+        }
         console.log(this.qrcode.type);
+        console.log("qrcode_id"+this.qrcode.id)
       }});
     }
 
