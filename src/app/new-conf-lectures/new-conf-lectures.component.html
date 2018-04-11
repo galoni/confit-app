@@ -42,12 +42,11 @@
     <form class="form-inline my-2 my-lg-0" (ngSubmit)="createLecture(f)" #f="ngForm">
       <div class="form-group"><label>Lecture name:</label><input ngModel="new lecture" name="name" class="form-control mr-sm-2"></div>
       <br><div class="form-group"><label>Lecturer name:</label><input ngModel="lecturer_name" class="form-control mr-sm-2" name="lecturer_name"></div>
-      <br><div class="form-group"><label>Duration:</label><input ngModel="duration" class="form-control mr-sm-2" type="number" name="duration"></div>
       <br><div class="form-group"><label>description:</label><input ngModel="description" class="form-control mr-sm-2" name="description"></div>
       <br><div class="form-group"><label>ratings:</label><input ngModel="ratings" type="number" class="form-control mr-sm-2" name="ratings"></div>
-      <br><div class="form-group"><label>topic1:</label><input ngModel="topic1" class="form-control mr-sm-2" name="topic1"></div>
-      <br><div class="form-group"><label>topic2:</label><input ngModel="topic2" class="form-control mr-sm-2" name="topic2"></div>
-      <br><div class="form-group"><label>topic3:</label><input ngModel="topic3" class="form-control mr-sm-2" name="topic3"></div>
+      <br><label>Main Topic</label><select name="topic" class="form-control" [(ngModel)]="data.topic" (ngModelChange)="onChange($event)">
+        <option *ngFor="let top of topics; let i = index" [ngValue]="top">{{top}}</option>
+      </select>
       <div class="row">
         <div class="col-xs-12">
           <button class="btn btn-success" type="submit">CREATE</button>

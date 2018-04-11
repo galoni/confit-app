@@ -4,6 +4,7 @@ import { Lecture } from "../models/lecture";
 import {NgForm} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Conf} from "../models/conf";
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-new-conf-lectures',
@@ -18,16 +19,36 @@ export class NewConfLecturesComponent implements OnInit {
   confId:string;
   confTopics: string[]=[];
   newConf: Conf;
+  topics:string[]=["Web-D", "IOT-D", "Big Data-D"];
+  subscription:Subscription;
+
   constructor(private newConfService: NewConfService,
               private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
+    this.subscription = this.newConfService.newConf$
+      .subscribe(conf => this.newConf = conf);
+    if(this.newConf.main_topics.length > 0){
+      this.topics = [];
+      for(let i = 0; i < this.newConf.main_topics.length; i++){
+        this.topics.push(this.newConf.main_topics[i]);
+        // console.log("topic: " + this.topics);
+      }
+    }
     // this.newConf.lectures=[];
-    this.newConfService.newConf.subscribe((conf:Conf)=>{
-      this.newConf = conf;
-      console.log("newConf: " + JSON.stringify(this.newConf));
-    });
-    this.data.topics = [];
+    // this.newConfService.newConf.subscribe((conf:Conf)=>{
+    //   this.newConf = conf;
+    //   console.log("newConf: " + JSON.stringify(this.newConf));
+    //   this.topics = [];
+    //   for(let i = 0; i < this.newConf.main_topics.length; i++){
+    //     this.topics.push(this.newConf.main_topics[i]);
+    //     console.log("topic: " + this.topics);
+    //   }
+    // });
+    // if (!this.newConf){
+    //   this.topics = ["Web-D", "IOT-D", "Big Data-D"];
+    // }
+    console.log("topic: " + this.topics);
     this.confId = localStorage.getItem('confId');
     this.lectures = JSON.parse(localStorage.getItem('lectures'));
     if(!this.confId) {
@@ -62,31 +83,26 @@ export class NewConfLecturesComponent implements OnInit {
   createLecture(form: NgForm) {
     this.data.name = form.value.name;
     this.data.lecturer_name = form.value.lecturer_name;
-    this.data.duration = form.value.duration;
     this.data.description = form.value.description;
     this.data.ratings = form.value.ratings;
-    this.data.topics.push(form.value.topic1);
-    this.data.topics.push(form.value.topic2);
-    this.data.topics.push(form.value.topic3);
     this.data.lectures = [];
-    console.log("data: " + this.data.topics);
+    console.log("data: " + this.data.topic);
     this.newConfService.createLecture(this.data).then((lct) => {
       console.log(lct);
       this.lectures.push(lct);
-      this.data.topics = [];
     });
   }
   addManyLectures(){
     console.log(this.confLectures);
-    for (let i = 0; i < this.confLectures.length; i++){ //calculate all topics
-      console.log("i: " + this.confLectures[i].topic.length);
-      for (let j = 0; j < this.confLectures[i].topic.length; j++){
-        if(this.confTopics.indexOf(this.confLectures[i].topic[j]) === -1){
-          this.confTopics.push(this.confLectures[i].topic[j]);
-        }
-      }
-    }
-    console.log("conf topics: " + this.confTopics);
+    // for (let i = 0; i < this.confLectures.length; i++){ //calculate all topics
+    //   console.log("i: " + this.confLectures[i].topic.length);
+    //   for (let j = 0; j < this.confLectures[i].topic.length; j++){
+    //     if(this.confTopics.indexOf(this.confLectures[i].topic[j]) === -1){
+    //       this.confTopics.push(this.confLectures[i].topic[j]);
+    //     }
+    //   }
+    // }
+    // console.log("conf topics: " + this.confTopics);
     // for(let i = 0; i < this.confLectures.length; i++){
     //   this.newConf.lectures.push(this.confLectures[i]);
     // }
@@ -97,5 +113,9 @@ export class NewConfLecturesComponent implements OnInit {
       localStorage.setItem('confLectures', JSON.stringify(this.confLectures));
       this.router.navigate(["../sessions"], { relativeTo: this.r });
     });
+  }
+  ngOnDestroy() {
+    // prevent memory leak when component is destroyed
+    this.subscription.unsubscribe();
   }
 }

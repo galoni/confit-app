@@ -4,9 +4,12 @@ import { Conf } from "../models/conf";
 import { Lecture } from "../models/lecture";
 import { ConfSession } from "../models/confSession";
 import 'rxjs/add/operator/toPromise';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class NewConfService {
+  private _newConf = new BehaviorSubject<Conf>(new Conf("new conf", "type", "logo", "date", 2, "loc", "aud", []));
+  newConf$ = this._newConf.asObservable();
   newConf = new EventEmitter<Conf>();
   confProgram = new EventEmitter<any>();
   headers = new Headers({ "content-type": "application/json" });
@@ -14,6 +17,10 @@ export class NewConfService {
   private base_url: String = 'http://localhost:3000/manager';
 
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
+
+  setNewConf(conf) {
+    this._newConf.next(conf);
+  }
 
   createConference(data): Promise<Conf> {
     let body = JSON.stringify(data);

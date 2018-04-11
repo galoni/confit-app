@@ -36,7 +36,7 @@ export class NewConfSessionsComponent implements OnInit {
       console.log("numDays: " + this.numDays);
     }
     else{
-      this.numDays = 3;
+      this.numDays = 2;
     }
     if (this.confSessions == undefined){
       this.confSessions = [];
