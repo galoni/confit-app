@@ -30,7 +30,7 @@ export class RegisterConfComponent implements OnInit {
               private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
-localStorage.setItem('visitorId','5acca3aea57fc6025890f4d6');
+localStorage.setItem('visitorId','5acbcacb1dec292e38d88760');
 this.visitor_id = localStorage.getItem('visitorId');
     this.RegToConfService.getAllConfs().then((confs)=>{
             console.log(confs);

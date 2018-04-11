@@ -21,24 +21,14 @@ export class ShowConfComponent implements OnInit {
     private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
-<<<<<<< HEAD
-    this.conf = new Conf("name", "type", "logo", "date", [], 2, "loc", "aud");
-
-=======
     this.conf = new Conf("name", "type", "logo", "date", 2, "loc", "aud");
->>>>>>> master
     this.confId = localStorage.getItem('confId');
     if (!this.confId) {
       this.confId = "5aca81ae58bd880510606ad4";
     }
     this.confId = "5aca81ae58bd880510606ad4";
-<<<<<<< HEAD
-    console.log("ff: " +this.confId);
-    this.newConfService.getConfById(this.confId).then((conf)=>{
-=======
     console.log(this.confId);
     this.newConfService.getConfById(this.confId).then((conf) => {
->>>>>>> master
       this.conf = conf;
       console.log(this.conf);
       for (let i = 0; i < this.conf.duration; i++) {

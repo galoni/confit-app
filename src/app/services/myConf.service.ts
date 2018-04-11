@@ -10,7 +10,7 @@ export class myConfService {
   options = new RequestOptions({ headers: this.headers });
   private manager_url: String = 'http://localhost:3000/manager';
   private visitor_url: String = 'http://localhost:3000/visitor';
-  visitorSelected = new EventEmitter<any>();
+  visitorSelected = new EventEmitter<Visitor>();
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
 
   getVisitorById(visitorId): Promise<Visitor> {
