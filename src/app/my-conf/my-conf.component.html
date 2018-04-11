@@ -13,6 +13,7 @@
 </div>
 <hr>
 <app-my-conf-path *ngIf="qrcode.type==='conference'"></app-my-conf-path>
+
 <app-my-conf-lecture *ngIf="qrcode.type==='lecture'"></app-my-conf-lecture>
 <app-my-conf-visitor [visitorSonId]="visitorSonId" [visitorChild]="visitor" *ngIf="qrcode.type==='visitor'"></app-my-conf-visitor>
 

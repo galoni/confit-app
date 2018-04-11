@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NewConfService } from "../services/newConf.service";
 import { ConfSession } from "../models/confSession";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Conf} from "../models/conf";
-import {Lecture} from "../models/lecture";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Conf } from "../models/conf";
+import { Lecture } from "../models/lecture";
 
 @Component({
   selector: 'app-show-conf',
@@ -13,34 +13,42 @@ import {Lecture} from "../models/lecture";
 export class ShowConfComponent implements OnInit {
   confId: string;
   confSession: ConfSession[];
-  numDays: number;
   lectures: Lecture[] = [];
   data: any = [];
-  conf:Conf;
+  conf: Conf;
 
   constructor(private newConfService: NewConfService,
-              private router: Router, private r:ActivatedRoute) { }
+    private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
+<<<<<<< HEAD
     this.conf = new Conf("name", "type", "logo", "date", [], 2, "loc", "aud");
 
+=======
+    this.conf = new Conf("name", "type", "logo", "date", 2, "loc", "aud");
+>>>>>>> master
     this.confId = localStorage.getItem('confId');
-    if(!this.confId) {
+    if (!this.confId) {
       this.confId = "5aca81ae58bd880510606ad4";
     }
     this.confId = "5aca81ae58bd880510606ad4";
+<<<<<<< HEAD
     console.log("ff: " +this.confId);
     this.newConfService.getConfById(this.confId).then((conf)=>{
+=======
+    console.log(this.confId);
+    this.newConfService.getConfById(this.confId).then((conf) => {
+>>>>>>> master
       this.conf = conf;
       console.log(this.conf);
-      for(let i = 0; i < this.conf.duration; i++){
+      for (let i = 0; i < this.conf.duration; i++) {
         this.data[i] = [];
       }
       this.confSession = this.conf.program;
       // console.log(this.conf.program);
       // console.log("data: "+ JSON.stringify(this.data));
-      for(let i = 0; i < this.conf.program.length; i++){
-        this.data[this.conf.program[i].dayNum-1].push(this.conf.program[i]);
+      for (let i = 0; i < this.conf.program.length; i++) {
+        this.data[this.conf.program[i].dayNum - 1].push(this.conf.program[i]);
       }
       this.newConfService.confProgram.emit(this.data);
     });
