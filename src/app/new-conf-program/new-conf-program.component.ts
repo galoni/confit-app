@@ -34,7 +34,7 @@ export class NewConfProgramComponent implements OnInit {
       console.log("numDays: " + this.numDays);
     }
     else{
-      this.numDays = 3;
+      this.numDays = 2;
     }
     for(let i = 0; i < this.numDays; i++){
       this.data[i] = [];

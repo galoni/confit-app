@@ -16,6 +16,7 @@ export class NewConfDetailsComponent implements OnInit {
               private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
+    this.data.main_topics = [];
   }
   createConference(form: NgForm) {
     this.data.name = form.value.name;
@@ -25,10 +26,15 @@ export class NewConfDetailsComponent implements OnInit {
     this.data.duration = form.value.duration;
     this.data.location = form.value.location;
     this.data.audience = form.value.audience;
+    this.data.main_topics.push(form.value.topic1);
+    this.data.main_topics.push(form.value.topic2);
+    this.data.main_topics.push(form.value.topic3);
     this.newConfService.createConference(this.data).then((conf) => {
       if(conf){
         this.conf = conf;
-        this.newConfService.newConf.emit(conf);
+        // console.log("emit: " + this.conf);
+        // this.newConfService.newConf.emit(this.conf);
+        this.newConfService.setNewConf(conf);
         localStorage.setItem('confId', this.conf._id);
         localStorage.setItem('confDuration', (this.data.duration).toString());
         console.log(this.conf._id);
@@ -38,5 +44,6 @@ export class NewConfDetailsComponent implements OnInit {
         console.log("error");
       }
     });
+    this.data.main_topics = [];
   }
 }
