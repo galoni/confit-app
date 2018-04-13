@@ -40,7 +40,8 @@ export class ShowConfComponent implements OnInit {
       for (let i = 0; i < this.conf.program.length; i++) {
         this.data[this.conf.program[i].dayNum - 1].push(this.conf.program[i]);
       }
-      this.newConfService.confProgram.emit(this.data);
+      this.conf.program = this.data;
+      this.newConfService.newConf.emit(this.conf);
     });
   }
 
