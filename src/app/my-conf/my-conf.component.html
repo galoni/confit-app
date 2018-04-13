@@ -1,13 +1,23 @@
 <app-nav-visitor></app-nav-visitor>
 <h4 [hidden]="!wrongConf">you did not sign to this conf</h4>
 <div>
-<h4>Your Conferences:</h4>
+  <h2>{{this.visitor.name.first_name}}</h2>
+  <div>
+    <span> Your QrCode : </span>
+    <img src="http://qr-code-storage.s3.amazonaws.com/conference-12594d7b-af1b-4a45-8ffa-2abd05279180.png">
+  </div>
+  <h4>Your Conferences:</h4>
+  <div *ngFor="let conf of this.visitor.confs">
+  <span>conf name : </span>{{conf.confname}}<br>
+  <span>profile pie on {{conf.confname}} conference :</span>{{conf.profile_pie}}
+ </div>
 </div>
+<hr>
 
 <app-my-conf-path *ngIf="qrcode.type==='conference'"></app-my-conf-path>
 
 <app-my-conf-lecture *ngIf="qrcode.type==='lecture'"></app-my-conf-lecture>
-<app-my-conf-visitor *ngIf="qrcode.type==='visitor'"></app-my-conf-visitor>
+<app-my-conf-visitor [visitorSonId]="visitorSonId" [visitorChild]="visitor" *ngIf="qrcode.type==='visitor'"></app-my-conf-visitor>
 
 
 <router-outlet></router-outlet>
