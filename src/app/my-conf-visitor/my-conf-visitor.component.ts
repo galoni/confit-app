@@ -58,8 +58,8 @@ this.myConfService.getVisitorById(this.visitorSonId).then((visitor) => {
       this.biggestnumber=Math.max(this.visitorSon.confs[indexofconf_visitorSon].profile_pie, this.visitorChild.confs[indexofconf_visitor].profile_pie);
       console.log(this.smallestnumber);
       console.log(this.biggestnumber);
-
-      this.percent=this.smallestnumber/this.biggestnumber;
+      //this.percent=this.smallestnumber/this.biggestnumber;
+      this.percent=Math.floor((this.smallestnumber / this.biggestnumber) * 100)
       console.log(this.percent);
     }
     else
