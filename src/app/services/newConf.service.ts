@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import  {EventEmitter, Injectable} from '@angular/core';
 import { Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import { Conf } from "../models/conf";
 import { Lecture } from "../models/lecture";

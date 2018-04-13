@@ -10,14 +10,35 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class NewConfProgramShowComponent implements OnInit {
   data: any = [];
+  topicsLectures:any = [];
 
   constructor(private newConfService: NewConfService,
               private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
-    this.newConfService.confProgram.subscribe((data:any)=>{
-      this.data = data;
-      console.log("data: "+ JSON.stringify(this.data[0]));
+    this.newConfService.newConf.subscribe((data:any)=>{
+      this.data = data.program;
+      // console.log("data: "+ JSON.stringify(this.data));
+      let topics = [];
+      let tLength = data.main_topics.length;
+      for (let tIndex = 0; tIndex < tLength; tIndex++){//init topics array
+        topics.push(data.main_topics[tIndex]);
+        this.topicsLectures[tIndex] = [];
+      }
+      // console.log("topicsLectures: " + JSON.stringify(this.topicsLectures));
+      for (let i = 0; i < this.data.length; i++){
+        for(let j = 0; j < this.data[i].length; j++){
+          for (let tIndex = 0; tIndex < tLength; tIndex++){
+            this.topicsLectures[tIndex] = this.data[i][j].lectures.filter(lct => lct.topic === topics[tIndex]);
+          }
+          // console.log("topicsLectures: " + JSON.stringify(this.topicsLectures));
+          this.data[i][j].lectures = [];
+          for (let tIndex = 0; tIndex < tLength; tIndex++){
+            this.data[i][j].lectures[tIndex] = this.topicsLectures[tIndex];
+          }
+        }
+      }
+      // console.log("super data: " + JSON.stringify(this.data));
     });
   }
 
