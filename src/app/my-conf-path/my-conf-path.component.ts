@@ -27,7 +27,7 @@ export class MyConfPathComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.confId = localStorage.getItem('confId');
+    this.confId = '5aca81ae58bd880510606ad4';
     console.log(this.confId);
     this.visitorId = localStorage.getItem('visitorId');
     // this.myConfService.visitorSelected.subscribe((visitor) => {
@@ -36,12 +36,14 @@ export class MyConfPathComponent implements OnInit {
       if (this.visitorSon == null) {
         return;
       }
-      console.log(this.visitorSon);
+      console.log("kaka" + this.visitorSon);
 
       this.program =  this.visitorSon.confs.find(x => x.confId == this.confId);
+        console.log(this.program);
       for (let i = 0; i< this.program.custome_path.length;i++){
         this.sessions.push(this.program.custome_path[i].sessions);
       }
+
       var maxDay = 0;
       for(let j = 0; j < this.sessions.length; j++){
         var dayNum = this.sessions[j].dayNum;

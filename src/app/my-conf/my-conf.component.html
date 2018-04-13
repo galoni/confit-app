@@ -6,6 +6,15 @@
     <span> Your QrCode : </span>
     <img src="http://qr-code-storage.s3.amazonaws.com/conference-12594d7b-af1b-4a45-8ffa-2abd05279180.png">
   </div>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <select name="type" ngModel>
+        <option value = "conference">conference</option>
+        <option value = "conference">lecture</option>
+        <option value = "conference">visitor</option>
+    </select>
+    <input name="id" ngModel>
+      <button>Submit</button>
+    </form>
   <h4>Your Conferences:</h4>
   <div *ngFor="let conf of this.visitor.confs">
   <span>conf name : </span>{{conf.confname}}<br>
