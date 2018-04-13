@@ -15,6 +15,7 @@ export class NewConfProgramComponent implements OnInit {
   confId: string;
   confSession: ConfSession[];
   numDays: number;
+  conf:Conf;
   lectures: Lecture[] = [];
   data: any = [];
   rows:number;
@@ -36,39 +37,29 @@ export class NewConfProgramComponent implements OnInit {
     else{
       this.numDays = 2;
     }
-    for(let i = 0; i < this.numDays; i++){
-      this.data[i] = [];
-    }
   }
   counter(i: number) {
     return new Array(i);
   }
 
   buildProgram(){
+    for(let i = 0; i < this.numDays; i++){
+      this.data[i] = [];
+    }
     this.newConfService.buildProgram(this.confId).then((confSession) =>{
       this.confSession = confSession;
       // console.log(this.confSession);
       // console.log("data: "+ JSON.stringify(this.data));
-      for(let i = 0; i < this.confSession.length; i++){
+      for(let i = 0; i < this.confSession.length; i++){//split confSessions by day
         this.data[this.confSession[i].dayNum-1].push(this.confSession[i]);
       }
-      this.newConfService.confProgram.emit(this.data);
-
-      // for(let k=1;k<this.numDays+1;k++) {
-      //     for (let i = 0; i < this.confSession.length; i++) {
-      //       for (let j = 0; j < this.confSession[i].lectures.length; j++) {
-      //         if(k===this.confSession[i].dayNum){
-      //           this.lectures.push(this.confSession[i].lectures[j]);
-      //         }
-      //         else j--;
-      //       }
-      //       this.lectures.push(this.EOS_lecture);
-      //     }
-      // }
-      // console.log(this.lectures);
-      // this.rows = Math.floor(this.lectures.length /  this.confSession.length);
-      // console.log("rows: " + this.rows);
+      this.newConfService.getConfById(this.confId).then((conf) =>{
+        this.conf = conf;
+        this.conf.program = this.data;
+        this.newConfService.newConf.emit(this.conf);
+        // console.log("conf: " + JSON.stringify(this.conf));
+      });
+      // this.newConfService.confProgram.emit(this.data);
     });
   }
-
 }
