@@ -18,9 +18,9 @@ export class PieChartDataComponent implements OnInit {
   visitor:Visitor;
   pieChartColor:any = [
     {
-        backgroundColor: ['rgba(30, 169, 224, 0.8)',
-        'rgba(255,165,0,0.9)',
-        'rgba(139, 136, 136, 0.9)'
+        backgroundColor: ['rgb(155, 237, 196)',
+        'rgba(240, 111, 175, 0.3)',
+        'rgba(111, 175, 240, 0.57)'
         ]
     }
 ]
