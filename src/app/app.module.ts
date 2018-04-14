@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { CommonModule } from '@angular/common';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppComponent } from './app.component';
 import {RouterModule } from '@angular/router';
@@ -39,6 +40,7 @@ import { NewConfProgramComponent } from './new-conf-program/new-conf-program.com
 import { ShowConfComponent } from './show-conf/show-conf.component';
 import { NewConfProgramShowComponent } from './new-conf-program-show/new-conf-program-show.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { PieChartDataComponent } from './pie-chart-data/pie-chart-data.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     MyConfVisitorComponent,
     NewConfProgramComponent,
     ShowConfComponent,
-    NewConfProgramShowComponent
+    NewConfProgramShowComponent,
+    PieChartDataComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     HttpModule,
     NgQrScannerModule,
     Ng4LoadingSpinnerModule.forRoot(),
-    CommonModule
+    CommonModule,
+    ChartsModule
   ],
   providers: [
     NewConfService,

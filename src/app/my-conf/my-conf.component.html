@@ -1,17 +1,27 @@
 <app-nav-visitor></app-nav-visitor>
 <h4 [hidden]="!wrongConf">you did not sign to this conf</h4>
 <div>
-  <h2>{{this.visitor.name.first_name}}</h2>
+  <h2>{{this.visitor.name.first_name}} {{this.visitor.name.last_name}}</h2>
   <div>
     <span> Your QrCode : </span>
-    <img src="http://qr-code-storage.s3.amazonaws.com/conference-12594d7b-af1b-4a45-8ffa-2abd05279180.png">
+    <img src="http://qr-code-storage.s3.amazonaws.com/conference-de77f81f-7812-4168-a3d0-1bf7c674a130.png">
   </div>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <select name="type" ngModel>
+        <option value = "conference">conference</option>
+        <option value = "lecture">lecture</option>
+        <option value = "visitor">visitor</option>
+    </select>
+    <input name="id" ngModel>
+      <button>Submit</button>
+    </form>
   <h4>Your Conferences:</h4>
   <div *ngFor="let conf of this.visitor.confs">
   <span>conf name : </span>{{conf.confname}}<br>
   <span>profile pie on {{conf.confname}} conference :</span>{{conf.profile_pie}}
  </div>
 </div>
+<app-pie-chart-data [visitorId]="visitorId"></app-pie-chart-data>
 <hr>
 
 <app-my-conf-path *ngIf="qrcode.type==='conference'"></app-my-conf-path>
