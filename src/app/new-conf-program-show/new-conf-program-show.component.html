@@ -4,13 +4,13 @@
     <table class="table">
       <tr *ngFor="let sess of day; let j = index">
         <td>
-          {{sess.time}}:00
+          {{sess.name}}{{sess.time}}:00
         </td>
         <td>
-          <div class="row">
+          <div *ngIf="data != null" class="row">
             <div class="col-md-3" *ngFor="let top of sess.lectures">
               <h4>{{top.topic}}</h4>
-              <table class="table">
+              <table *ngIf="top != null" class="table">
                 <tr *ngFor="let lct of top;">
                   <td>
                     <h5>{{lct.name}} [{{lct.ratings}}]</h5>

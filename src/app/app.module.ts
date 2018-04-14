@@ -38,6 +38,7 @@ import { MyConfVisitorComponent } from './my-conf-visitor/my-conf-visitor.compon
 import { NewConfProgramComponent } from './new-conf-program/new-conf-program.component';
 import { ShowConfComponent } from './show-conf/show-conf.component';
 import { NewConfProgramShowComponent } from './new-conf-program-show/new-conf-program-show.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { NewConfProgramShowComponent } from './new-conf-program-show/new-conf-pr
     AppRoutingModule,
     HttpModule,
     NgQrScannerModule,
+    Ng4LoadingSpinnerModule.forRoot(),
     CommonModule
   ],
   providers: [

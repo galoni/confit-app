@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Conf} from "../models/conf";
 import {Lecture} from "../models/lecture";
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-new-conf-program',
@@ -18,11 +19,13 @@ export class NewConfProgramComponent implements OnInit {
   conf:Conf;
   lectures: Lecture[] = [];
   data: any = [];
+  avialble:boolean=true;
   rows:number;
   cols:number;
 
   constructor(private newConfService: NewConfService,
-              private router: Router, private r:ActivatedRoute) { }
+              private router: Router, private r:ActivatedRoute,
+              private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
     // this.data.sessDay = [];
@@ -46,6 +49,7 @@ export class NewConfProgramComponent implements OnInit {
     for(let i = 0; i < this.numDays; i++){
       this.data[i] = [];
     }
+    this.spinnerService.show();
     this.newConfService.buildProgram(this.confId).then((confSession) =>{
       this.confSession = confSession;
       // console.log(this.confSession);
@@ -56,10 +60,12 @@ export class NewConfProgramComponent implements OnInit {
       this.newConfService.getConfById(this.confId).then((conf) =>{
         this.conf = conf;
         this.conf.program = this.data;
+        this.spinnerService.hide();
         this.newConfService.newConf.emit(this.conf);
         // console.log("conf: " + JSON.stringify(this.conf));
       });
       // this.newConfService.confProgram.emit(this.data);
+      this.avialble = false;
     });
   }
 }
