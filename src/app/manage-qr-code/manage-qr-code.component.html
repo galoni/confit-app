@@ -1,0 +1,16 @@
+<p>
+  manage-qr-code works!
+</p>
+<div class="row">
+  <div *ngIf="confs">
+    <h2>Manage Conference QR images</h2>
+    <form class="form-inline my-2 my-lg-0" #f="ngForm">
+      <div class="form-group">
+        <label>select conference</label><select title="choose" name="conf" class="form-control" [(ngModel)]="selectedConf">
+          <option *ngFor="let conf of confs; let i=index" [ngValue]="conf">{{conf.name}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+<app-manage-qr-code-details></app-manage-qr-code-details>
+</div>
