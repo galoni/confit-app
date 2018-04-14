@@ -21,6 +21,7 @@
   <span>profile pie on {{conf.confname}} conference :</span>{{conf.profile_pie}}
  </div>
 </div>
+<app-pie-chart-data [visitorId]="visitorId"></app-pie-chart-data>
 <hr>
 
 <app-my-conf-path *ngIf="qrcode.type==='conference'"></app-my-conf-path>
