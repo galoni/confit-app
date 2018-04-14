@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Conf} from "../models/conf";
 import {Lecture} from "../models/lecture";
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-new-conf-program',
@@ -20,6 +21,8 @@ export class NewConfProgramComponent implements OnInit {
   lectures: Lecture[] = [];
   data: any = [];
   avialble:boolean=true;
+  subscription:Subscription;
+  newConf: Conf;
   rows:number;
   cols:number;
 
@@ -28,17 +31,17 @@ export class NewConfProgramComponent implements OnInit {
               private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
-    // this.data.sessDay = [];
-    this.confId = localStorage.getItem('confId');
+    this.subscription = this.newConfService.newConf$
+      .subscribe(conf => this.newConf = conf);
+    console.log("new conf: " + JSON.stringify(this.newConf));
+    this.confId = this.newConf._id;
     if(!this.confId) {
-      this.confId = "5aca81ae58bd880510606ad4";
-    }
-    this.numDays = +(localStorage.getItem('confDuration'));
-    if(this.numDays){
-      console.log("numDays: " + this.numDays);
+      console.log("no new conf");
+      this.confId = "5ad254199e8a471340a0a324";
+      this.numDays = 3;
     }
     else{
-      this.numDays = 2;
+      this.numDays = this.newConf.duration;
     }
   }
   counter(i: number) {

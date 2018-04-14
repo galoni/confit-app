@@ -16,29 +16,32 @@ export class NewConfProgramShowComponent implements OnInit {
               private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
+
     this.newConfService.newConf.subscribe((data:any)=>{
       this.data = data.program;
-      // console.log("data: "+ JSON.stringify(this.data));
+      // console.log("data: "+ JSON.stringify(data));
       let topics = [];
       let tLength = data.main_topics.length;
       for (let tIndex = 0; tIndex < tLength; tIndex++){//init topics array
         topics.push(data.main_topics[tIndex]);
         this.topicsLectures[tIndex] = [];
       }
-      // console.log("topicsLectures: " + JSON.stringify(this.topicsLectures));
-      for (let i = 0; i < this.data.length; i++){
-        for(let j = 0; j < this.data[i].length; j++){
-          for (let tIndex = 0; tIndex < tLength; tIndex++){
+      console.log("topicsLectures: " + JSON.stringify(this.topicsLectures));
+      console.log("topics: " + JSON.stringify(topics));
+      for (let i = 0; i < this.data.length; i++){//loop over days
+        for(let j = 0; j < this.data[i].length; j++){//loop over session
+          for (let tIndex = 0; tIndex < tLength; tIndex++){//loop over topic
             this.topicsLectures[tIndex] = this.data[i][j].lectures.filter(lct => lct.topic === topics[tIndex]);
+            console.log("data[i][j]: "+ JSON.stringify(this.topicsLectures));
           }
-          // console.log("topicsLectures: " + JSON.stringify(this.topicsLectures));
+          console.log("topicsLectures: " + JSON.stringify(this.topicsLectures));
           this.data[i][j].lectures = [];
           for (let tIndex = 0; tIndex < tLength; tIndex++){
             this.data[i][j].lectures[tIndex] = this.topicsLectures[tIndex];
           }
         }
       }
-      // console.log("super data: " + JSON.stringify(this.data));
+      console.log("super data: " + JSON.stringify(this.data));
     });
   }
 
