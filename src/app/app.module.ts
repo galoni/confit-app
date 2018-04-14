@@ -70,11 +70,8 @@ import { PieChartDataComponent } from './pie-chart-data/pie-chart-data.component
     NewConfProgramComponent,
     ShowConfComponent,
     NewConfProgramShowComponent,
-<<<<<<< HEAD
-    ManageQrCodeComponent
-=======
+    ManageQrCodeComponent,
     PieChartDataComponent
->>>>>>> origin/master
   ],
   imports: [
     BrowserModule,
