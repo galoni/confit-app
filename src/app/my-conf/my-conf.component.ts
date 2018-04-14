@@ -24,6 +24,7 @@ export class MyConfComponent implements OnInit {
     type:'',
     id:''
   };
+
   wrongConf:boolean=false;
   //
   custom_path: any = {};
@@ -34,6 +35,7 @@ export class MyConfComponent implements OnInit {
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
     localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
     localStorage.setItem('confId', '5aca81ae58bd880510606ad4');
+
     if (localStorage.getItem('confId') === null) {
           localStorage.setItem('confId', '5aca81ae58bd880510606ad4');
           console.log("created local storage CONFID");

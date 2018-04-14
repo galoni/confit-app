@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { CommonModule } from '@angular/common';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppComponent } from './app.component';
 import {RouterModule } from '@angular/router';
@@ -38,6 +39,7 @@ import { MyConfVisitorComponent } from './my-conf-visitor/my-conf-visitor.compon
 import { NewConfProgramComponent } from './new-conf-program/new-conf-program.component';
 import { ShowConfComponent } from './show-conf/show-conf.component';
 import { NewConfProgramShowComponent } from './new-conf-program-show/new-conf-program-show.component';
+import { PieChartDataComponent } from './pie-chart-data/pie-chart-data.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { NewConfProgramShowComponent } from './new-conf-program-show/new-conf-pr
     MyConfVisitorComponent,
     NewConfProgramComponent,
     ShowConfComponent,
-    NewConfProgramShowComponent
+    NewConfProgramShowComponent,
+    PieChartDataComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,8 @@ import { NewConfProgramShowComponent } from './new-conf-program-show/new-conf-pr
     AppRoutingModule,
     HttpModule,
     NgQrScannerModule,
-    CommonModule
+    CommonModule,
+    ChartsModule
   ],
   providers: [
     NewConfService,
