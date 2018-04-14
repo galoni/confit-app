@@ -15,7 +15,7 @@ export class myConfService {
   private visitor_url: String = 'http://localhost:3000/visitor';
   visitorSelected = new EventEmitter<Visitor>();
 
-  private _lecture = new BehaviorSubject<Lecture>(new Lecture("new lec", "lecname", "desc", 0, "topic"));
+  private _lecture = new BehaviorSubject<Lecture>(new Lecture("new lec", "lecname", "desc", 0, "topic",""));
   _visitor = new BehaviorSubject<Visitor>(new Visitor("linkedin", "edu", "ocu", "qrcode"));
   _Conf = new BehaviorSubject<Conf>(new Conf("new conf", "type", "logo", "date", 2, "loc", "aud", []));
   _confId = new BehaviorSubject<string>('');
@@ -51,7 +51,7 @@ confId$ = this._confId.asObservable();
   setQRCode(qrcode) {
     this._qrcode.next(qrcode);
   }
-  
+
   lectureInConf(visitor,confId, lecId){
     if (visitor.confs.some(x => x.confId === confId)){
       console.log("lecture found in conf " + confId)
