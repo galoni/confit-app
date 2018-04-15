@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Output,OnInit, Input,EventEmitter  } from '@angular/core';
 import { myConfService } from "../services/myConf.service";
 import { Lecture } from "../models/lecture";
 import { Visitor } from "../models/visitor";
@@ -20,10 +20,9 @@ export class MyConfVisitorComponent implements OnInit {
   percent:number;
   biggestnumber:number;
   smallestnumber:number;
-qrcode: any = {};
+  qrcode: any = {};
   @Input() visitorChild:Visitor;
   @Input() visitorSonId:string;
-
   constructor(private myConfService: myConfService,
     private router: Router, private r: ActivatedRoute) {
   }
@@ -69,8 +68,7 @@ qrcode: any = {};
                     console.log(this.percent);
                   }
                   else
-                  console.log("Not on the same conference")
-
+                  console.log("Not on the same conference");
 
                 }});
             });
@@ -110,10 +108,12 @@ this.myConfService.getVisitorById(this.visitorSonId).then((visitor) => {
       console.log(this.percent);
     }
     else
-    console.log("Not on the same conference")
+    console.log("Not on the same conference");
 
 
   }});
+
   }
+
 
 }
