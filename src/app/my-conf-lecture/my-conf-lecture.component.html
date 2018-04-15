@@ -2,7 +2,16 @@
   my-conf-lecture works!
 </p>
 <div [hidden]="inConf">
-  <p> This lecture is not in your PAth!<br>
+  <p> This lecture is not in your Path!<br>
   Would you like us to build a new Path?</p>
   <button a href="#" (click)="buildPath()">yes</button>
+</div>
+<div *ngIf="lecture" class="container">
+  <table>
+    <th>name</th><th>lecturer name</th><th>topic</th><th>description</th><th>votes</th>
+  <tr>
+    <td>{{lecture.name}}</td><td>{{lecture.lecturer_name}}</td><td>lecture.description</td><td>{{lecture.ratings}}</td>
+  </tr>
+  </table>
+
 </div>

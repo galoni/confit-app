@@ -13,24 +13,25 @@ import { DOCUMENT } from '@angular/common';
 })
 export class ManageQrCodeDetailsComponent implements OnInit {
   confs: Conf;
+  confId: string;
   lectures: Lecture[];
   bucketPrefix: string = 'http://qr-code-storage.s3.amazonaws.com/';
   constructor(private ManageQRCodeService: ManageQRCodeService,
     private router: Router, private r: ActivatedRoute, @Inject(DOCUMENT) private document: any) { }
 
   ngOnInit() {
-    this.ManageQRCodeService.getConfById('5ad23f43f3d0522aa8f3c78e').then((confs) => {
-      console.log(confs);
-      this.confs = confs;
-      this.lectures = confs.lectures;
-      console.log(this.lectures);
-    })
+    this.ManageQRCodeService._Conf.subscribe((conf) => {
+        console.log(conf);
+        this.confs = conf;
+        this.lectures = conf.lectures;
+        console.log(this.lectures);
+    });
   }
   get_multiple_images() {
     console.log("conf id: " + this.confs._id);
     this.ManageQRCodeService.get_multiple_images(this.confs._id).then((res) => {
       console.log(res.zip);
-      this.document.location.href = this.bucketPrefix+res.zip;
+      this.document.location.href = this.bucketPrefix + res.zip;
 
     })
   }

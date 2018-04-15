@@ -1,10 +1,10 @@
-import {EventEmitter, Injectable} from '@angular/core';
-import { Response,Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Response, Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import { Visitor } from "../models/visitor";
 import { Lecture } from "../models/lecture";
 import { Conf } from "../models/conf";
 import 'rxjs/add/operator/toPromise';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 @Injectable()
@@ -15,17 +15,17 @@ export class myConfService {
   private visitor_url: String = 'http://localhost:3000/visitor';
   visitorSelected = new EventEmitter<Visitor>();
 
-  private _lecture = new BehaviorSubject<Lecture>(new Lecture("new lec", "lecname", "desc", 0, "topic",""));
+  _lecture = new BehaviorSubject<Lecture>(new Lecture("new lec", "lecname", "desc", 0, "topic", ""));
   _visitor = new BehaviorSubject<Visitor>(new Visitor("linkedin", "edu", "ocu", "qrcode"));
   _Conf = new BehaviorSubject<Conf>(new Conf("new conf", "type", "logo", "date", 2, "loc", "aud", []));
   _confId = new BehaviorSubject<string>('');
   _qrcode = new BehaviorSubject<any>({
-  type:'',
-  id:'',
-  data:''
-});
+    type: '',
+    id: '',
+    data: ''
+  });
 
-confId$ = this._confId.asObservable();
+  confId$ = this._confId.asObservable();
 
   lecture$ = this._lecture.asObservable();
   visitor$ = this._visitor.asObservable();
@@ -33,7 +33,7 @@ confId$ = this._confId.asObservable();
   qrcode$ = this._qrcode.asObservable();
 
 
-  constructor(private http: Http,  defaultOptions: RequestOptions) { }
+  constructor(private http: Http, defaultOptions: RequestOptions) { }
 
 
   // setLecture(lecture) {
@@ -43,7 +43,7 @@ confId$ = this._confId.asObservable();
     this._confId.next(confId);
   }
   setVisitor(visitor) {
-    this._lecture.next(visitor);
+    this._visitor.next(visitor);
   }
   setConf(conf) {
     this._Conf.next(conf);
@@ -52,12 +52,12 @@ confId$ = this._confId.asObservable();
     this._qrcode.next(qrcode);
   }
 
-  lectureInConf(visitor,confId, lecId){
-    if (visitor.confs.some(x => x.confId === confId)){
+  lectureInConf(visitor, confId, lecId) {
+    if (visitor.confs.some(x => x.confId === confId)) {
       console.log("lecture found in conf " + confId)
       return true;
-      }
-    else{
+    }
+    else {
       console.log("did not find in conf " + confId);
       return false;
     }
@@ -65,16 +65,19 @@ confId$ = this._confId.asObservable();
   }
 
   getVisitorById(visitorId): Promise<Visitor> {
-    return this.http.post(this.visitor_url + '/getVisitorById', {id: visitorId}, this.options).toPromise().then((res) => res.json() as Visitor);
+    return this.http.post(this.visitor_url + '/getVisitorById', { id: visitorId }, this.options).toPromise().then((res) => res.json() as Visitor);
   }
-  appendPrefferedLecture(visitorid, confid,lectureid): Promise<boolean> {
-    return this.http.post(this.visitor_url + '/appendPrefferedLecture', {visitorid: visitorid, confid: confid, lecture: lectureid}, this.options).toPromise().then((res) => res.json() as boolean);
+  appendPrefferedLecture(visitorid, confid, lectureid): Promise<boolean> {
+    return this.http.post(this.visitor_url + '/appendPrefferedLecture', { visitorid: visitorid, confid: confid, lecture: lectureid }, this.options).toPromise().then((res) => res.json() as boolean);
   }
-  appendTopic(visitorid, confid,topic): Promise<boolean> {
-    return this.http.post(this.visitor_url + '/appendTopic', {visitorid: visitorid, confid: confid, topic: topic}, this.options).toPromise().then((res) => res.json());
+  appendTopic(visitorid, confid, topic): Promise<boolean> {
+    return this.http.post(this.visitor_url + '/appendTopic', { visitorid: visitorid, confid: confid, topic: topic }, this.options).toPromise().then((res) => res.json());
   }
   buildPath(visitorid, confid): Promise<any> {
-    return this.http.post(this.visitor_url + '/buildPath', {visitorId: visitorid, confId: confid}, this.options).toPromise().then((res) => res.json());
+    return this.http.post(this.visitor_url + '/buildPath', { visitorId: visitorid, confId: confid }, this.options).toPromise().then((res) => res.json());
+  }
+  getLectureById(lectureId): Promise<Lecture> {
+    return this.http.post(this.manager_url + '/getLectureById', { lectureId: lectureId }, this.options).toPromise().then((res) => res.json() as Lecture);
   }
 }
   // registerToConf(data, callback: Function){
