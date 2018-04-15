@@ -32,6 +32,10 @@ export class NewConfService {
     return this.http.post(this.base_url + '/getAllLectures', {}, this.options).toPromise().then((res) => res.json() as Lecture[]);
   }
 
+  getAllLecturesByTopic(topics): Promise<Lecture[]> {
+    return this.http.post(this.base_url + '/getAllLecturesByTopic', {'main_topics':topics}, this.options).toPromise().then((res) => res.json() as Lecture[]);
+  }
+
   createLecture(data): Promise<Lecture> {
     let body = JSON.stringify(data);
     console.log(body);

@@ -1,0 +1,43 @@
+<p>
+  manage-qr-code-details works!
+</p>
+<div class="container">
+  <div *ngIf="confs">
+    <h4>Download .zip file of conference</h4>
+    <button type="button" name="button" (click)="get_multiple_images()">Generate</button>
+    <h4>Conference</h4>
+    <table class="table">
+      <th>Conference name</th>
+      <th>file name</th>
+      <th>Download image</th>
+      <tr>
+        <td>
+          {{confs.name}}
+        </td>
+        <td>
+          {{confs.qr_code}}
+        </td>
+        <td>
+          <a [attr.href]="bucketPrefix + confs.qr_code"> image </a>
+        </td>
+      </tr>
+    </table>
+    <h4>Lectures</h4>
+    <table class="table">
+      <th>Lecture name</th>
+      <th>file name</th>
+      <th>Download image</th>
+      <tr *ngFor="let lect of lectures; let j = index">
+        <td>
+          {{lect.name}}
+        </td>
+        <td>
+          {{lect.qr_code}}
+        </td>
+        <td>
+          <a [attr.href]="'http://qr-code-storage.s3.amazonaws.com/' + lect.qr_code"> image </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

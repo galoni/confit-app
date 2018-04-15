@@ -8,6 +8,7 @@
         </select>
       </div>
     </form>
+    <button class="bg-primary" (click)="addAll()">Add All</button>
   </div>
   <div class="col-md-5">
     <div *ngIf="selectedLecture != null">
@@ -16,7 +17,7 @@
       <h4>{{selectedLecture.description}}</h4>
       <button class="bg-primary" (click)="addLecture()">ADD</button>
     </div>
-    <div>
+    <div class="confLectures">
       <h2>Conf Lectures</h2>
       <table class="table table-hover">
         <tr>
@@ -32,6 +33,7 @@
       </table>
     </div>
     <div>
+      <button class="bg-danger" (click)="removeAll()">Remove All</button>
       <button class="bg-success" (click)="addManyLectures()">NEXT</button>
     </div>
   </div>

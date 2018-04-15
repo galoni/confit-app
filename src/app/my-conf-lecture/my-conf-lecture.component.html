@@ -1,3 +1,8 @@
 <p>
   my-conf-lecture works!
 </p>
+<div [hidden]="inConf">
+  <p> This lecture is not in your PAth!<br>
+  Would you like us to build a new Path?</p>
+  <button a href="#" (click)="buildPath()">yes</button>
+</div>

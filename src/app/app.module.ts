@@ -13,6 +13,8 @@ import { AppDropdownDirective } from './directives/app-dropdown.directive';
 import { NewConfService } from "./services/newConf.service";
 import { myConfService } from "./services/myConf.service";
 import { RegToConfService } from "./services/regToConf.service";
+import { ManageQRCodeService } from "./services/manageQRCode.service";
+
 
 
 import { NewConfComponent } from './new-conf/new-conf.component';
@@ -39,7 +41,10 @@ import { MyConfVisitorComponent } from './my-conf-visitor/my-conf-visitor.compon
 import { NewConfProgramComponent } from './new-conf-program/new-conf-program.component';
 import { ShowConfComponent } from './show-conf/show-conf.component';
 import { NewConfProgramShowComponent } from './new-conf-program-show/new-conf-program-show.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { ManageQrCodeComponent } from './manage-qr-code/manage-qr-code.component';
 import { PieChartDataComponent } from './pie-chart-data/pie-chart-data.component';
+import { ManageQrCodeDetailsComponent } from './manage-qr-code-details/manage-qr-code-details.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +74,9 @@ import { PieChartDataComponent } from './pie-chart-data/pie-chart-data.component
     NewConfProgramComponent,
     ShowConfComponent,
     NewConfProgramShowComponent,
-    PieChartDataComponent
+    ManageQrCodeComponent,
+    PieChartDataComponent,
+    ManageQrCodeDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -77,13 +84,15 @@ import { PieChartDataComponent } from './pie-chart-data/pie-chart-data.component
     AppRoutingModule,
     HttpModule,
     NgQrScannerModule,
+    Ng4LoadingSpinnerModule.forRoot(),
     CommonModule,
     ChartsModule
   ],
   providers: [
     NewConfService,
     RegToConfService,
-    myConfService
+    myConfService,
+    ManageQRCodeService
   ],
   bootstrap: [AppComponent]
 })
