@@ -83,7 +83,14 @@ export class MyConfComponent implements OnInit {
           this.qrcode.id = f.value.id;
           this.qrcode.type = f.value.type;
           this.qrcode.data = '';
+          if(this.qrcode.type==='visitor'){
+            console.log("inside visitor qrcode");
+            console.log("visitor="+JSON.stringify(this.visitor));
+            this.myConfService.setVisitor(this.visitor);
+
+          }
           this.myConfService.setQRCode(this.qrcode);
+
         }
         else{
           console.log("bad input, no action");

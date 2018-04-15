@@ -43,7 +43,7 @@ confId$ = this._confId.asObservable();
     this._confId.next(confId);
   }
   setVisitor(visitor) {
-    this._lecture.next(visitor);
+    this._visitor.next(visitor);
   }
   setConf(conf) {
     this._Conf.next(conf);
