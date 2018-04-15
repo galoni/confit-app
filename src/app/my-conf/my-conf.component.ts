@@ -44,14 +44,15 @@ export class MyConfComponent implements OnInit {
             localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
             console.log("created local storage VISITORID");
     }
-
     this.visitorId = localStorage.getItem('visitorId');
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
       if (visitor) {
         this.visitor=visitor;
+        this.myConfService.setVisitor(this.visitor);
         console.log(this.visitor);
         if (localStorage.getItem('QRCode')!=null){
         this.qrcode = JSON.parse(localStorage.getItem('QRCode'));
+        this.myConfService.setQRCode(this.qrcode);
           if (this.qrcode.type == 'conference'){
             if (visitor.confs.some(x => x.confId === this.qrcode.id)){
               localStorage.setItem('confId', this.qrcode.id);
@@ -61,6 +62,9 @@ export class MyConfComponent implements OnInit {
               this.qrcode.type = '';
             }
           }
+          if (localStorage.getItem('confId')!= null)
+            this.confId = localStorage.getItem('confId');
+            this.myConfService.setConfId(this.confId);
           if (this.qrcode.type == 'visitor'){
             this.visitorSonId=this.qrcode.id;
             console.log("visitorSonId:  "+this.visitorSonId);
@@ -76,6 +80,8 @@ export class MyConfComponent implements OnInit {
         if (f.value.id && f.value.type){
           this.qrcode.id = f.value.id;
           this.qrcode.type = f.value.type;
+          this.qrcode.data = '';
+          this.myConfService.setQRCode(this.qrcode);
         }
         else{
           console.log("bad input, no action");
