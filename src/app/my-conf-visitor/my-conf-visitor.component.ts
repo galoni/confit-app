@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Output,OnInit, Input,EventEmitter  } from '@angular/core';
 import { myConfService } from "../services/myConf.service";
 import { Lecture } from "../models/lecture";
 import { Visitor } from "../models/visitor";
@@ -20,17 +20,62 @@ export class MyConfVisitorComponent implements OnInit {
   percent:number;
   biggestnumber:number;
   smallestnumber:number;
-
+  qrcode: any = {};
   @Input() visitorChild:Visitor;
   @Input() visitorSonId:string;
-
   constructor(private myConfService: myConfService,
     private router: Router, private r: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.visitorSon = new Visitor("linkedin", "education1", "occupation", "qr_code");
+
+    this.myConfService._qrcode_visitor.subscribe((qrcode) => {
+            console.log("qrcode = "+JSON.stringify(qrcode));
+            this.qrcode = qrcode;
+            this.myConfService._visitor.subscribe((visitor) => {
+              console.log("inside visitor subscribe");
+              console.log(JSON.stringify(visitor));
+              this.visitorChild = visitor;
+              this.visitorSonId=this.qrcode.id;
+              console.log("visitorSonID="+  this.visitorSonId);
+              this.confId = localStorage.getItem('confId');
+              console.log("confid"+this.confId);
+              console.log("sonid"+this.visitorSonId);
+              this.myConfService.getVisitorById(this.visitorSonId).then((visitor) => {
+                console.log("inside visitor get visitor");
+
+                if (visitor) {
+                  this.visitorSon=visitor;
+                  console.log("visitorSon="+this.visitorSon.name.first_name);
+                  console.log("data: "+ JSON.stringify(this.visitorSon));
+                  console.log(this.confId);
+                  console.log("visitorCHild"+JSON.stringify(this.visitorChild));
+                  console.log("visitorSon"+JSON.stringify(this.visitorSon));
+                  console.log("confId="+this.confId);
+                  var indexofconf_visitor = this.visitorChild.confs.map(function(e) { return e.confId; }).indexOf(this.confId);
+                  console.log("indexofconf_visitor = "+indexofconf_visitor);
+                  var indexofconf_visitorSon = this.visitorSon.confs.map(function(e) { return e.confId; }).indexOf(this.confId);
+                  console.log("indexofconf_visitorSon = "+indexofconf_visitorSon);
+                  if((indexofconf_visitor!=-1)&&(indexofconf_visitorSon !=-1)){
+                    console.log("same confs");
+                    this.smallestnumber=Math.min(this.visitorSon.confs[indexofconf_visitorSon].profile_pie, this.visitorChild.confs[indexofconf_visitor].profile_pie);
+                    this.biggestnumber=Math.max(this.visitorSon.confs[indexofconf_visitorSon].profile_pie, this.visitorChild.confs[indexofconf_visitor].profile_pie);
+                    console.log(this.smallestnumber);
+                    console.log(this.biggestnumber);
+                    //this.percent=this.smallestnumber/this.biggestnumber;
+                    this.percent=Math.floor((this.smallestnumber / this.biggestnumber) * 100)
+                    console.log(this.percent);
+                  }
+                  else
+                  console.log("Not on the same conference");
+
+                }});
+            });
+          });
+
     this.percent=0;
+
     this.confId = localStorage.getItem('confId');
     console.log("confid"+this.confId)
     this.visitorId = localStorage.getItem('visitorId');
@@ -53,7 +98,7 @@ this.myConfService.getVisitorById(this.visitorSonId).then((visitor) => {
     console.log("indexofconf_visitor = "+indexofconf_visitor);
     var indexofconf_visitorSon = this.visitorSon.confs.map(function(e) { return e.confId; }).indexOf(this.confId);
     console.log("indexofconf_visitorSon = "+indexofconf_visitorSon);
-    if(indexofconf_visitor && indexofconf_visitorSon !=-1){
+    if((indexofconf_visitor!=-1)&&(indexofconf_visitorSon !=-1)){
       this.smallestnumber=Math.min(this.visitorSon.confs[indexofconf_visitorSon].profile_pie, this.visitorChild.confs[indexofconf_visitor].profile_pie);
       this.biggestnumber=Math.max(this.visitorSon.confs[indexofconf_visitorSon].profile_pie, this.visitorChild.confs[indexofconf_visitor].profile_pie);
       console.log(this.smallestnumber);
@@ -63,10 +108,12 @@ this.myConfService.getVisitorById(this.visitorSonId).then((visitor) => {
       console.log(this.percent);
     }
     else
-    console.log("Not on the same conference")
+    console.log("Not on the same conference");
 
 
   }});
+
   }
+
 
 }

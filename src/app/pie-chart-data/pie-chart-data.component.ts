@@ -31,8 +31,13 @@ export class PieChartDataComponent implements OnInit {
   ngOnInit() {
     this.confId=localStorage.getItem('confId');
     console.log(this.confId);
+    console.log("befor piechart get visitor");
+
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
+      console.log("inside piechart get visitor");
+
       if (visitor) {
+
         this.visitor=visitor;
         console.log(this.visitor);
         for(let i=0;i<this.visitor.confs.length;i++){
