@@ -54,6 +54,9 @@ export class NewConfLecturesComponent implements OnInit {
     if(!this.confId) {
       console.log("no new conf");
       this.confId = "5ad254199e8a471340a0a324";
+      this.newConfService.getConfById(this.confId).then((conf) => {
+        this.newConf = conf;
+      });
     }
     if(this.lectures){
       console.log("found stash");
@@ -124,7 +127,8 @@ export class NewConfLecturesComponent implements OnInit {
       console.log(conf);
       localStorage.setItem('lectures', JSON.stringify(this.lectures));
       localStorage.setItem('confLectures', JSON.stringify(this.confLectures));
-      this.router.navigate(["../sessions"], { relativeTo: this.r });
+      this.newConfService.setNewConf(this.newConf);
+      this.router.navigate(["../program"], { relativeTo: this.r });
     });
   }
   ngOnDestroy() {

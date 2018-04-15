@@ -38,7 +38,7 @@ export class NewConfDetailsComponent implements OnInit {
         localStorage.setItem('confId', this.conf._id);
         localStorage.setItem('confDuration', (this.data.duration).toString());
         console.log(this.conf._id);
-        this.router.navigate(["../lectures"], { relativeTo: this.r });
+        this.router.navigate(["../sessions"], { relativeTo: this.r });
       }
       else{
         console.log("error");

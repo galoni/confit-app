@@ -1,9 +1,19 @@
+<div class="row">
+  <div class="col-md-5">
+    <h1>{{newConf.name}}</h1>
+  </div>
+</div>
 <div class="container">
-  <div class="row">
+  <div *ngIf="confSessions.length > 0" class="row">
     <div class="col-md-5">
       <h2>Conf Program</h2>
       <div *ngFor="let in of counter(numDays); let i = index" value="i+1">
         <h3>Day {{i+1}}</h3>
+        <div *ngIf="confSessions[i].length > 0" class="row">
+          Start Time:<button class="bg-danger" (click)="minus(i)">Minus</button>
+          {{confSessions[i][0].time}}
+          <button class="bg-success" (click)="plus(i)">Plus</button>
+        </div>
           <table class="table table-hover">
             <tr>
               <th>Session Name</th>

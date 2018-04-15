@@ -67,6 +67,20 @@ export class NewConfSessionsComponent implements OnInit {
   counter(i: number) {
     return new Array(i);
   }
+  plus(i){
+    this.timeTable[i]++;
+    console.log("tt: " + this.timeTable[i]);
+    for(let j = 0; j < this.confSessions[i].length; j++){
+      this.confSessions[i][j].time++;
+    }
+  }
+  minus(i){
+    this.timeTable[i]--;
+    console.log("tt: " + this.timeTable[i]);
+    for(let j = 0; j < this.confSessions[i].length; j++){
+      this.confSessions[i][j].time--;
+    }
+  }
   removeSession(sess){
     console.log("sess: " + JSON.stringify(sess));
     const index: number = this.confSessions[sess.dayNum-1].indexOf(sess);
@@ -109,7 +123,7 @@ export class NewConfSessionsComponent implements OnInit {
       this.newConf.program = this.program;
       console.log("new conf session: " + JSON.stringify(this.newConf));
       this.newConfService.setNewConf(this.newConf);
-      this.router.navigate(["../program"], { relativeTo: this.r });
+      this.router.navigate(["../lectures"], { relativeTo: this.r });
     });
   }
 

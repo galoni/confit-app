@@ -38,7 +38,11 @@ export class NewConfProgramComponent implements OnInit {
     if(!this.confId) {
       console.log("no new conf");
       this.confId = "5ad254199e8a471340a0a324";
-      this.numDays = 3;
+      this.newConfService.getConfById(this.confId).then((conf) => {
+        this.newConf = conf;
+        // console.log("new conf: " + JSON.stringify(this.newConf));
+        this.numDays = this.newConf.duration;
+      });
     }
     else{
       this.numDays = this.newConf.duration;
@@ -64,11 +68,11 @@ export class NewConfProgramComponent implements OnInit {
         this.conf = conf;
         this.conf.program = this.data;
         this.spinnerService.hide();
-        this.newConfService.newConf.emit(this.conf);
-        // console.log("conf: " + JSON.stringify(this.conf));
+        console.log("conf1: " + JSON.stringify(this.conf));
+        // this.newConfService.newConf.emit(this.conf);
+        // this.newConfService.setNewConf(this.conf);
+        this.avialble = false;
       });
-      // this.newConfService.confProgram.emit(this.data);
-      this.avialble = false;
     });
   }
 }
