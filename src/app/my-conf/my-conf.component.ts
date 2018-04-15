@@ -33,7 +33,7 @@ export class MyConfComponent implements OnInit {
 
   ngOnInit() {
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
-    localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
+  /*  localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
     localStorage.setItem('confId', '5aca81ae58bd880510606ad4');
 
     if (localStorage.getItem('confId') === null) {
@@ -43,7 +43,8 @@ export class MyConfComponent implements OnInit {
     if (localStorage.getItem('visitorId') === null) {
             localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
             console.log("created local storage VISITORID");
-    }
+    }*/
+
 
     this.visitorId = localStorage.getItem('visitorId');
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
