@@ -16,12 +16,13 @@ export class MyConfLectureComponent implements OnInit {
   visitor: Visitor;
   lecture: Lecture;
   confId: string;
-  inConf: boolean;
+  inConf: boolean=false;
   constructor(private myConfService: myConfService,
     private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
-    this.myConfService._qrcode.subscribe((qrcode) => {
+    this.myConfService._qrcode_lecture.subscribe((qrcode) => {
+
       this.myConfService._visitor.subscribe((visitor) => {
         this.myConfService.getLectureById(qrcode.id)
         .then((lecture) => {

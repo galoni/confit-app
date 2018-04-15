@@ -31,7 +31,7 @@ qrcode: any = {};
   ngOnInit() {
     this.visitorSon = new Visitor("linkedin", "education1", "occupation", "qr_code");
 
-    this.myConfService._qrcode.subscribe((qrcode) => {
+    this.myConfService._qrcode_visitor.subscribe((qrcode) => {
             console.log("qrcode = "+JSON.stringify(qrcode));
             this.qrcode = qrcode;
             this.myConfService._visitor.subscribe((visitor) => {
@@ -41,8 +41,11 @@ qrcode: any = {};
               this.visitorSonId=this.qrcode.id;
               console.log("visitorSonID="+  this.visitorSonId);
               this.confId = localStorage.getItem('confId');
-              console.log("confid"+this.confId)
+              console.log("confid"+this.confId);
+              console.log("sonid"+this.visitorSonId);
               this.myConfService.getVisitorById(this.visitorSonId).then((visitor) => {
+                console.log("inside visitor get visitor");
+
                 if (visitor) {
                   this.visitorSon=visitor;
                   console.log("visitorSon="+this.visitorSon.name.first_name);

@@ -26,7 +26,7 @@ export class MyConfComponent implements OnInit {
   };
 
   wrongConf:boolean=false;
-  //
+
   custom_path: any = {};
   constructor(private myConfService: myConfService,
     private router: Router, private r: ActivatedRoute) { }
@@ -48,6 +48,7 @@ export class MyConfComponent implements OnInit {
 
     this.visitorId = localStorage.getItem('visitorId');
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
+      console.log("inside parent get visitor");
       if (visitor) {
         this.visitor=visitor;
         this.myConfService.setVisitor(this.visitor);
@@ -83,13 +84,29 @@ export class MyConfComponent implements OnInit {
           this.qrcode.id = f.value.id;
           this.qrcode.type = f.value.type;
           this.qrcode.data = '';
-          if(this.qrcode.type==='visitor'){
-            console.log("inside visitor qrcode");
+          console.log("qrcode.type="+this.qrcode.type);
+           if(this.qrcode.type==='visitor'){
+             console.log("inside visitor qrcode");
+             console.log("visitor="+JSON.stringify(this.visitor));
+             this.myConfService.setVisitor(this.visitor);
+             this.myConfService.setQRCode_visitor(this.qrcode);
+
+           }
+          if(this.qrcode.type==='lecture'){
+            console.log("inside lecture qrcode");
             console.log("visitor="+JSON.stringify(this.visitor));
             this.myConfService.setVisitor(this.visitor);
+            this.myConfService.setQRCode_lecture(this.qrcode);
 
           }
-          this.myConfService.setQRCode(this.qrcode);
+          if(this.qrcode.type==='conference'){
+            console.log("inside conference qrcode");
+            localStorage.setItem('confId', this.qrcode.id);
+            console.log(localStorage.getItem('confId'));
+            //this.myConfService.setQRCode_conf(this.qrcode);
+
+          }
+        //  this.myConfService.setQRCode(this.qrcode);
 
         }
         else{

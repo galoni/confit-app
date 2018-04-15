@@ -27,11 +27,13 @@ export class MyConfPathComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.confId = '5aca81ae58bd880510606ad4';
+    this.confId = localStorage.getItem('confId');
     console.log(this.confId);
     this.visitorId = localStorage.getItem('visitorId');
     // this.myConfService.visitorSelected.subscribe((visitor) => {
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
+    console.log("inside path get visitor");
+
       this.visitorSon = visitor;
       if (this.visitorSon == null) {
         return;

@@ -1,7 +1,7 @@
 <p>
   my-conf-lecture works!
 </p>
-<div [hidden]="inConf">
+<div *ngIf="inConf">
   <p> This lecture is not in your Path!<br>
   Would you like us to build a new Path?</p>
   <button a href="#" (click)="buildPath()">yes</button>

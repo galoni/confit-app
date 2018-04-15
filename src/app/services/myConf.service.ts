@@ -24,6 +24,21 @@ export class myConfService {
     id: '',
     data: ''
   });
+  _qrcode_visitor = new BehaviorSubject<any>({
+    type: '',
+    id: '',
+    data: ''
+  });
+  _qrcode_lecture = new BehaviorSubject<any>({
+    type: '',
+    id: '',
+    data: ''
+  });
+  _qrcode_conf = new BehaviorSubject<any>({
+    type: '',
+    id: '',
+    data: ''
+  });
 
   confId$ = this._confId.asObservable();
 
@@ -31,7 +46,9 @@ export class myConfService {
   visitor$ = this._visitor.asObservable();
   // Conf$ = this._Conf.asObservable();
   qrcode$ = this._qrcode.asObservable();
-
+_qrcode_conf$= this._qrcode_conf.asObservable();
+_qrcode_visitor$= this._qrcode_visitor.asObservable();
+_qrcode_lecture$= this._qrcode_lecture.asObservable();
 
   constructor(private http: Http, defaultOptions: RequestOptions) { }
 
@@ -49,7 +66,20 @@ export class myConfService {
     this._Conf.next(conf);
   }
   setQRCode(qrcode) {
+    console.log("service qrcode:"+JSON.stringify(qrcode));
     this._qrcode.next(qrcode);
+  }
+  setQRCode_visitor(qrcode) {
+    console.log("service qrcode:"+JSON.stringify(qrcode));
+    this._qrcode_visitor.next(qrcode);
+  }
+  setQRCode_conf(qrcode) {
+    console.log("service qrcode:"+JSON.stringify(qrcode));
+    this._qrcode_conf.next(qrcode);
+  }
+  setQRCode_lecture(qrcode) {
+    console.log("service qrcode:"+JSON.stringify(qrcode));
+    this._qrcode_lecture.next(qrcode);
   }
 
   lectureInConf(visitor, confId, lecId) {
