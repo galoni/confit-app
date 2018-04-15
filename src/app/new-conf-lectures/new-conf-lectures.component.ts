@@ -49,21 +49,34 @@ export class NewConfLecturesComponent implements OnInit {
     //   this.topics = ["Web-D", "IOT-D", "Big Data-D"];
     // }
     console.log("topic: " + this.topics);
-    this.confId = localStorage.getItem('confId');
+    this.confId = this.newConf._id;
     this.lectures = JSON.parse(localStorage.getItem('lectures'));
     if(!this.confId) {
-      this.confId = "5aca81ae58bd880510606ad4";
+      console.log("no new conf");
+      this.confId = "5ad254199e8a471340a0a324";
     }
     if(this.lectures){
       console.log("found stash");
       this.confLectures = JSON.parse(localStorage.getItem('confLectures'))
     }
     else{
-      this.newConfService.getAllLectures().then((lectures)=>{
+      this.newConfService.getAllLecturesByTopic(this.topics).then((lectures)=>{
         console.log(lectures);
         this.lectures = lectures;
       })
     }
+  }
+  addAll(){
+    for (let i = 0; i < this.lectures.length; i++){
+      this.confLectures.push(this.lectures[i]);
+    }
+    this.lectures = [];
+  }
+  removeAll(){
+    for (let i = 0; i < this.confLectures.length; i++){
+      this.lectures.push(this.confLectures[i]);
+    }
+    this.confLectures = [];
   }
   addLecture(){
     this.confLectures.push(this.selectedLecture);

@@ -3,6 +3,8 @@ import { NewConfService } from "../services/newConf.service";
 import { ConfSession } from "../models/confSession";
 import {NgForm} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
+import {Conf} from "../models/conf";
 
 
 @Component({
@@ -18,29 +20,38 @@ export class NewConfSessionsComponent implements OnInit {
   timeTable: number[] = [];
   selectedDay:number;
   startTime: number= 9;
+  newConf: Conf;
   program: ConfSession[]= [];
-
+  subscription:Subscription;
 
   constructor(private newConfService: NewConfService,
               private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
-    this.confId = localStorage.getItem('confId');
+    this.subscription = this.newConfService.newConf$
+      .subscribe(conf => this.newConf = conf);
+    this.confId = this.newConf._id;
     if(!this.confId) {
-      this.confId = "5aca81ae58bd880510606ad4";
-    }
-    this.confSessions = JSON.parse(localStorage.getItem('confSessions'));
-    console.log("conf session 1: " + JSON.stringify(this.confSessions));
-    this.numDays = +(localStorage.getItem('confDuration'));
-    if(this.numDays){
-      console.log("numDays: " + this.numDays);
+      console.log("no new conf");
+      this.confId = "5ad254199e8a471340a0a324";
+      this.newConfService.getConfById(this.confId).then((conf) => {
+        this.newConf = conf;
+        // console.log("new conf: " + JSON.stringify(this.newConf));
+        this.numDays = this.newConf.duration;
+        this.confSessionInit(this.numDays);
+      });
     }
     else{
-      this.numDays = 2;
+      this.numDays = this.newConf.duration;
+      this.confSessionInit(this.numDays);
     }
+  }
+  confSessionInit(duration){
+    this.confSessions = JSON.parse(localStorage.getItem('confSessions'));
+    console.log("conf session 1: " + JSON.stringify(this.confSessions));
     if (this.confSessions == undefined){
       this.confSessions = [];
-      for(let i=0; i< this.numDays; i++){
+      for(let i=0; i< duration; i++){
         this.timeTable[i] = this.startTime;
         this.confSessions[i] = [];
       }
@@ -94,7 +105,10 @@ export class NewConfSessionsComponent implements OnInit {
       }
     }
     this.newConfService.createProgram(this.program, this.confId).then((conf) =>{
-      console.log(conf);
+      console.log("conf: " + conf);
+      this.newConf.program = this.program;
+      console.log("new conf session: " + JSON.stringify(this.newConf));
+      this.newConfService.setNewConf(this.newConf);
       this.router.navigate(["../program"], { relativeTo: this.r });
     });
   }
