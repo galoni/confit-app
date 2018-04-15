@@ -18,6 +18,8 @@ import { MyConfComponent } from './my-conf/my-conf.component';
 import { MyConfPathComponent } from './my-conf-path/my-conf-path.component';
 import { NewConfProgramComponent} from "./new-conf-program/new-conf-program.component";
 import { ShowConfComponent } from "./show-conf/show-conf.component";
+import { ManageQrCodeComponent } from './manage-qr-code/manage-qr-code.component';
+import { ManageQrCodeDetailsComponent } from './manage-qr-code-details/manage-qr-code-details.component';
 
 
 const appRoutes: Routes =[
@@ -39,6 +41,12 @@ const appRoutes: Routes =[
       children:[
         { path: '', redirectTo: 'details', pathMatch: 'full' },
         { path: 'details', component: ScanQRCodeDetailsComponent }
+      ]
+    },
+    { path: 'ManageQRCode', component: ManageQrCodeComponent,
+      children:[
+        { path: '', redirectTo: 'details', pathMatch: 'full' },
+        { path: 'details', component: ManageQrCodeDetailsComponent }
       ]
     },
     { path: 'MyConference', component: MyConfComponent,
