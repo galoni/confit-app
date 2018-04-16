@@ -43,7 +43,7 @@ export class NewConfProgramShowComponent implements OnInit {
         }
       }
     }
-    console.log("super data: " + JSON.stringify(this.data));
+    // console.log("super data: " + JSON.stringify(this.data));
     //
     // this.newConfService.newConf.subscribe((data:any)=>{
     //   this.data = data.program;

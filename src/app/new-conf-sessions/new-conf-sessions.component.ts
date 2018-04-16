@@ -33,7 +33,7 @@ export class NewConfSessionsComponent implements OnInit {
     this.confId = this.newConf._id;
     if(!this.confId) {
       console.log("no new conf");
-      this.confId = "5ad254199e8a471340a0a324";
+      this.confId = "5ad3db7e42dd9425ecb5fc49";
       this.newConfService.getConfById(this.confId).then((conf) => {
         this.newConf = conf;
         // console.log("new conf: " + JSON.stringify(this.newConf));

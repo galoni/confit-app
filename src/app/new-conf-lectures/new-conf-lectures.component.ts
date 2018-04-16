@@ -19,7 +19,7 @@ export class NewConfLecturesComponent implements OnInit {
   confId:string;
   confTopics: string[]=[];
   newConf: Conf;
-  topics:string[]=["Web-D", "IOT-D", "Big Data-D"];
+  topics:string[]=["Web", "IOT", "Big Data"];
   subscription:Subscription;
 
   constructor(private newConfService: NewConfService,
@@ -53,7 +53,7 @@ export class NewConfLecturesComponent implements OnInit {
     this.lectures = JSON.parse(localStorage.getItem('lectures'));
     if(!this.confId) {
       console.log("no new conf");
-      this.confId = "5ad254199e8a471340a0a324";
+      this.confId = "5ad3db7e42dd9425ecb5fc49";
       this.newConfService.getConfById(this.confId).then((conf) => {
         this.newConf = conf;
       });
