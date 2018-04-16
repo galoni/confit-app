@@ -22,6 +22,8 @@ export class RegisterConfComponent implements OnInit {
   topic1:string;
   topic2:string;
   topic3:string;
+  register_bool:boolean=false;
+  sign:boolean=false;
   //localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
 
   visitor_id: string;
@@ -44,16 +46,17 @@ this.visitor_id = localStorage.getItem('visitorId');
     this.data.visitorid=this.visitor_id;
     this.data.confid = this.selectedConf._id;
     this.data.confname = this.selectedConf.name;
-    this.data.connection_precent = form.value.connection;
-    console.log(form.value.connection);
-    this.data.learn_precent = form.value.learn;
-    this.data.explore_precent = form.value.explore;
+    //this.data.connection_precent = form.value.connection;
+    //console.log(form.value.connection);
+    //this.data.learn_precent = form.value.learn;
+    //this.data.explore_precent = form.value.explore;
     localStorage.setItem('confId',this.selectedConf._id);
     this.RegToConfService.registerToConf(this.data,(data)=>{
       if(data==='error') console.log("error")
       else console.log("success")
     });
-    form.reset();
+    this.register_bool=true;
+    //form.reset();
     }
 
     addLectures(form: NgForm) {
@@ -82,6 +85,24 @@ this.visitor_id = localStorage.getItem('visitorId');
       if(topics_data==='error') console.log("error")
       else console.log("success")
     });
+    }
+
+    addPercent(form: NgForm) {
+
+    console.log("inside register.ts");
+    this.data.visitorid=this.visitor_id;
+    this.data.confid = this.selectedConf._id;
+    this.data.connection_precent = form.value.connection;
+    console.log(form.value.connection);
+    this.data.learn_precent = form.value.learn;
+    this.data.explore_precent = form.value.explore;
+    localStorage.setItem('confId',this.selectedConf._id);
+    this.RegToConfService.updatePercent(this.data,(data)=>{
+      if(data==='error') console.log("error")
+      else console.log("success")
+    });
+    this.sign=true;
+    form.reset();
     }
 
 }

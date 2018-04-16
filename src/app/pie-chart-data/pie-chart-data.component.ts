@@ -42,9 +42,9 @@ export class PieChartDataComponent implements OnInit {
         console.log(this.visitor);
         for(let i=0;i<this.visitor.confs.length;i++){
           if(this.visitor.confs[i].confId===this.confId){
-            this.connection=this.visitor.confs[i].connection_precent;
-            this.learn=this.visitor.confs[i].learn_precent;
-            this.explore=this.visitor.confs[i].explore_precent;
+            this.connection=this.visitor.confs[i].connection_percent;
+            this.learn=this.visitor.confs[i].learn_percent;
+            this.explore=this.visitor.confs[i].explore_percent;
           }
           else{
             console.log("there is no active conf");

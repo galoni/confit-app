@@ -55,7 +55,16 @@ export class MyConfComponent implements OnInit {
         console.log(this.visitor);
         if (localStorage.getItem('QRCode')!=null){
         this.qrcode = JSON.parse(localStorage.getItem('QRCode'));
-        this.myConfService.setQRCode(this.qrcode);
+        //this.myConfService.setQRCode(this.qrcode);
+        if (this.qrcode === 'lecture'){
+          this.myConfService.setQRCode_lecture(this.qrcode);
+        }
+        if (this.qrcode === 'visitor'){
+          this.myConfService.setQRCode_visitor(this.qrcode);
+        }
+        if (this.qrcode === 'conference'){
+          this.myConfService.setQRCode_conf(this.qrcode);
+        }
           if (this.qrcode.type == 'conference'){
             if (visitor.confs.some(x => x.confId === this.qrcode.id)){
               localStorage.setItem('confId', this.qrcode.id);
@@ -87,6 +96,7 @@ export class MyConfComponent implements OnInit {
           console.log("qrcode.type="+this.qrcode.type);
            if(this.qrcode.type==='visitor'){
              console.log("inside visitor qrcode");
+             console.log("qrcode"+this.qrcode.id);
              console.log("visitor="+JSON.stringify(this.visitor));
              this.myConfService.setVisitor(this.visitor);
              this.myConfService.setQRCode_visitor(this.qrcode);

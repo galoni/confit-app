@@ -16,7 +16,7 @@ export class RegToConfService {
   getAllConfs(): Promise<Conf[]> {
     return this.http.post(this.manager_url + '/getAllConfs', {}, this.options).toPromise().then((res) => res.json() as Conf[]);
   }
-  
+
   registerToConf(data, callback: Function){
   console.log("inside register in service");
     let body=JSON.stringify(data) ;
@@ -33,7 +33,24 @@ export class RegToConfService {
         }
       });
   }
-  
+
+  updatePercent(data, callback: Function){
+  console.log("inside updatePercent in service");
+    let body=JSON.stringify(data) ;
+    console.log(body)
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: this.headers });
+    this.http.post(this.visitor_url +'/updatePercent', body, options)
+      .subscribe((response: Response)=> {
+        let obj = response.json();
+        if(!obj.error) {
+          callback(obj);
+        }else{
+          callback('error');
+        }
+      });
+  }
+
   addLectures(data, callback: Function){
   console.log("inside addLectures in service");
     let body=JSON.stringify(data) ;
@@ -50,7 +67,7 @@ export class RegToConfService {
         }
       });
   }
-  
+
     setTopics(data, callback: Function){
   console.log("inside setTopics in service");
     let body=JSON.stringify(data) ;
@@ -67,5 +84,5 @@ export class RegToConfService {
         }
       });
   }
-  
+
 }
