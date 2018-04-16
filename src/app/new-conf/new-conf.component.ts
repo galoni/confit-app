@@ -10,7 +10,7 @@ export class NewConfComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    localStorage.clear();
+    // localStorage.clear();
   }
 
 }
