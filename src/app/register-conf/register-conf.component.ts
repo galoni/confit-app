@@ -48,6 +48,7 @@ this.visitor_id = localStorage.getItem('visitorId');
     console.log(form.value.connection);
     this.data.learn_precent = form.value.learn;
     this.data.explore_precent = form.value.explore;
+    localStorage.setItem('confId',this.selectedConf._id);
     this.RegToConfService.registerToConf(this.data,(data)=>{
       if(data==='error') console.log("error")
       else console.log("success")
