@@ -37,7 +37,6 @@ export class PieChartDataComponent implements OnInit {
       console.log("inside piechart get visitor");
 
       if (visitor) {
-        console.log("inside piechart get visitor");
 
         this.visitor=visitor;
         console.log(this.visitor);
