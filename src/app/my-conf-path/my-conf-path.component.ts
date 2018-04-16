@@ -28,7 +28,7 @@ export class MyConfPathComponent implements OnInit {
 
   ngOnInit() {
     this.confId = localStorage.getItem('confId');
-    console.log(this.confId);
+    console.log("this.confId in path="+this.confId);
     this.visitorId = localStorage.getItem('visitorId');
     // this.myConfService.visitorSelected.subscribe((visitor) => {
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {

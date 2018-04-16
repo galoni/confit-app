@@ -66,19 +66,19 @@ _qrcode_lecture$= this._qrcode_lecture.asObservable();
     this._Conf.next(conf);
   }
   setQRCode(qrcode) {
-    console.log("service qrcode:"+JSON.stringify(qrcode));
+    //console.log("service qrcode:"+JSON.stringify(qrcode));
     this._qrcode.next(qrcode);
   }
   setQRCode_visitor(qrcode) {
-    console.log("service qrcode:"+JSON.stringify(qrcode));
+    //console.log("service qrcode:"+JSON.stringify(qrcode));
     this._qrcode_visitor.next(qrcode);
   }
   setQRCode_conf(qrcode) {
-    console.log("service qrcode:"+JSON.stringify(qrcode));
+    //console.log("service qrcode:"+JSON.stringify(qrcode));
     this._qrcode_conf.next(qrcode);
   }
   setQRCode_lecture(qrcode) {
-    console.log("service qrcode:"+JSON.stringify(qrcode));
+    //console.log("service qrcode:"+JSON.stringify(qrcode));
     this._qrcode_lecture.next(qrcode);
   }
 

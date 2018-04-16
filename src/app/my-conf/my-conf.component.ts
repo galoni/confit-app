@@ -32,6 +32,9 @@ export class MyConfComponent implements OnInit {
     private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
+    localStorage.setItem('QRCode','');
+    console.log("localStorage qrcode="+localStorage.getItem('QRCode')) ;
+
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
   /*  localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
     localStorage.setItem('confId', '5aca81ae58bd880510606ad4');
@@ -53,7 +56,7 @@ export class MyConfComponent implements OnInit {
         this.visitor=visitor;
         this.myConfService.setVisitor(this.visitor);
         console.log(this.visitor);
-        if (localStorage.getItem('QRCode')!=null){
+        if (localStorage.getItem('QRCode')!=''){
         this.qrcode = JSON.parse(localStorage.getItem('QRCode'));
         //this.myConfService.setQRCode(this.qrcode);
         if (this.qrcode === 'lecture'){
