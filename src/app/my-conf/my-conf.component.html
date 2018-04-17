@@ -4,7 +4,7 @@
   <h2>{{this.visitor.name.first_name}} {{this.visitor.name.last_name}}</h2>
   <div>
     <span> Your QrCode : </span>
-    <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}">
+    <!-- <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}"> -->
   </div>
   <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
     <select name="type" ngModel>
