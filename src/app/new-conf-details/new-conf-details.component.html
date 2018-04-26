@@ -1,28 +1,60 @@
-<div>
-  <h2>Conf Details</h2>
-  <form class="form-inline my-2 my-lg-0" (ngSubmit)="createConference(f)" #f="ngForm">
-    <div class="form-group"><label>Conf name:</label><input ngModel="new name" name="name" class="form-control mr-sm-2" type="search" placeholder="Conf name" aria-label="Search"></div>
-    <br><div class="form-group"><label>Conf type:</label>
-    <select ngModel="type" name="type" class="form-control">
-      <option>academic</option>
-      <option>technology</option>
-    </select></div>
-    <br><div class="form-group"><label>Conf Logo:</label><input ngModel="logo" class="form-control mr-sm-2" name="logo" accept="image/*" title="img logo"></div>
-    <br><div class="form-group"><label>Conf start date:</label><input ngModel="start date" type="date" class="form-control mr-sm-2" name="start_date"></div>
-    <br><div class="form-group"><label>Conf duration:</label><input ngModel="duration" class="form-control mr-sm-2" type="number" name="duration"></div>
-    <br><div class="form-group"><label>Conf address:</label><input ngModel="address" class="form-control mr-sm-2" type="search" name="location" placeholder="address" aria-label="Search"></div>
-    <br><div class="form-group"><label>Conf audience:</label>
-    <select name="audience" ngModel="new audience" class="form-control">
-      <option>student</option>
-      <option>B.A</option>
-    </select></div>
-    <br><div class="form-group"><label>Main Topic1:</label><input ngModel="topic1" class="form-control mr-sm-2" name="topic1"></div>
-    <br><div class="form-group"><label>Main Topic2:</label><input ngModel="topic2" class="form-control mr-sm-2" name="topic2"></div>
-    <br><div class="form-group"><label>Main Topic3:</label><input ngModel="topic3" class="form-control mr-sm-2" name="topic3"></div>
-    <div class="row">
-      <div class="col-xs-12">
-        <button class="btn btn-success" type="submit">CREATE</button>
-      </div>
-    </div>
-  </form>
+<div class="login-container">
+  <mat-card>
+    <mat-card-title>Conf Details</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="createConference(f)" #f="ngForm">
+        <p>
+          <mat-form-field>
+            <input matInput name="name" placeholder="Conf Name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput name="logo" placeholder="Conf Logo">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select [(ngModel)]="confType" name="type" placeholder="Conf Type">
+              <mat-option *ngFor="let type of types" [value]="type.value">
+                {{type.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Start Date" name="start_date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" name="duration" placeholder="Conf Duration">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput name="address" placeholder="Conf Address">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <mat-select [(ngModel)]="confAudience" name="audience" placeholder="Conf Audience">
+              <mat-option *ngFor="let audience of audiences" [value]="audience.value">
+                {{audience.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input matInput name="topic1" placeholder="Main Topic1">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput name="topic2" placeholder="Main Topic2">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput name="topic3" placeholder="Main Topic3">
+          </mat-form-field>
+        </p>
+        <p class="submitButtons">
+          <button type="submit" mat-button>CREATE</button>
+        </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

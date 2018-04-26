@@ -42,6 +42,7 @@ export class NewConfSessionsComponent implements OnInit {
       });
     }
     else{
+      console.log("numdays: " + this.newConf.duration);
       this.numDays = this.newConf.duration;
       this.confSessionInit(this.numDays);
     }

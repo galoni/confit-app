@@ -3,7 +3,7 @@
     <h1>{{newConf.name}}</h1>
   </div>
 </div>
-<div class="container">
+<div *ngIf="confId != null" class="container">
   <div *ngIf="confSessions.length > 0" class="row">
     <div class="col-md-5">
       <h2>Conf Program</h2>
