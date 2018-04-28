@@ -1,10 +1,17 @@
 <app-nav-manager></app-nav-manager>
-<mat-toolbar>
-  <div class="button-row">
-    <a mat-raised-button [routerLink]="['details']">details</a>
-    <a mat-raised-button [routerLink]="['sessions']">sessions</a>
-    <a mat-raised-button [routerLink]="['lectures']">lectures</a>
-  </div>
-</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav">
+    <div>
+      <p>
+        <a mat-raised-button [routerLink]="['details']">Details</a>
+      </p>
+      <p>
+        <a mat-raised-button [routerLink]="['sessions']">Sessions</a>
+      </p>
+      <p>
+        <a mat-raised-button [routerLink]="['lectures']">Lectures</a>
+      </p>
+    </div>
+  </mat-sidenav>
 <router-outlet></router-outlet>
 

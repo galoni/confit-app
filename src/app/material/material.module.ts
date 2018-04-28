@@ -10,7 +10,9 @@ import {
   MatNativeDateModule,
   MatDatepickerModule,
   MatToolbarModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatGridListModule,
+  MatTableModule
 } from '@angular/material';
 
 @NgModule({
@@ -25,7 +27,9 @@ import {
     MatNativeDateModule,
     MatDatepickerModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatGridListModule,
+    MatTableModule
   ]
 })
 export class MaterialModule {}
