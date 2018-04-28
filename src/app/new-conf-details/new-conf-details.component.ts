@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NewConfService } from "../services/newConf.service";
-import {NgForm} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Conf} from "../models/conf";
+import { NewConfService } from '../services/newConf.service';
+import {NgForm} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Conf} from '../models/conf';
 
 @Component({
   selector: 'app-new-conf-details',
@@ -10,13 +10,27 @@ import {Conf} from "../models/conf";
   styleUrls: ['./new-conf-details.component.css']
 })
 export class NewConfDetailsComponent implements OnInit {
-  data:any= {};
-  conf:Conf;
+  data: any= {};
+  conf: Conf;
+  confType: string;
+  confAudience: string;
+  types = [
+    {value: 'academic-0', viewValue: 'academic'},
+    {value: 'technology-1', viewValue: 'technology'}
+  ];
+  audiences = [
+    {value: 'student-0', viewValue: 'student'},
+    {value: 'B.A-0', viewValue: 'B.A'}
+  ];
   constructor(private newConfService: NewConfService,
-              private router: Router, private r:ActivatedRoute) { }
+              private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
     this.data.main_topics = [];
+    localStorage.removeItem('confSessions');
+    localStorage.removeItem('timeTable');
+    localStorage.removeItem('lectures');
+    localStorage.removeItem('confLectures');
   }
   createConference(form: NgForm) {
     this.data.name = form.value.name;
@@ -30,7 +44,7 @@ export class NewConfDetailsComponent implements OnInit {
     this.data.main_topics.push(form.value.topic2);
     this.data.main_topics.push(form.value.topic3);
     this.newConfService.createConference(this.data).then((conf) => {
-      if(conf){
+      if (conf){
         this.conf = conf;
         // console.log("emit: " + this.conf);
         // this.newConfService.newConf.emit(this.conf);
@@ -38,10 +52,10 @@ export class NewConfDetailsComponent implements OnInit {
         localStorage.setItem('confId', this.conf._id);
         localStorage.setItem('confDuration', (this.data.duration).toString());
         console.log(this.conf._id);
-        this.router.navigate(["../sessions"], { relativeTo: this.r });
+        this.router.navigate(['../sessions'], { relativeTo: this.r });
       }
-      else{
-        console.log("error");
+      else {
+        console.log('error');
       }
     });
     this.data.main_topics = [];

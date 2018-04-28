@@ -1,0 +1,17 @@
+<app-nav-manager></app-nav-manager>
+<div class="row">
+  <div class="col-md-7">
+    <h1>Your Confs</h1>
+    <div class="row">
+      <div *ngFor="let r of rows; let i=index">
+        <div class="col-md-5" *ngFor="let c of r" >
+          <a >
+            <h3>[{{c.name}}]</h3>
+            <h4><{{c.start_date}}></h4>
+            <h5>|{{c.type}}|</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

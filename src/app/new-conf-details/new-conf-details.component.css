@@ -1,3 +1,10 @@
-.form-item{
-
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 22px 0;
+}
+.submitButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }

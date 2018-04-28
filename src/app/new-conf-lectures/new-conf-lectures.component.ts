@@ -28,9 +28,9 @@ export class NewConfLecturesComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.newConfService.newConf$
       .subscribe(conf => this.newConf = conf);
-    if(this.newConf.main_topics.length > 0){
+    if (this.newConf.main_topics.length > 0) {
       this.topics = [];
-      for(let i = 0; i < this.newConf.main_topics.length; i++){
+      for (let i = 0; i < this.newConf.main_topics.length; i++){
         this.topics.push(this.newConf.main_topics[i]);
         // console.log("topic: " + this.topics);
       }
