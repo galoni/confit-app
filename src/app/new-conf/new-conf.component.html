@@ -1,7 +1,10 @@
 <app-nav-manager></app-nav-manager>
-<nav>
-  <a [routerLink]="['details']">details</a>
-  <a [routerLink]="['sessions']">sessions</a>
-  <a [routerLink]="['lectures']">lectures</a>
-</nav>
+<mat-toolbar>
+  <div class="button-row">
+    <a mat-raised-button [routerLink]="['details']">details</a>
+    <a mat-raised-button [routerLink]="['sessions']">sessions</a>
+    <a mat-raised-button [routerLink]="['lectures']">lectures</a>
+  </div>
+</mat-toolbar>
 <router-outlet></router-outlet>
+

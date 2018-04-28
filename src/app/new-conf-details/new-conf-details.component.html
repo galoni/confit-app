@@ -5,10 +5,10 @@
       <form (ngSubmit)="createConference(f)" #f="ngForm">
         <p>
           <mat-form-field>
-            <input matInput name="name" placeholder="Conf Name">
+            <input matInput ngModel="" name="name" placeholder="Conf Name">
           </mat-form-field>
           <mat-form-field>
-            <input matInput name="logo" placeholder="Conf Logo">
+            <input matInput ngModel="" name="logo" placeholder="Conf Logo">
           </mat-form-field>
           <mat-form-field>
             <mat-select [(ngModel)]="confType" name="type" placeholder="Conf Type">
@@ -20,15 +20,15 @@
         </p>
         <p>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Start Date" name="start_date">
+            <input matInput ngModel="" [matDatepicker]="picker" placeholder="Start Date" name="start_date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="number" name="duration" placeholder="Conf Duration">
+            <input matInput ngModel="" type="number" name="duration" placeholder="Conf Duration">
           </mat-form-field>
           <mat-form-field>
-            <input matInput name="address" placeholder="Conf Address">
+            <input matInput ngModel="" name="location" placeholder="Conf Address">
           </mat-form-field>
         </p>
         <p>
@@ -42,17 +42,17 @@
         </p>
         <p>
           <mat-form-field>
-            <input matInput name="topic1" placeholder="Main Topic1">
+            <input matInput ngModel="" name="topic1" placeholder="Main Topic1">
           </mat-form-field>
           <mat-form-field>
-            <input matInput name="topic2" placeholder="Main Topic2">
+            <input matInput ngModel="" name="topic2" placeholder="Main Topic2">
           </mat-form-field>
           <mat-form-field>
-            <input matInput name="topic3" placeholder="Main Topic3">
+            <input matInput ngModel="" name="topic3" placeholder="Main Topic3">
           </mat-form-field>
         </p>
         <p class="submitButtons">
-          <button type="submit" mat-button>CREATE</button>
+          <button type="submit" color="primary" mat-raised-button>CREATE</button>
         </p>
       </form>
     </mat-card-content>
