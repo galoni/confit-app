@@ -1,64 +1,114 @@
-<div class="row">
-  <div class="col-md-5">
-    <h1>{{newConf.name}}</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <h2>Lectures from inventory</h2>
-    <form class="form-inline my-2 my-lg-0" #f="ngForm">
-      <div class="form-group">
-        <select title="choose" name="lecture" class="form-control" [(ngModel)]="selectedLecture">
-          <option *ngFor="let lct of lectures; let i=index" [ngValue]="lct">{{lct.name}}</option>
-        </select>
-      </div>
-    </form>
-    <button class="bg-primary" (click)="addAll()">Add All</button>
-  </div>
-  <div class="col-md-5">
-    <div *ngIf="selectedLecture != null">
-      <h2>{{selectedLecture.name}}</h2>
-      <h3>{{selectedLecture.lecturer_name}}</h3>
-      <h4>{{selectedLecture.description}}</h4>
-      <button class="bg-primary" (click)="addLecture()">ADD</button>
-    </div>
-    <div class="confLectures">
-      <h2>Conf Lectures</h2>
-      <table class="table table-hover">
-        <tr>
-          <th>Lecture Name</th>
-          <th>Lecturer Name</th>
-          <th></th>
-        </tr>
-        <tr *ngFor="let lct of confLectures">
-          <td>{{lct.name}}</td>
-          <td>{{lct.lecturer_name}}</td>
-          <td><button class="bg-danger" (click)="removeLecture(lct)">remove</button></td>
-        </tr>
-      </table>
-    </div>
-    <div>
-      <button class="bg-danger" (click)="removeAll()">Remove All</button>
-      <button class="bg-success" (click)="addManyLectures()">NEXT</button>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <h2>New Lecture</h2>
-      <form class="form-inline my-2 my-lg-0" (ngSubmit)="createLecture(f)" #f="ngForm">
-      <div class="form-group"><label>Lecture name:</label><input ngModel="new lecture" name="name" class="form-control mr-sm-2"></div>
-      <br><div class="form-group"><label>Lecturer name:</label><input ngModel="lecturer_name" class="form-control mr-sm-2" name="lecturer_name"></div>
-      <br><div class="form-group"><label>description:</label><input ngModel="description" class="form-control mr-sm-2" name="description"></div>
-      <br><div class="form-group"><label>ratings:</label><input ngModel="ratings" type="number" class="form-control mr-sm-2" name="ratings"></div>
-      <br><label>Main Topic</label><select name="topic" class="form-control" [(ngModel)]="data.topic" >
-        <option *ngFor="let top of topics; let i = index" [ngValue]="top">{{top}}</option>
-      </select>
+<div class="container">
+  <mat-card>
+    <mat-card-title>{{newConf.name}}</mat-card-title>
+    <mat-card-content>
       <div class="row">
-        <div class="col-xs-12">
-          <button class="btn btn-success" type="submit">CREATE</button>
+        <div class="col-md-4">
+          <h2>Lectures from inventory</h2>
+          <form class="form-inline my-2 my-lg-0" #f="ngForm">
+            <div class="form-group">
+              <p>
+                <mat-form-field>
+                  <mat-select [(ngModel)]="selectedLecture" name="lecture" placeholder="Choose Lecture" >
+                    <mat-option *ngFor="let lct of lectures; let i=index" [value]="lct">
+                      {{lct.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </p>
+            </div>
+          </form>
+          <button mat-button color="primary" (click)="addAll()">Add All</button>
+        </div>
+        <div class="col-md-5">
+          <div *ngIf="selectedLecture != null">
+            <h2>{{selectedLecture.name}}</h2>
+            <h3>{{selectedLecture.lecturer_name}}</h3>
+            <h4>{{selectedLecture.description}}</h4>
+            <button mat-button color="primary" (click)="addLecture()">ADD</button>
+          </div>
+          <div class="confLectures" >
+            <h2>Conf Lectures</h2>
+            <div class="example-container mat-elevation-z8" *ngIf="confLectures.length > 0">
+              <mat-table #table [dataSource]="confLectures">
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef> name </mat-header-cell>
+                  <mat-cell *matCellDef="let lct"> {{lct.name}} </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="lecturer_name">
+                  <mat-header-cell *matHeaderCellDef> lecturer_name </mat-header-cell>
+                  <mat-cell *matCellDef="let lct"> {{lct.lecturer_name}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="remove">
+                  <mat-header-cell *matHeaderCellDef> remove </mat-header-cell>
+                  <mat-cell *matCellDef="let lct"> <button mat-button color="warn" (click)="removeLecture(lct)">remove</button> </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
+            </div>
+            <!--<table class="table table-hover">-->
+              <!--<tr>-->
+                <!--<th>Lecture Name</th>-->
+                <!--<th>Lecturer Name</th>-->
+                <!--<th></th>-->
+              <!--</tr>-->
+              <!--<tr *ngFor="let lct of confLectures">-->
+                <!--<td>{{lct.name}}</td>-->
+                <!--<td>{{lct.lecturer_name}}</td>-->
+                <!--<td><button class="bg-danger" (click)="removeLecture(lct)">remove</button></td>-->
+              <!--</tr>-->
+            <!--</table>-->
+          </div>
+          <div>
+            <button color="warn" mat-raised-button (click)="removeAll()">Remove All</button>
+            <button color="primary" mat-raised-button (click)="addManyLectures()">NEXT</button>
+          </div>
         </div>
       </div>
-    </form>
-  </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h2>New Lecture</h2>
+            <form (ngSubmit)="createLecture(f)" #f="ngForm">
+              <p>
+                <mat-form-field>
+                  <input matInput ngModel="" name="name" placeholder="Lecture Name">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <input matInput ngModel="" name="lecturer_name" placeholder="Lecturer Name">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <input matInput ngModel="" name="description" placeholder="Description">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <input matInput ngModel="" name="ratings" placeholder="Ratings" type="number">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <mat-select [(ngModel)]="data.topic" name="topic" placeholder="Main Topic" >
+                    <mat-option *ngFor="let top of topics; let i = index" [value]="top">
+                      {{top}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </p>
+              <p class="submitButtons">
+                <button type="submit" color="primary" mat-raised-button>CREATE</button>
+              </p>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
+

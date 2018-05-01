@@ -1,3 +1,21 @@
-/*.confLectures{*/
-  /*height: 100px;*/
-/*}*/
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 22px 0;
+}
+.submitButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 500px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { NewConfService } from '../services/newConf.service';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -14,6 +14,8 @@ export class NewConfDetailsComponent implements OnInit {
   conf: Conf;
   confType: string;
   confAudience: string;
+  @ViewChild('stepper1') stepper;
+
   types = [
     {value: 'academic-0', viewValue: 'academic'},
     {value: 'technology-1', viewValue: 'technology'}
@@ -52,12 +54,16 @@ export class NewConfDetailsComponent implements OnInit {
         localStorage.setItem('confId', this.conf._id);
         localStorage.setItem('confDuration', (this.data.duration).toString());
         console.log(this.conf._id);
-        this.router.navigate(['../sessions'], { relativeTo: this.r });
+        this.changeStep(2);
+        // this.router.navigate(['../sessions'], { relativeTo: this.r });
       }
       else {
         console.log('error');
       }
     });
     this.data.main_topics = [];
+  }
+  changeStep(index: number) {
+    this.stepper.selectedIndex = index;
   }
 }
