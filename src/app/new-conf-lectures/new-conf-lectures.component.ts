@@ -24,6 +24,7 @@ export class NewConfLecturesComponent implements OnInit {
   subscription: Subscription;
   displayedColumns = ['name', 'lecturer_name', 'remove'];
   private dataSource: MatTableDataSource<Lecture>;
+  tempConfs:  Lecture[]= [];
 
   constructor(private newConfService: NewConfService,
               private router: Router, private r: ActivatedRoute,
@@ -62,7 +63,19 @@ export class NewConfLecturesComponent implements OnInit {
       });
     }
   }
+  updateTable(){
+    for (let i = 0; i < this.confLectures.length; i++){
+      this.tempConfs.push(this.confLectures[i]);
+    }
+    this.confLectures = [];
+    this.tempConfs.push(this.selectedLecture);
+    for (let i = 0; i < this.tempConfs.length; i++){
+      this.confLectures.push(this.tempConfs[i]);
+    }
+    this.tempConfs = [];
+  }
   addAll() {
+    this.removeAll();
     for (let i = 0; i < this.lectures.length; i++){
       this.confLectures.push(this.lectures[i]);
     }
@@ -76,22 +89,27 @@ export class NewConfLecturesComponent implements OnInit {
     this.confLectures = [];
   }
   addLecture() {
-    this.confLectures.push(this.selectedLecture);
+    this.updateTable();
     const index: number = this.lectures.indexOf(this.selectedLecture);
     if (index !== -1) {
       this.lectures.splice(index, 1);
     }
     this.selectedLecture = null;
-    this.changeDetectorRefs.detectChanges();
   }
   removeLecture(lct) {
-    console.log('lct: ' + lct);
     this.lectures.push(lct);
-    const index: number = this.confLectures.indexOf(lct);
-    if (index !== -1) {
-      this.confLectures.splice(index, 1);
+    for (let i = 0; i < this.confLectures.length; i++){
+      this.tempConfs.push(this.confLectures[i]);
     }
-    this.changeDetectorRefs.detectChanges();
+    this.confLectures = [];
+    const index: number = this.tempConfs.indexOf(lct);
+    if (index !== -1) {
+      this.tempConfs.splice(index, 1);
+    }
+    for (let i = 0; i < this.tempConfs.length; i++){
+      this.confLectures.push(this.tempConfs[i]);
+    }
+    this.tempConfs = [];
   }
   createLecture(form: NgForm) {
     this.data.name = form.value.name;
