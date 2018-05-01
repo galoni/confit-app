@@ -33,17 +33,17 @@
               <mat-table #table [dataSource]="confLectures">
                 <!-- Position Column -->
                 <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef> name </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef> Lecture Name </mat-header-cell>
                   <mat-cell *matCellDef="let lct"> {{lct.name}} </mat-cell>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="lecturer_name">
-                  <mat-header-cell *matHeaderCellDef> lecturer_name </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef> Lecturer Name </mat-header-cell>
                   <mat-cell *matCellDef="let lct"> {{lct.lecturer_name}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="remove">
-                  <mat-header-cell *matHeaderCellDef> remove </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
                   <mat-cell *matCellDef="let lct"> <button mat-button color="warn" (click)="removeLecture(lct)">remove</button> </mat-cell>
                 </ng-container>
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -65,7 +65,7 @@
           </div>
           <div>
             <button color="warn" mat-raised-button (click)="removeAll()">Remove All</button>
-            <button color="primary" mat-raised-button (click)="addManyLectures()">NEXT</button>
+            <button color="primary" mat-raised-button (click)="addManyLectures()" matStepperNext>NEXT</button>
           </div>
         </div>
       </div>

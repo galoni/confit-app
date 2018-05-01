@@ -114,7 +114,7 @@ export class NewConfLecturesComponent implements OnInit {
       localStorage.setItem('lectures', JSON.stringify(this.lectures));
       localStorage.setItem('confLectures', JSON.stringify(this.confLectures));
       this.newConfService.setNewConf(this.newConf);
-      this.router.navigate(['../program'], { relativeTo: this.r });
+      //this.router.navigate(['../program'], { relativeTo: this.r });
     });
   }
   ngOnDestroy() {

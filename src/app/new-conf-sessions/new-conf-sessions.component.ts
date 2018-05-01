@@ -124,7 +124,7 @@ export class NewConfSessionsComponent implements OnInit {
       this.newConf.program = this.program;
       console.log('new conf session: ' + JSON.stringify(this.newConf));
       this.newConfService.setNewConf(this.newConf);
-      this.router.navigate(['../lectures'], { relativeTo: this.r });
+      //this.router.navigate(['../lectures'], { relativeTo: this.r });
     });
   }
 

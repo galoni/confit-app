@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { NewConfService } from '../services/newConf.service';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -14,7 +14,8 @@ export class NewConfDetailsComponent implements OnInit {
   conf: Conf;
   confType: string;
   confAudience: string;
-  @ViewChild('stepper1') stepper;
+  @ViewChild('stepper') stepper;
+  @Output() onStatusChange = new EventEmitter<boolean>();
 
   types = [
     {value: 'academic-0', viewValue: 'academic'},
@@ -54,8 +55,9 @@ export class NewConfDetailsComponent implements OnInit {
         localStorage.setItem('confId', this.conf._id);
         localStorage.setItem('confDuration', (this.data.duration).toString());
         console.log(this.conf._id);
-        this.changeStep(2);
+        //this.changeStep(2);
         // this.router.navigate(['../sessions'], { relativeTo: this.r });
+        this.onStatusChange.emit(true);
       }
       else {
         console.log('error');

@@ -3,15 +3,19 @@
 <mat-horizontal-stepper #stepper="matHorizontalStepper">
   <mat-step>
       <ng-template matStepLabel>Details</ng-template>
-      <app-new-conf-details #stepper></app-new-conf-details>
+      <app-new-conf-details (onStatusChange)="childStatusChanged($event)"></app-new-conf-details>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Sessions</ng-template>
-    <app-new-conf-sessions></app-new-conf-sessions>
+    <app-new-conf-sessions *ngIf="isCreated"></app-new-conf-sessions>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Lectures</ng-template>
-    <app-new-conf-lectures></app-new-conf-lectures>
+    <app-new-conf-lectures *ngIf="isCreated" ></app-new-conf-lectures>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Landing Page</ng-template>
+    <h2>here go the landing page</h2>
   </mat-step>
 </mat-horizontal-stepper>
 
