@@ -1,10 +1,37 @@
 <app-nav-manager></app-nav-manager>
-<mat-toolbar>
-  <div class="button-row">
-    <a mat-raised-button [routerLink]="['details']">details</a>
-    <a mat-raised-button [routerLink]="['sessions']">sessions</a>
-    <a mat-raised-button [routerLink]="['lectures']">lectures</a>
-  </div>
-</mat-toolbar>
-<router-outlet></router-outlet>
+
+<mat-horizontal-stepper #stepper="matHorizontalStepper">
+  <mat-step>
+      <ng-template matStepLabel>Details</ng-template>
+      <app-new-conf-details (onStatusChange)="childStatusChanged($event)"></app-new-conf-details>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Sessions</ng-template>
+    <app-new-conf-sessions *ngIf="isCreated"></app-new-conf-sessions>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Lectures</ng-template>
+    <app-new-conf-lectures *ngIf="isCreated" ></app-new-conf-lectures>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Landing Page</ng-template>
+    <h2>here go the landing page</h2>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<!--<mat-sidenav-container class="example-container">-->
+  <!--<mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav">-->
+    <!--<div>-->
+      <!--<p>-->
+        <!--<a mat-raised-button [routerLink]="['details']">Details</a>-->
+      <!--</p>-->
+      <!--<p>-->
+        <!--<a mat-raised-button [routerLink]="['sessions']">Sessions</a>-->
+      <!--</p>-->
+      <!--<p>-->
+        <!--<a mat-raised-button [routerLink]="['lectures']">Lectures</a>-->
+      <!--</p>-->
+    <!--</div>-->
+  <!--</mat-sidenav>-->
+<!--<router-outlet></router-outlet>-->
 

@@ -10,3 +10,10 @@
   left: 0;
   right: 0;
 }
+.example-sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  background: rgba(45, 122, 255, 0.5);
+}

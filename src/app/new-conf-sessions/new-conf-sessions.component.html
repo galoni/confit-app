@@ -1,51 +1,69 @@
-<div class="row">
-  <div class="col-md-5">
-    <h1>{{newConf.name}}</h1>
-  </div>
-</div>
-<div *ngIf="confId != null" class="container">
-  <div *ngIf="confSessions.length > 0" class="row">
-    <div class="col-md-5">
-      <h2>Conf Program</h2>
-      <div *ngFor="let in of counter(numDays); let i = index" value="i+1">
-        <h3>Day {{i+1}}</h3>
-        <div *ngIf="confSessions[i].length > 0" class="row">
-          Start Time:<button class="bg-danger" (click)="minus(i)">Minus</button>
-          {{confSessions[i][0].time}}
-          <button class="bg-success" (click)="plus(i)">Plus</button>
-        </div>
-          <table class="table table-hover">
-            <tr>
-              <th>Session Name</th>
-              <th>Session Time</th>
-              <th></th>
-            </tr>
-            <tr *ngFor="let sess of confSessions[i]; let j = index">
-              <td>{{sess.name}}</td>
-              <td>{{sess.time}}:00</td>
-              <td><button class="bg-danger" (click)="removeSession(sess)">remove</button></td>
-            </tr>
-          </table>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <h2>New Session</h2>
-      <form class="form-inline my-2 my-lg-0" (ngSubmit)="createSession(f)" #f="ngForm">
-        <div class="form-group"><label>Session name:</label><input ngModel="new Session" name="name" class="form-control mr-sm-2"></div>
-        <br><div class="form-group"><label>Session Type:</label><input ngModel="session_type" class="form-control mr-sm-2" name="session_type"></div>
-        <br><div class="form-group"><label>Duration:</label><input ngModel="duration" class="form-control mr-sm-2" type="number" name="duration"></div>
-        <br><label>Day Num</label><select name="dayNum" class="form-control" [(ngModel)]="selectedDay" (ngModelChange)="onChange($event)">
-          <option *ngFor="let in of counter(numDays); let i = index" [ngValue]="i">{{i+1}}</option>
-        </select>
-        <div class="row">
-          <div class="col-xs-12">
-            <button class="btn btn-success" type="submit">CREATE</button>
+<div class="container">
+  <mat-card>
+    <mat-card-title>{{newConf.name}}</mat-card-title>
+    <mat-card-content>
+      <div *ngIf="confId != null" class="container">
+        <div *ngIf="confSessions.length > 0" class="row">
+          <div class="col-md-5">
+            <h2>Conf Program</h2>
+            <div *ngFor="let in of counter(numDays); let i = index" value="i+1">
+              <h3>Day {{i+1}}</h3>
+              <div *ngIf="confSessions[i].length > 0" class="row">
+                Start Time:<button mat-button (click)="minus(i)">-</button>
+                {{confSessions[i][0].time}}
+                <button mat-button (click)="plus(i)">+</button>
+              </div>
+                <table class="table table-hover">
+                  <tr>
+                    <th>Session Name</th>
+                    <th>Session Time</th>
+                    <th></th>
+                  </tr>
+                  <tr *ngFor="let sess of confSessions[i]; let j = index">
+                    <td>{{sess.name}}</td>
+                    <td>{{sess.time}}:00</td>
+                    <td><button mat-button color="warn" (click)="removeSession(sess)">remove</button></td>
+                  </tr>
+                </table>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h2>New Session</h2>
+            <form (ngSubmit)="createSession(f)" #f="ngForm">
+              <p>
+                <mat-form-field>
+                  <input matInput ngModel="" name="name" placeholder="Session Name">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <input matInput ngModel="" name="session_type" placeholder="Session Type">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <input matInput ngModel="" type="number" name="duration" placeholder="Session Duration">
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <mat-select [(ngModel)]="selectedDay" name="dayNum" placeholder="Day Num" >
+                    <mat-option *ngFor="let in of counter(numDays); let i = index" [value]="i">
+                      {{i+1}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </p>
+              <p class="submitButtons">
+                <button type="submit" color="primary" mat-raised-button>CREATE</button>
+              </p>
+            </form>
           </div>
         </div>
-      </form>
-    </div>
-    <div class="col-md-3">
-      <button class="bg-primary" (click)="createProgram()">CREATE PROGRAM</button>
-    </div>
-  </div>
+        <p class="submitButtons">
+          <button mat-raised-button (click)="createProgram()" matStepperNext>CREATE PROGRAM</button>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
