@@ -91,6 +91,9 @@ import { MaterialModule } from './material';
     ChartsModule,
     MaterialModule
   ],
+  exports: [
+    MaterialModule
+  ],
   providers: [
     NewConfService,
     RegToConfService,

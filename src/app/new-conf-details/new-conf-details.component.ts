@@ -16,6 +16,7 @@ export class NewConfDetailsComponent implements OnInit {
   confAudience: string;
   @ViewChild('stepper') stepper;
   @Output() onStatusChange = new EventEmitter<boolean>();
+  step = 0;
 
   types = [
     {value: 'academic-0', viewValue: 'academic'},
@@ -55,7 +56,7 @@ export class NewConfDetailsComponent implements OnInit {
         localStorage.setItem('confId', this.conf._id);
         localStorage.setItem('confDuration', (this.data.duration).toString());
         console.log(this.conf._id);
-        //this.changeStep(2);
+        // this.changeStep(2);
         // this.router.navigate(['../sessions'], { relativeTo: this.r });
         this.onStatusChange.emit(true);
       }
@@ -67,5 +68,16 @@ export class NewConfDetailsComponent implements OnInit {
   }
   changeStep(index: number) {
     this.stepper.selectedIndex = index;
+  }
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }
