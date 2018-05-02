@@ -1,6 +1,21 @@
 <!doctype html>
 <html>
+
 <head>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+  <link rel="manifest" href="/manifest.json">
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDdKtk3ftDb9qvcZdCKjPQX8OMqRcDCDno",
+      authDomain: "confit-app.firebaseapp.com",
+      databaseURL: "https://confit-app.firebaseio.com",
+      projectId: "confit-app",
+      storageBucket: "confit-app.appspot.com",
+      messagingSenderId: "270877929932"
+    };
+    firebase.initializeApp(config);
+  </script>
   <meta charset="utf-8">
   <title>ConfitApp</title>
   <base href="/">
@@ -8,7 +23,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
   <app-root>Loading...</app-root>
 </body>
+
 </html>
