@@ -1,0 +1,48 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Select percent matching</mat-card-title>
+    <mat-card-content>
+      <div  class="container">
+          <h5>Connection Percent</h5>
+             <mat-slider
+                 [max]=100
+                 [min]=0
+                 [step]=10
+                 [thumb-label]=true
+                 [(ngModel)]="connection">
+             </mat-slider>
+           <h5>Learn Percent</h5>
+              <mat-slider
+                  [max]=100
+                  [min]=0
+                  [step]=10
+                  [thumb-label]=true
+                  [(ngModel)]="learn">
+              </mat-slider>
+            <h5>Explore Percent</h5>
+               <mat-slider
+                   [max]=100
+                   [min]=0
+                   [step]=10
+                   [thumb-label]=true
+                   [(ngModel)]="explore">
+               </mat-slider>
+             <p class="submitButtons">
+               <button mat-raised-button color="primary" (click)="addPercent(connection,learn,explore)" matStepperNext>Add</button>
+             </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+<!--<form class="form-inline my-2 my-lg-0" (ngSubmit)="addPercent(q)" #q="ngForm">
+<div class="form-group"><label>Connection precent:</label>0%<input oninput="x.value=a.value" type="range" min="0" max="100" step="10" ngModel="connectionPrecent" name="connection" id="a" class="form-control mr-sm-2" placeholder="ConnectionPrecent">100%</div>
+<output name="x" for="a"></output>
+<div class="form-group"><label>Learn precent:</label>0%<input oninput="y.value=b.value" type="range" min="0" max="100" step="10" ngModel="learnPrecent" name="learn" id="b" class="form-control mr-sm-2" placeholder="LearnPrecent">100%</div>
+<output name="y" for="b"></output>
+<div class="form-group"><label>Explore precent:</label>0%<input oninput="z.value=c.value" type="range" min="0" max="100" step="10" ngModel="explorePrecent" name="explore" id="c" class="form-control mr-sm-2" placeholder="ExplorePrecent">100%</div>
+<output name="z" for="c"></output><br>
+<button class="bg-primary" type="submit">submit</button>
+</form>-->
