@@ -19,7 +19,7 @@ export class ManagerDashboardComponent implements OnInit {
   ngOnInit() {
     this.managerId = '5ade1e1ef1c8043984217fe8';
     this.managerService.getAllConfById(this.managerId).then((cnfs) => {
-      console.log('confs: ' + JSON.stringify(cnfs));
+      console.log('Num confs: ' + cnfs.length);
       this.confs = cnfs;
       this.rows = [];
       for (let i = 0; i < this.numRows(); i++) {

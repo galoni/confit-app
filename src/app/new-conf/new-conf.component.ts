@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-conf.component.css']
 })
 export class NewConfComponent implements OnInit {
-  isCreated: Boolean = false;
+  isCreated: Boolean = true;
   constructor() { }
 
   ngOnInit() {
     // localStorage.clear();
   }
-  childStatusChanged(bool){
-    console.log("bool: " + bool);
+  childStatusChanged(bool) {
+    console.log('bool: ' + bool);
     this.isCreated = bool;
   }
 }
