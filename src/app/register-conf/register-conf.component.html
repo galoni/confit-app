@@ -1,4 +1,29 @@
 <app-nav-visitor></app-nav-visitor>
+
+<mat-horizontal-stepper #stepper="matHorizontalStepper">
+  <mat-step>
+      <ng-template matStepLabel>Select Conference</ng-template>
+      <app-register-conf-details (onStatusChange)="childStatusChanged($event)"></app-register-conf-details>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Select Topics</ng-template>
+    <app-register-conf-topics *ngIf="isCreated"></app-register-conf-topics>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Select Lectures</ng-template>
+    <app-register-conf-lectures *ngIf="isCreated" ></app-register-conf-lectures>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Select Match percentages</ng-template>
+    <app-register-conf-matching *ngIf="isCreated" ></app-register-conf-matching>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Landing Page</ng-template>
+    <h2>here go the landing page</h2>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<!--<app-nav-visitor></app-nav-visitor>
 <div class="row">
   <div class="col-md-4">
     <h2>Register To Conf</h2>
@@ -59,4 +84,4 @@
   </div>
 </div>
 
-<router-outlet></router-outlet>
+<router-outlet></router-outlet>-->
