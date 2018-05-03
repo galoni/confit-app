@@ -13,24 +13,6 @@
               </mat-select>
             </mat-form-field>
           </p>
-          <p>
-            <mat-form-field>
-              <mat-select [(ngModel)]="topic2" name="topic2" placeholder="select Topic 2" >
-                <mat-option *ngFor="let topic of selectedConf.main_topics; let i=index" [value]="topic">
-                  {{topic}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field>
-              <mat-select [(ngModel)]="topic3" name="topic3" placeholder="select Topic 3" >
-                <mat-option *ngFor="let topic of selectedConf.main_topics; let i=index" [value]="topic">
-                  {{topic}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </p>
           <p class="submitButtons">
             <button type="submit" color="primary" mat-raised-button matStepperNext>Submit</button>
           </p>

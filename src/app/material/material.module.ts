@@ -13,6 +13,7 @@ import {
   MatSidenavModule,
   MatGridListModule,
   MatTableModule,
+  MatSliderModule,
   MatStepperModule
 } from '@angular/material';
 
@@ -31,6 +32,7 @@ import {
     MatSidenavModule,
     MatGridListModule,
     MatTableModule,
+    MatSliderModule,
     MatStepperModule
   ]
 })
