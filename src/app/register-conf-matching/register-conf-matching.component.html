@@ -3,29 +3,33 @@
     <mat-card-title>Select percent matching</mat-card-title>
     <mat-card-content>
       <div  class="container">
-        <form (ngSubmit)="addPercent(f)" #f="ngForm">
-          <p>
-            <mat-form-field>
-              <mat-select [(ngModel)]="selectedLecture2" name="lecture" placeholder="select lecture 2" >
-                <mat-option *ngFor="let lecture of selectedConf.lectures; let i=index" [value]="lecture">
-                  {{lecture.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field>
-              <mat-select [(ngModel)]="selectedLecture3" name="lecture" placeholder="select lecture 3" >
-                <mat-option *ngFor="let lecture of selectedConf.lectures; let i=index" [value]="lecture">
-                  {{lecture.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </p>
-          <p class="submitButtons">
-            <button type="submit" color="primary" mat-raised-button matStepperNext>Submit</button>
-          </p>
-        </form>
+          <h5>Connection Percent</h5>
+             <mat-slider
+                 [max]=100
+                 [min]=0
+                 [step]=10
+                 [thumb-label]=true
+                 [(ngModel)]="connection">
+             </mat-slider>
+           <h5>Learn Percent</h5>
+              <mat-slider
+                  [max]=100
+                  [min]=0
+                  [step]=10
+                  [thumb-label]=true
+                  [(ngModel)]="learn">
+              </mat-slider>
+            <h5>Explore Percent</h5>
+               <mat-slider
+                   [max]=100
+                   [min]=0
+                   [step]=10
+                   [thumb-label]=true
+                   [(ngModel)]="explore">
+               </mat-slider>
+             <p class="submitButtons">
+               <button mat-raised-button color="primary" (click)="addPercent(connection,learn,explore)" matStepperNext>Add</button>
+             </p>
       </div>
     </mat-card-content>
   </mat-card>

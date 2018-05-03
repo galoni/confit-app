@@ -25,7 +25,21 @@ export class RegisterConfMatchingComponent implements OnInit {
     this.subscription = this.RegToConfService.RegConf$
       .subscribe(conf => this.selectedConf = conf);
   }
-  addPercent(form: NgForm) {
+
+  addPercent(connection,learn,explore) {
+    this.data.visitorid=this.visitor_id;
+    this.data.confid = this.selectedConf._id;
+    this.data.connection_precent = connection;
+    this.data.learn_precent = learn;
+    this.data.explore_precent = explore;
+    localStorage.setItem('confId',this.selectedConf._id);
+    this.RegToConfService.updatePercent(this.data,(data)=>{
+      if(data==='error') console.log("error")
+      else console.log("success")
+    });
+  }
+
+  /*addPercent(form: NgForm) {
     this.data.visitorid=this.visitor_id;
     this.data.confid = this.selectedConf._id;
     this.data.connection_precent = form.value.connection;
@@ -36,5 +50,5 @@ export class RegisterConfMatchingComponent implements OnInit {
       if(data==='error') console.log("error")
       else console.log("success")
     });
-  }
+  }*/
 }
