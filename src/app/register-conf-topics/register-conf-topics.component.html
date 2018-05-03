@@ -1,0 +1,57 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Select Topics from {{selectedConf.name}}</mat-card-title>
+    <mat-card-content>
+      <div  class="container">
+        <form (ngSubmit)="addTopics(f)" #f="ngForm">
+          <p>
+            <mat-form-field>
+              <mat-select [(ngModel)]="topic1" name="topic1" placeholder="select Topic 1" >
+                <mat-option *ngFor="let topic of selectedConf.main_topics; let i=index" [value]="topic">
+                  {{topic}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-select [(ngModel)]="topic2" name="topic2" placeholder="select Topic 2" >
+                <mat-option *ngFor="let topic of selectedConf.main_topics; let i=index" [value]="topic">
+                  {{topic}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-select [(ngModel)]="topic3" name="topic3" placeholder="select Topic 3" >
+                <mat-option *ngFor="let topic of selectedConf.main_topics; let i=index" [value]="topic">
+                  {{topic}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p class="submitButtons">
+            <button type="submit" color="primary" mat-raised-button matStepperNext>Submit</button>
+          </p>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+<!--<form class="form-inline my-2 my-lg-0" (ngSubmit)="addTopics(t)" #t="ngForm">
+  <div class="form-group">
+    <label>1.</label><select title="choose" name="topic1" class="form-control" [(ngModel)]="topic1">
+      <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
+    </select><br>
+    <label>2.</label><select title="choose" name="topic2" class="form-control" [(ngModel)]="topic2">
+      <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
+    </select><br>
+    <label>3.</label><select title="choose" name="topic3" class="form-control" [(ngModel)]="topic3">
+      <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
+    </select><br>
+    <button class="bg-primary" type="submit">submit</button>
+  </div>
+</form>-->

@@ -11,7 +11,8 @@ import { Lecture } from "../models/lecture";
   styleUrls: ['./register-conf.component.css']
 })
 export class RegisterConfComponent implements OnInit {
-  data:any= {};
+  isCreated: Boolean = true;
+  /*data:any= {};
   lectures_data:any={};
   topics_data:any={};
   confs: Conf[];
@@ -24,32 +25,31 @@ export class RegisterConfComponent implements OnInit {
   topic3:string;
   register_bool:boolean=false;
   sign:boolean=false;
-  //localStorage.setItem('visitorId','5aac4e3dafc0b334f06e3ed8');
-
-  visitor_id: string;
+  visitor_id: string;*/
 
   constructor(private RegToConfService: RegToConfService,
               private router: Router, private r:ActivatedRoute) { }
 
   ngOnInit() {
-localStorage.setItem('visitorId','5ad3aa87c284b342775e696a');
+/*localStorage.setItem('visitorId','5ad3aa87c284b342775e696a');
 this.visitor_id = localStorage.getItem('visitorId');
     this.RegToConfService.getAllConfs().then((confs)=>{
             console.log(confs);
             this.confs = confs;
-      })
+      })*/
   }
 
-    register(form: NgForm) {
+  childStatusChanged(bool){
+    console.log("bool: " + bool);
+    this.isCreated = bool;
+  }
+
+/*    register(form: NgForm) {
 
     console.log("inside register.ts");
     this.data.visitorid=this.visitor_id;
     this.data.confid = this.selectedConf._id;
     this.data.confname = this.selectedConf.name;
-    //this.data.connection_precent = form.value.connection;
-    //console.log(form.value.connection);
-    //this.data.learn_precent = form.value.learn;
-    //this.data.explore_precent = form.value.explore;
     localStorage.setItem('confId',this.selectedConf._id);
     this.RegToConfService.registerToConf(this.data,(data)=>{
       if(data==='error') console.log("error")
@@ -57,9 +57,9 @@ this.visitor_id = localStorage.getItem('visitorId');
     });
     this.register_bool=true;
     //form.reset();
-    }
+  }*/
 
-    addLectures(form: NgForm) {
+    /*addLectures(form: NgForm) {
     console.log("inside addLectures.ts");
     this.lectures_data.visitorid=this.visitor_id;
     this.lectures_data.confid = this.selectedConf._id;
@@ -103,6 +103,6 @@ this.visitor_id = localStorage.getItem('visitorId');
     });
     this.sign=true;
     form.reset();
-    }
+  }*/
 
 }
