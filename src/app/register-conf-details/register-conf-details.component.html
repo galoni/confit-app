@@ -1,19 +1,34 @@
-<div class="row">
-  <div class="col-md-4">
-    <h2>Register To Conf</h2>
-    <form class="form-inline my-2 my-lg-0" #f="ngForm">
-      <div class="form-group">
-        <select title="choose" name="conf" class="form-control" [(ngModel)]="selectedConf">
-          <option *ngFor="let conf of confs; let i=index" [ngValue]="conf">{{conf.name}}</option>
-        </select>
-      </div>
-    </form>
-  </div>
-  <div class="col-md-5">
-    <div>
-    <!-- <div *ngIf="selectedLecture != null"> -->
-      <h2>{{selectedConf.name}}</h2>
-      <!-- <button class="bg-primary" (click)="addLecture()">ADD</button> -->
-    </div>
-  </div>
+<div class="login-container">
+  <mat-card>
+    <mat-card-title>Conf Details</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="register(f)" #f="ngForm">
+        <p>
+          <mat-form-field>
+            <mat-select [(ngModel)]="selectedConf" name="conf" placeholder="Select Conference">
+              <mat-option *ngFor="let conf of confs" [value]="conf">
+                {{conf.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p class="submitButtons">
+          <button type="submit" color="primary" mat-raised-button matStepperNext>Register</button>
+        </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
+
+
+<!--<div class="col-md-4">
+  <h2>Register To Conf</h2>
+  <form class="form-inline my-2 my-lg-0" (ngSubmit)="register(r)" #r="ngForm">
+    <div class="form-group">
+      <label>select conference</label><select title="choose" name="conf" class="form-control" [(ngModel)]="selectedConf">
+        <option *ngFor="let conf of confs; let i=index" [ngValue]="conf">{{conf.name}}</option>
+      </select>
+      <button  class="bg-primary" type="submit">Registe</button>
+    </div>
+  </form>
+</div>-->

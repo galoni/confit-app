@@ -1,0 +1,44 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Select percent matching</mat-card-title>
+    <mat-card-content>
+      <div  class="container">
+        <form (ngSubmit)="addPercent(f)" #f="ngForm">
+          <p>
+            <mat-form-field>
+              <mat-select [(ngModel)]="selectedLecture2" name="lecture" placeholder="select lecture 2" >
+                <mat-option *ngFor="let lecture of selectedConf.lectures; let i=index" [value]="lecture">
+                  {{lecture.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-select [(ngModel)]="selectedLecture3" name="lecture" placeholder="select lecture 3" >
+                <mat-option *ngFor="let lecture of selectedConf.lectures; let i=index" [value]="lecture">
+                  {{lecture.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p class="submitButtons">
+            <button type="submit" color="primary" mat-raised-button matStepperNext>Submit</button>
+          </p>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+<!--<form class="form-inline my-2 my-lg-0" (ngSubmit)="addPercent(q)" #q="ngForm">
+<div class="form-group"><label>Connection precent:</label>0%<input oninput="x.value=a.value" type="range" min="0" max="100" step="10" ngModel="connectionPrecent" name="connection" id="a" class="form-control mr-sm-2" placeholder="ConnectionPrecent">100%</div>
+<output name="x" for="a"></output>
+<div class="form-group"><label>Learn precent:</label>0%<input oninput="y.value=b.value" type="range" min="0" max="100" step="10" ngModel="learnPrecent" name="learn" id="b" class="form-control mr-sm-2" placeholder="LearnPrecent">100%</div>
+<output name="y" for="b"></output>
+<div class="form-group"><label>Explore precent:</label>0%<input oninput="z.value=c.value" type="range" min="0" max="100" step="10" ngModel="explorePrecent" name="explore" id="c" class="form-control mr-sm-2" placeholder="ExplorePrecent">100%</div>
+<output name="z" for="c"></output><br>
+<button class="bg-primary" type="submit">submit</button>
+</form>-->
