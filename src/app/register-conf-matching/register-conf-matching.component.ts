@@ -3,6 +3,7 @@ import { RegToConfService } from "../services/regToConf.service";
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
+import {Conf} from '../models/conf';
 
 @Component({
   selector: 'app-register-conf-matching',
@@ -11,6 +12,9 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class RegisterConfMatchingComponent implements OnInit {
   subscription: Subscription;
+  data:any= {};
+  visitor_id:string;
+  selectedConf: Conf;
 
   constructor(private RegToConfService: RegToConfService,
               private router: Router, private r:ActivatedRoute) { }
@@ -19,9 +23,7 @@ export class RegisterConfMatchingComponent implements OnInit {
   ngOnInit() {
     this.visitor_id = localStorage.getItem('visitorId');
     this.subscription = this.RegToConfService.RegConf$
-      .subscribe(conf => this.selectedConf = conf){
-        this.confId = this.selectedConf._id;
-      };
+      .subscribe(conf => this.selectedConf = conf);
   }
   addPercent(form: NgForm) {
     this.data.visitorid=this.visitor_id;

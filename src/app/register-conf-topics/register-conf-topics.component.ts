@@ -26,9 +26,7 @@ export class RegisterConfTopicsComponent implements OnInit {
   ngOnInit() {
     this.visitor_id = localStorage.getItem('visitorId');
     this.subscription = this.RegToConfService.RegConf$
-      .subscribe(conf => this.selectedConf = conf){
-        this.confId = this.selectedConf._id;
-      };
+      .subscribe(conf => this.selectedConf = conf);
   }
 
   addTopics(form: NgForm) {
