@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NewConfService } from "../services/newConf.service";
-import { ConfSession } from "../models/confSession";
-import {NgForm} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Conf} from "../models/conf";
-import {Lecture} from "../models/lecture";
+import { NewConfService } from '../services/newConf.service';
+import { ConfSession } from '../models/confSession';
+import {NgForm} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Conf} from '../models/conf';
+import {Lecture} from '../models/lecture';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-new-conf-program',
@@ -17,34 +17,32 @@ export class NewConfProgramComponent implements OnInit {
   confId: string;
   confSession: ConfSession[];
   numDays: number;
-  conf:Conf;
+  conf: Conf;
   lectures: Lecture[] = [];
   data: any = [];
-  avialble:boolean=true;
-  subscription:Subscription;
+  avialble= true;
+  subscription: Subscription;
   newConf: Conf;
-  rows:number;
-  cols:number;
 
   constructor(private newConfService: NewConfService,
-              private router: Router, private r:ActivatedRoute,
+              private router: Router, private r: ActivatedRoute,
               private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
     this.subscription = this.newConfService.newConf$
       .subscribe(conf => this.newConf = conf);
-    console.log("new conf: " + JSON.stringify(this.newConf));
+    console.log('new conf: ' + JSON.stringify(this.newConf));
     this.confId = this.newConf._id;
-    if(!this.confId) {
-      console.log("no new conf");
-      this.confId = "5ad3db7e42dd9425ecb5fc49";
+    if (!this.confId) {
+      console.log('no new conf');
+      this.confId = '5ad3db7e42dd9425ecb5fc49';
       this.newConfService.getConfById(this.confId).then((conf) => {
         this.newConf = conf;
         // console.log("new conf: " + JSON.stringify(this.newConf));
         this.numDays = this.newConf.duration;
       });
     }
-    else{
+    else {
       this.numDays = this.newConf.duration;
     }
   }
@@ -53,22 +51,22 @@ export class NewConfProgramComponent implements OnInit {
   }
 
   buildProgram(){
-    for(let i = 0; i < this.numDays; i++){
+    for (let i = 0; i < this.numDays; i++){
       this.data[i] = [];
     }
     this.spinnerService.show();
-    this.newConfService.buildProgram(this.confId).then((confSession) =>{
+    this.newConfService.buildProgram(this.confId).then((confSession) => {
       this.confSession = confSession;
       // console.log(this.confSession);
       // console.log("data: "+ JSON.stringify(this.data));
-      for(let i = 0; i < this.confSession.length; i++){//split confSessions by day
-        this.data[this.confSession[i].dayNum-1].push(this.confSession[i]);
+      for (let i = 0; i < this.confSession.length; i++) { // split confSessions by day
+        this.data[this.confSession[i].dayNum - 1].push(this.confSession[i]);
       }
-      this.newConfService.getConfById(this.confId).then((conf) =>{
+      this.newConfService.getConfById(this.confId).then((conf) => {
         this.conf = conf;
         this.conf.program = this.data;
         this.spinnerService.hide();
-        console.log("conf1: " + JSON.stringify(this.conf));
+        console.log('conf1: ' + JSON.stringify(this.conf));
         // this.newConfService.newConf.emit(this.conf);
         // this.newConfService.setNewConf(this.conf);
         this.avialble = false;

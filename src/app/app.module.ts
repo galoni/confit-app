@@ -45,7 +45,7 @@ import { ManageQrCodeComponent } from './manage-qr-code/manage-qr-code.component
 import { PieChartDataComponent } from './pie-chart-data/pie-chart-data.component';
 import { ManageQrCodeDetailsComponent } from './manage-qr-code-details/manage-qr-code-details.component';
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './material';
 import { RegisterConfTopicsComponent } from './register-conf-topics/register-conf-topics.component';
 import { RegisterConfMatchingComponent } from './register-conf-matching/register-conf-matching.component';
 
@@ -93,6 +93,9 @@ import { RegisterConfMatchingComponent } from './register-conf-matching/register
     Ng4LoadingSpinnerModule.forRoot(),
     CommonModule,
     ChartsModule,
+    MaterialModule
+  ],
+  exports: [
     MaterialModule
   ],
   providers: [

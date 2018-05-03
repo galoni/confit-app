@@ -29,13 +29,13 @@ const appRoutes: Routes = [
     { path: 'landing', component: LandingPageComponent},
     { path: 'dashboard', component: ManagerDashboardComponent},
     { path: 'showConf', component: ShowConfComponent},
+    { path: 'program', component: NewConfProgramComponent },
     { path: 'newConf', component: NewConfComponent,
       children: [
         { path: '', redirectTo: 'details', pathMatch: 'full' },
         { path: 'details', component: NewConfDetailsComponent },
         { path: 'lectures', component: NewConfLecturesComponent },
-        { path: 'sessions', component: NewConfSessionsComponent },
-        { path: 'program', component: NewConfProgramComponent }
+        { path: 'sessions', component: NewConfSessionsComponent }
       ]
     },
     { path: 'ScanQRCode', component: ScanQRCodeComponent,

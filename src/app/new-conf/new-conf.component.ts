@@ -12,8 +12,8 @@ export class NewConfComponent implements OnInit {
   ngOnInit() {
     // localStorage.clear();
   }
-  childStatusChanged(bool){
-    console.log("bool: " + bool);
+  childStatusChanged(bool) {
+    console.log('bool: ' + bool);
     this.isCreated = bool;
   }
 }

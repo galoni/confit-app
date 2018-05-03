@@ -1,9 +1,20 @@
-<div class="login-container">
+<div class="container">
   <mat-card>
     <mat-card-title>Conf Details</mat-card-title>
     <mat-card-content>
       <form (ngSubmit)="createConference(f)" #f="ngForm">
-        <p>
+      <mat-accordion class="example-headers-align" multi="true">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Conf Data
+            </mat-panel-title>
+            <mat-panel-description>
+              Insert Conf basic details
+              <mat-icon>assignment</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
           <mat-form-field>
             <input matInput ngModel="" name="name" placeholder="Conf Name">
           </mat-form-field>
@@ -17,8 +28,30 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-        </p>
-        <p>
+          <mat-form-field>
+            <mat-select [(ngModel)]="confAudience" name="audience" placeholder="Conf Audience">
+              <mat-option *ngFor="let audience of audiences" [value]="audience.value">
+                {{audience.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!--<mat-action-row>-->
+            <!--<button mat-button color="primary" (click)="nextStep()">Next</button>-->
+          <!--</mat-action-row>-->
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Time And Place
+            </mat-panel-title>
+            <mat-panel-description>
+              Init Conf duration
+              <mat-icon>date_range</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
           <mat-form-field>
             <input matInput ngModel="" [matDatepicker]="picker" placeholder="Start Date" name="start_date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -30,17 +63,24 @@
           <mat-form-field>
             <input matInput ngModel="" name="location" placeholder="Conf Address">
           </mat-form-field>
-        </p>
-        <p>
-          <mat-form-field>
-            <mat-select [(ngModel)]="confAudience" name="audience" placeholder="Conf Audience">
-              <mat-option *ngFor="let audience of audiences" [value]="audience.value">
-                {{audience.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </p>
-        <p>
+
+          <!--<mat-action-row>-->
+            <!--<button mat-button color="warn" (click)="prevStep()">Previous</button>-->
+            <!--<button mat-button color="primary" (click)="nextStep()">Next</button>-->
+          <!--</mat-action-row>-->
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Conf Topics
+            </mat-panel-title>
+            <mat-panel-description>
+              Tell us the Conf Topics
+              <mat-icon>whatshot</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
           <mat-form-field>
             <input matInput ngModel="" name="topic1" placeholder="Main Topic1">
           </mat-form-field>
@@ -50,11 +90,70 @@
           <mat-form-field>
             <input matInput ngModel="" name="topic3" placeholder="Main Topic3">
           </mat-form-field>
-        </p>
+
+          <!--<mat-action-row>-->
+            <!--<button mat-button color="warn" (click)="prevStep()">Previous</button>-->
+            <!--<button mat-button color="primary" (click)="nextStep()">End</button>-->
+          <!--</mat-action-row>-->
+        </mat-expansion-panel>
+      </mat-accordion>
         <p class="submitButtons">
           <button type="submit" color="primary" mat-raised-button matStepperNext>CREATE</button>
         </p>
       </form>
+
+        <!--<p>-->
+          <!--<mat-form-field>-->
+            <!--<input matInput ngModel="" name="name" placeholder="Conf Name">-->
+          <!--</mat-form-field>-->
+          <!--<mat-form-field>-->
+            <!--<input matInput ngModel="" name="logo" placeholder="Conf Logo">-->
+          <!--</mat-form-field>-->
+          <!--<mat-form-field>-->
+            <!--<mat-select [(ngModel)]="confType" name="type" placeholder="Conf Type">-->
+              <!--<mat-option *ngFor="let type of types" [value]="type.value">-->
+                <!--{{type.viewValue}}-->
+              <!--</mat-option>-->
+            <!--</mat-select>-->
+          <!--</mat-form-field>-->
+        <!--</p>-->
+        <!--<p>-->
+          <!--<mat-form-field>-->
+            <!--<input matInput ngModel="" [matDatepicker]="picker" placeholder="Start Date" name="start_date">-->
+            <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+            <!--<mat-datepicker #picker></mat-datepicker>-->
+          <!--</mat-form-field>-->
+          <!--<mat-form-field>-->
+            <!--<input matInput ngModel="" type="number" name="duration" placeholder="Conf Duration">-->
+          <!--</mat-form-field>-->
+          <!--<mat-form-field>-->
+            <!--<input matInput ngModel="" name="location" placeholder="Conf Address">-->
+          <!--</mat-form-field>-->
+        <!--</p>-->
+        <!--<p>-->
+          <!--<mat-form-field>-->
+            <!--<mat-select [(ngModel)]="confAudience" name="audience" placeholder="Conf Audience">-->
+              <!--<mat-option *ngFor="let audience of audiences" [value]="audience.value">-->
+                <!--{{audience.viewValue}}-->
+              <!--</mat-option>-->
+            <!--</mat-select>-->
+          <!--</mat-form-field>-->
+        <!--</p>-->
+        <!--<p>-->
+          <!--<mat-form-field>-->
+            <!--<input matInput ngModel="" name="topic1" placeholder="Main Topic1">-->
+          <!--</mat-form-field>-->
+          <!--<mat-form-field>-->
+            <!--<input matInput ngModel="" name="topic2" placeholder="Main Topic2">-->
+          <!--</mat-form-field>-->
+          <!--<mat-form-field>-->
+            <!--<input matInput ngModel="" name="topic3" placeholder="Main Topic3">-->
+          <!--</mat-form-field>-->
+        <!--</p>-->
+        <!--<p class="submitButtons">-->
+          <!--<button type="submit" color="primary" mat-raised-button matStepperNext>CREATE</button>-->
+        <!--</p>-->
+      <!--</form>-->
     </mat-card-content>
   </mat-card>
 </div>
