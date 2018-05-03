@@ -3,7 +3,6 @@ import { RegToConfService } from "../services/regToConf.service";
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {MatSliderModule} from '@angular/material/slider';
 
 @Component({
   selector: 'app-register-conf-matching',
