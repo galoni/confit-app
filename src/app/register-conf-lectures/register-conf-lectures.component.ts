@@ -19,6 +19,7 @@ export class RegisterConfLecturesComponent implements OnInit {
   lectures_data:any={};
   subscription: Subscription;
   selectedConf: Conf;
+  visitor_id:string;
 
   constructor(private RegToConfService: RegToConfService,
               private router: Router, private r:ActivatedRoute) { }
@@ -26,9 +27,7 @@ export class RegisterConfLecturesComponent implements OnInit {
   ngOnInit() {
     this.visitor_id = localStorage.getItem('visitorId');
     this.subscription = this.RegToConfService.RegConf$
-      .subscribe(conf => this.selectedConf = conf){
-        this.confId = this.selectedConf._id;
-      };
+      .subscribe(conf => this.selectedConf = conf);
   }
 
   addLectures(form: NgForm) {
