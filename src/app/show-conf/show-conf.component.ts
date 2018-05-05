@@ -6,6 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Conf } from '../models/conf';
 import { Lecture } from '../models/lecture';
 import {Subscription} from 'rxjs/Subscription';
+import {NewConfSessionsComponent} from '../new-conf-sessions/new-conf-sessions.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {EditConfSessionComponent} from '../edit-conf-session/edit-conf-session.component';
+import {NewConfProgramComponent} from '../new-conf-program/new-conf-program.component';
 
 @Component({
   selector: 'app-show-conf',
@@ -25,6 +29,7 @@ export class ShowConfComponent implements OnInit {
 
   constructor(private newConfService: NewConfService,
               private managerService: ManagerService,
+              public dialog: MatDialog,
               private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
@@ -60,5 +65,26 @@ export class ShowConfComponent implements OnInit {
     this.conf.program = this.data;
     this.avialble = false;
   }
-
+  openDialogSess(): void {
+    // console.log('dig conf: ' + JSON.stringify(this.conf));
+    let dialogRef = this.dialog.open(EditConfSessionComponent, {
+      width: '830px',
+      data: this.conf
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.conf = result;
+    });
+  }
+  openDialogProg(): void {
+    // console.log('dig conf: ' + JSON.stringify(this.conf));
+    let dialogRef = this.dialog.open(NewConfProgramComponent, {
+      width: '830px',
+      data: this.conf
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.conf = result;
+    });
+  }
 }
