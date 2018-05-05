@@ -27,6 +27,7 @@ const appRoutes: Routes = [
     { path: 'registerToConf', component: RegisterConfComponent},
     { path: 'signinSelection', component: SigninSelectionComponent},
     { path: 'landing', component: LandingPageComponent},
+    { path: 'visitorlanding', component: VisitorLandingComponent},
     { path: 'dashboard', component: ManagerDashboardComponent},
     { path: 'showConf', component: ShowConfComponent},
     { path: 'program', component: NewConfProgramComponent },

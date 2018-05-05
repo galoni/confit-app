@@ -16,8 +16,8 @@ import {
   MatStepperModule,
   MatDividerModule,
   MatExpansionModule,
-  MatIconModule
-  MatSliderModule,
+  MatIconModule,
+  MatSliderModule
 } from '@angular/material';
 
 @NgModule({
@@ -38,7 +38,7 @@ import {
     MatStepperModule,
     MatDividerModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
     MatSliderModule,
   ]
 })

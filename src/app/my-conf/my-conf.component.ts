@@ -4,13 +4,11 @@ import { myConfService } from "../services/myConf.service";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Conf } from "../models/conf";
-// import { MyConfPathComponent } from "../my-conf-path/my-conf-path.component";
 
 @Component({
   selector: 'app-my-conf',
   templateUrl: './my-conf.component.html',
   styleUrls: ['./my-conf.component.css'],
-  // directives: [MyConfPathComponent]
 })
 export class MyConfComponent implements OnInit {
   visitor: Visitor;
@@ -36,22 +34,10 @@ export class MyConfComponent implements OnInit {
     console.log("localStorage qrcode="+localStorage.getItem('QRCode')) ;
 
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
-  /*  localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
-    localStorage.setItem('confId', '5aca81ae58bd880510606ad4');
-
-    if (localStorage.getItem('confId') === null) {
-          localStorage.setItem('confId', '5aca81ae58bd880510606ad4');
-          console.log("created local storage CONFID");
-    }
-    if (localStorage.getItem('visitorId') === null) {
-            localStorage.setItem('visitorId', '5aac4e3dafc0b334f06e3ed8');
-            console.log("created local storage VISITORID");
-    }*/
 
 
     this.visitorId = localStorage.getItem('visitorId');
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
-      console.log("inside parent get visitor");
       if (visitor) {
         this.visitor=visitor;
         this.myConfService.setVisitor(this.visitor);
@@ -116,10 +102,8 @@ export class MyConfComponent implements OnInit {
             console.log("inside conference qrcode");
             localStorage.setItem('confId', this.qrcode.id);
             console.log(localStorage.getItem('confId'));
-            //this.myConfService.setQRCode_conf(this.qrcode);
 
           }
-        //  this.myConfService.setQRCode(this.qrcode);
 
         }
         else{
