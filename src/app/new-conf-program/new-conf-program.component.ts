@@ -35,7 +35,7 @@ export class NewConfProgramComponent implements OnInit {
     this.confId = this.newConf._id;
     if (!this.confId) {
       console.log('no new conf');
-      this.confId = '5ad3db7e42dd9425ecb5fc49';
+      this.confId = '5aeb7d196226470004135c4c';
       this.newConfService.getConfById(this.confId).then((conf) => {
         this.newConf = conf;
         // console.log("new conf: " + JSON.stringify(this.newConf));

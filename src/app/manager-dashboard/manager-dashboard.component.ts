@@ -13,6 +13,7 @@ export class ManagerDashboardComponent implements OnInit {
   managerId: string;
   rows: Conf[][] = [];
   confs: Conf[];
+  conf: Conf;
 
   constructor(private managerService: ManagerService) { }
 
@@ -26,6 +27,12 @@ export class ManagerDashboardComponent implements OnInit {
         this.rows.push(this.getRow(i));
         }
     });
+  }
+
+  showInfo(conf) {
+    // console.log('selected conf: ' + JSON.stringify(conf));
+    this.managerService.setSelectedConf(conf);
+    this.conf = conf;
   }
 
   numRows(): number {
