@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { CommonModule } from '@angular/common';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AppComponent } from './app.component';
 import {RouterModule } from '@angular/router';
@@ -15,6 +16,7 @@ import { myConfService } from "./services/myConf.service";
 import { RegToConfService } from "./services/regToConf.service";
 import { ManageQRCodeService } from "./services/manageQRCode.service";
 import { ManagerService } from './services/manager.service';
+import { MessagingService } from "./messaging.service";
 
 import { NewConfComponent } from './new-conf/new-conf.component';
 import { HeaderManagerComponent } from './header-manager/header-manager.component';
@@ -46,6 +48,7 @@ import { PieChartDataComponent } from './pie-chart-data/pie-chart-data.component
 import { ManageQrCodeDetailsComponent } from './manage-qr-code-details/manage-qr-code-details.component';
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 import { MaterialModule } from './material/material.module';
+import { ManageNotificationsComponent } from './manage-notifications/manage-notifications.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,8 @@ import { MaterialModule } from './material/material.module';
     ManageQrCodeComponent,
     PieChartDataComponent,
     ManageQrCodeDetailsComponent,
-    ManagerDashboardComponent
+    ManagerDashboardComponent,
+    ManageNotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -89,14 +93,16 @@ import { MaterialModule } from './material/material.module';
     Ng4LoadingSpinnerModule.forRoot(),
     CommonModule,
     ChartsModule,
-    MaterialModule
+    MaterialModule,
+    AngularFireDatabaseModule
   ],
   providers: [
     NewConfService,
     RegToConfService,
     myConfService,
     ManageQRCodeService,
-    ManagerService
+    ManagerService,
+    MessagingService
   ],
   bootstrap: [AppComponent]
 })
