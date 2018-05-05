@@ -15,11 +15,6 @@
     <input name="id" ngModel>
       <button>Submit</button>
     </form>
-  <h4>Your Conferences:</h4>
-  <div *ngFor="let conf of this.visitor.confs">
-  <span>conf name : </span>{{conf.confname}}<br>
-  <span>profile pie on {{conf.confname}} conference :</span>{{conf.profile_pie}}
- </div>
 </div>
 <app-pie-chart-data *ngIf="visitorId!=null" [visitorId]="visitorId"></app-pie-chart-data>
 <hr>
