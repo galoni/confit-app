@@ -1,10 +1,14 @@
-<div class="row">
-  <div *ngIf="conf != null" class="col-md-5">
-    <h2>{{conf.name}}</h2>
+<mat-card *ngIf="conf != null">
+  <mat-card-title>{{conf.name}}</mat-card-title>
+  <mat-card-content>
     <h4>Date: {{conf.start_date}}</h4>
     <h4>Type: {{conf.type}}</h4>
     <h4>Location:: {{conf.location}}</h4>
     <h4 *ngIf="conf.visitors != null">Registered Visitors: {{conf.visitors.length}}</h4>
-  </div>
-</div>
-<app-new-conf-program-show></app-new-conf-program-show>
+    <div>
+      <button mat-raised-button (click)="openDialogSess()">Edit Session</button>
+      <button mat-raised-button (click)="openDialogProg()">Program</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+<!--<app-new-conf-program-show [fConf]="conf" *ngIf="avialble != true"></app-new-conf-program-show>-->

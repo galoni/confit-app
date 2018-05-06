@@ -1,0 +1,59 @@
+<h1 mat-dialog-title>{{data.name}} Conf Program</h1>
+<div mat-dialog-content>
+  <div *ngIf="confSessions.length > 0" class="row">
+    <div class="col-md-4" *ngFor="let in of counter(numDays); let i = index" value="i+1">
+      <h3>Day {{i+1}}</h3>
+      <div *ngIf="confSessions[i].length > 0" class="row">
+        Start Time:<button mat-button (click)="minus(i)">-</button>
+        {{confSessions[i][0].time}}
+        <button mat-button (click)="plus(i)">+</button>
+      </div>
+      <table class="table table-hover">
+        <tr>
+          <th>Session Name</th>
+          <th>Session Time</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let sess of confSessions[i]; let j = index">
+          <td>{{sess.name}}</td>
+          <td>{{sess.time}}:00</td>
+          <td><button mat-button color="warn" (click)="removeSession(sess)">remove</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div>
+    <h2>New Session</h2>
+    <form (ngSubmit)="createSession(f)" #f="ngForm">
+      <p>
+        <mat-form-field>
+          <input matInput ngModel="" name="name" placeholder="Session Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput ngModel="" name="session_type" placeholder="Session Type">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput ngModel="" type="number" name="duration" placeholder="Session Duration">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [(ngModel)]="selectedDay" name="dayNum" placeholder="Day Num" >
+            <mat-option *ngFor="let in of counter(numDays); let i = index" [value]="i">
+              {{i+1}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p class="submitButtons">
+        <button type="submit" color="accent" mat-raised-button>CREATE</button>
+      </p>
+    </form>
+    <p class="submitButtons">
+      <button mat-raised-button color="primary" (click)="editProgram()">UPDATE PROGRAM</button>
+    </p>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="confSessions" cdkFocusInitial>Ok</button>
+</div>

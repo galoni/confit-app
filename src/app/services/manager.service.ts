@@ -7,12 +7,19 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ManagerService {
+  private _selectedConf = new BehaviorSubject<Conf>(new Conf('new conf', 'type', 'logo', 'date', 2, 'loc', 'aud', []));
+  selectedConf$ = this._selectedConf.asObservable();
 
   headers = new Headers({ 'content-type': 'application/json' });
   options = new RequestOptions({ headers: this.headers });
   // private base_url: String = 'https://confit-backend.herokuapp.com/manager';
   private base_url: String = 'http://localhost:3000/manager';
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
+
+  setSelectedConf(conf) {
+    // console.log('$conf: ' + JSON.stringify(conf.program));
+    this._selectedConf.next(conf);
+  }
 
   createManager(data): Promise<Manager> {
     const body = JSON.stringify(data);

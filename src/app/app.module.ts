@@ -48,6 +48,7 @@ import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard
 import { MaterialModule } from './material';
 import { RegisterConfTopicsComponent } from './register-conf-topics/register-conf-topics.component';
 import { RegisterConfMatchingComponent } from './register-conf-matching/register-conf-matching.component';
+import { EditConfSessionComponent } from './edit-conf-session/edit-conf-session.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { RegisterConfMatchingComponent } from './register-conf-matching/register
     ManageQrCodeDetailsComponent,
     ManagerDashboardComponent,
     RegisterConfTopicsComponent,
-    RegisterConfMatchingComponent
+    RegisterConfMatchingComponent,
+    EditConfSessionComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +99,12 @@ import { RegisterConfMatchingComponent } from './register-conf-matching/register
   ],
   exports: [
     MaterialModule
+  ],
+  entryComponents: [
+    ShowConfComponent,
+    NewConfSessionsComponent,
+    EditConfSessionComponent,
+    NewConfProgramComponent
   ],
   providers: [
     NewConfService,

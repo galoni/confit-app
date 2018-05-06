@@ -1,11 +1,12 @@
- <div class="row">
-  <div class="col-md-5">
-    <h1>{{newConf.name}}</h1>
+<h1 mat-dialog-title>{{data.name}} Conf Program</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div *ngIf="avialble" class="col-md-3">
+      <button (click)="buildProgram()">Create Program</button>
+    </div>
   </div>
+  <app-new-conf-program-show [fConf]="conf" *ngIf="avialble != true"></app-new-conf-program-show>
 </div>
-<div class="row">
-  <div *ngIf="avialble" class="col-md-3">
-    <button (click)="buildProgram()">Create Program</button>
-  </div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
 </div>
-<app-new-conf-program-show [fConf]="conf" *ngIf="avialble != true"></app-new-conf-program-show>

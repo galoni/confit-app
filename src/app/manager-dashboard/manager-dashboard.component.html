@@ -1,17 +1,27 @@
 <app-nav-manager></app-nav-manager>
-<div class="row">
-  <div class="col-md-7">
-    <h1>Your Confs</h1>
-    <div class="row">
-      <div *ngFor="let r of rows; let i=index">
-        <div class="col-md-5" *ngFor="let c of r" >
-          <a >
-            <h3>[{{c.name}}]</h3>
-            <h4><{{c.start_date}}></h4>
-            <h5>|{{c.type}}|</h5>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+  <mat-card>
+    <mat-card-title>Dashboard</mat-card-title>
+    <mat-card-content>
+      <mat-grid-list cols="4" rowHeight="600px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-list class="confList">
+            <h3 mat-subheader>Your Confs</h3>
+            <mat-list-item *ngFor="let conf of confs">
+              <mat-icon mat-list-icon>event available</mat-icon>
+              <h4 mat-line>{{conf.name}}</h4>
+              <p mat-line> {{conf.start_date}} </p>
+              <p mat-line> {{conf.type}} </p>
+              <button mat-icon-button (click)="showInfo(conf)">
+                <mat-icon>info</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          <app-show-conf class="showConf" [fConf]="conf" *ngIf="conf != null"></app-show-conf>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
 </div>
