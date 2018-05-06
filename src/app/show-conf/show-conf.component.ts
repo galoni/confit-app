@@ -26,6 +26,7 @@ export class ShowConfComponent implements OnInit {
   subscription: Subscription;
   selectedConf: Conf;
   @Input() fConf: Conf;
+  confSessions: ConfSession[][] = [];
 
   constructor(private newConfService: NewConfService,
               private managerService: ManagerService,
@@ -42,12 +43,13 @@ export class ShowConfComponent implements OnInit {
       this.confId = '5aeb7d196226470004135c4c';
       this.newConfService.getConfById(this.confId).then((conf) => {
         this.conf = conf;
-        console.log(this.conf);
+        // console.log('the conf2: ' + JSON.stringify(this.conf));
         this.initData(conf);
         // this.newConfService.newConf.emit(this.conf);
       });
     }
     else {
+      // console.log('the conf: ' + JSON.stringify(this.conf));
       this.initData(this.conf);
     }
     console.log(this.confId);
@@ -72,8 +74,8 @@ export class ShowConfComponent implements OnInit {
       data: this.conf
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.conf = result;
+      console.log('The dialog was closed:' + JSON.stringify(result));
+      // this.confSession = result;
     });
   }
   openDialogProg(): void {
@@ -84,7 +86,7 @@ export class ShowConfComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.conf = result;
+      // this.conf = result;
     });
   }
 }

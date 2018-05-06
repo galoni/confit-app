@@ -48,9 +48,12 @@
         <button type="submit" color="accent" mat-raised-button>CREATE</button>
       </p>
     </form>
+    <p class="submitButtons">
+      <button mat-raised-button color="primary" (click)="editProgram()">UPDATE PROGRAM</button>
+    </p>
   </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="confSessions" cdkFocusInitial>Ok</button>
 </div>

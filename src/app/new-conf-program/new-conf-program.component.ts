@@ -37,7 +37,7 @@ export class NewConfProgramComponent implements OnInit {
   ngOnInit() {
     this.numDays = this.data.duration;
     this.confId = this.data._id;
-    // console.log('data: ' + JSON.stringify(this.data.program[0][0].lectures));
+    // console.log('data: ' + JSON.stringify(this.data.program[0]));
     if (this.data.program[0][0].lectures.length > 0) {
       this.conf = this.data;
       this.managerService.setSelectedConf(this.conf);

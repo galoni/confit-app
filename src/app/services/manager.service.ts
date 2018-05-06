@@ -17,6 +17,7 @@ export class ManagerService {
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
 
   setSelectedConf(conf) {
+    // console.log('$conf: ' + JSON.stringify(conf.program));
     this._selectedConf.next(conf);
   }
 

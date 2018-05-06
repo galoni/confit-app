@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Conf} from '../models/conf';
 import {ConfSession} from '../models/confSession';
 import {NgForm} from '@angular/forms';
+import {NewConfService} from '../services/newConf.service';
 
 @Component({
   selector: 'app-edit-conf-session',
@@ -17,8 +18,10 @@ export class EditConfSessionComponent implements OnInit {
   startTime= 9;
   program: ConfSession[]= [];
   conf: Conf;
+  dataSess: any= {};
 
-  constructor(public dialogRef: MatDialogRef<EditConfSessionComponent>,
+  constructor(private newConfService: NewConfService,
+              public dialogRef: MatDialogRef<EditConfSessionComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
@@ -69,20 +72,32 @@ export class EditConfSessionComponent implements OnInit {
   }
   createSession(form: NgForm) {
     // console.log("time table: "+ this.timeTable);
-    this.data.name = form.value.name;
-    this.data.session_type = form.value.session_type;
-    this.data.duration = form.value.duration;
-    this.data.dayNum = this.selectedDay + 1;
-    this.data.time = this.timeTable[this.selectedDay];
-    this.timeTable[this.selectedDay] = this.timeTable[this.selectedDay] + this.data.duration;
+    this.dataSess.name = form.value.name;
+    this.dataSess.session_type = form.value.session_type;
+    this.dataSess.duration = form.value.duration;
+    this.dataSess.dayNum = this.selectedDay + 1;
+    this.dataSess.time = this.timeTable[this.selectedDay];
+    this.timeTable[this.selectedDay] = this.timeTable[this.selectedDay] + this.dataSess.duration;
     // console.log("dynum: " + this.selectedDay);
-    this.data.lectures = [];
-    const sess = new ConfSession(this.data.name, this.data.session_type,
-                                  this.data.duration, this.data.dayNum,
-                                  this.data.time, this.data.lectures);
+    this.dataSess.lectures = [];
+    const sess = new ConfSession(this.dataSess.name, this.dataSess.session_type,
+                                  this.dataSess.duration, this.dataSess.dayNum,
+                                  this.dataSess.time, this.dataSess.lectures);
     // console.log("sess: " + JSON.stringify(sess));
     this.confSessions[this.selectedDay].push(sess);
     console.log('conf session: ' + JSON.stringify(this.confSessions));
   }
-
+  editProgram(conf) {
+    for (let i = 0; i < this.confSessions.length; i++) {
+      for (let j = 0; j < this.confSessions[i].length; j++) {
+        this.confSessions[i][j].lectures = [];
+        this.program.push(this.confSessions[i][j]);
+      }
+    }
+    console.log('confId: ' + this.data._id);
+    this.newConfService.createProgram(this.program, this.data._id).then((conf) => {
+      console.log('conf: ' + JSON.stringify(conf));
+      this.dialogRef.close();
+    });
+  }
 }

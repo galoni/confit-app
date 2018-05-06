@@ -29,8 +29,9 @@ export class NewConfProgramShowComponent implements OnInit {
     //   this.data = this.conf.program;
     // }
     // console.log('fConf: ' + JSON.stringify(this.fConf.program));
-    Object.assign(this.data, this.fConf.program);
+    // Object.assign(this.data, this.fConf.program);
     this.conf = <Conf>this.deepCopy(this.fConf);
+    this.data = this.conf.program;
     const topics = [];
     const tLength = this.fConf.main_topics.length;
     for (let tIndex = 0; tIndex < tLength; tIndex++) {// init topics array
