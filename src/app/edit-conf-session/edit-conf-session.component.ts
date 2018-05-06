@@ -29,7 +29,10 @@ export class EditConfSessionComponent implements OnInit {
     // console.log('numday: ' + this.numDays);
     this.confSessions = [];
     for (let i = 0; i < this.numDays; i++) {
-      this.timeTable[i] = this.startTime;
+      // console.log('prog: ' + JSON.stringify(this.data.program[i]));
+      let dayArray = this.data.program[i];
+      this.timeTable[i] = dayArray[dayArray.length - 1].time + dayArray[dayArray.length - 1].duration;
+      console.log('time tbl: ' + this.timeTable[i]);
       this.confSessions[i] = [];
     }
     this.confSessions = this.data.program;
