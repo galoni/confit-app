@@ -1,0 +1,13 @@
+<app-nav-visitor></app-nav-visitor>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let conf of this.visitor.confs" (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{conf.confname}}
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+    <span>my profile pie on {{conf.confname}} conference :</span>{{conf.profile_pie}}
+  </mat-expansion-panel>
+</mat-accordion>
