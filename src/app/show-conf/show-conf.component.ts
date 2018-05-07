@@ -35,10 +35,13 @@ export class ShowConfComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.managerService.selectedConf$
-      .subscribe(conf => this.conf = conf);
+      .subscribe(conf => {
+        this.conf = <Conf>this.deepCopy(conf);
+        // console.log('sub conf: ' + JSON.stringify(this.conf.program));
+      });
     // console.log('new conf: ' + JSON.stringify(this.conf));
     // this.confId = this.selectedConf._id;
-    this.conf = this.fConf;
+    // this.conf = <Conf>this.deepCopy(this.fConf);
     if (!this.conf) {
       this.confId = '5aeb7d196226470004135c4c';
       this.newConfService.getConfById(this.confId).then((conf) => {
@@ -88,5 +91,38 @@ export class ShowConfComponent implements OnInit {
       console.log('The dialog was closed');
       // this.conf = result;
     });
+  }
+  deepCopy(obj) {
+    let copy;
+
+    // Handle the 3 simple types, and null or undefined
+    if (null == obj || 'object' !== typeof obj) { return obj; }
+
+    // Handle Date
+    if (obj instanceof Date) {
+      copy = new Date();
+      copy.setTime(obj.getTime());
+      return copy;
+    }
+
+    // Handle Array
+    if (obj instanceof Array) {
+      copy = [];
+      for (let i = 0, len = obj.length; i < len; i++) {
+        copy[i] = this.deepCopy(obj[i]);
+      }
+      return copy;
+    }
+
+    // Handle Object
+    if (obj instanceof Object) {
+      copy = {};
+      for (const attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = this.deepCopy(obj[attr]);
+      }
+      return copy;
+    }
+
+    throw new Error('Unable to copy obj! Its type isn\'t supported.');
   }
 }

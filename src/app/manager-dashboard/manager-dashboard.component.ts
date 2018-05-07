@@ -30,7 +30,7 @@ export class ManagerDashboardComponent implements OnInit {
   }
 
   showInfo(conf) {
-    // console.log('selected conf: ' + JSON.stringify(conf));
+    // console.log('selected conf: ' + JSON.stringify(conf.program));
     this.managerService.setSelectedConf(conf);
     this.conf = conf;
   }

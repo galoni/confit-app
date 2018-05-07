@@ -19,6 +19,7 @@ export class EditConfSessionComponent implements OnInit {
   program: ConfSession[]= [];
   conf: Conf;
   dataSess: any= {};
+  dataProg: any = [];
 
   constructor(private newConfService: NewConfService,
               public dialogRef: MatDialogRef<EditConfSessionComponent>,
@@ -26,8 +27,18 @@ export class EditConfSessionComponent implements OnInit {
 
   ngOnInit() {
     this.numDays = this.data.duration;
+    for (let i = 0; i < this.numDays; i++) {
+      this.dataProg[i] = [];
+    }
     // console.log('numday: ' + this.numDays);
     this.confSessions = [];
+    if (this.data.program.length !== this.numDays) {
+      console.log('diag conf: ' + JSON.stringify(this.data.program));
+      for (let i = 0; i < this.data.program.length; i++) { // split confSessions by day
+        this.dataProg[this.data.program[i].dayNum - 1].push(this.data.program[i]);
+      }
+      this.data.program = this.dataProg;
+    }
     for (let i = 0; i < this.numDays; i++) {
       // console.log('prog: ' + JSON.stringify(this.data.program[i]));
       let dayArray = this.data.program[i];
