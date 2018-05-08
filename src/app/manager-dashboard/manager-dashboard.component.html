@@ -19,7 +19,7 @@
           </mat-list>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="3" [rowspan]="1">
-          <app-show-conf class="showConf" *ngIf="conf != null"></app-show-conf>
+          <app-show-conf class="showConf" *ngIf="conf != null" (onConfRemove)="confRemoved($event)"></app-show-conf>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card-content>

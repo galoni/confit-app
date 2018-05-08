@@ -12,6 +12,7 @@ import {Conf} from '../models/conf';
 export class NewConfDetailsComponent implements OnInit {
   data: any= {};
   conf: Conf;
+  managerId: string;
   confType: string;
   confAudience: string;
   @ViewChild('stepper') stepper;
@@ -30,6 +31,7 @@ export class NewConfDetailsComponent implements OnInit {
               private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
+    this.managerId = '5ade1e1ef1c8043984217fe8';
     this.data.main_topics = [];
     localStorage.removeItem('confSessions');
     localStorage.removeItem('timeTable');
@@ -47,6 +49,7 @@ export class NewConfDetailsComponent implements OnInit {
     this.data.main_topics.push(form.value.topic1);
     this.data.main_topics.push(form.value.topic2);
     this.data.main_topics.push(form.value.topic3);
+    this.data.managerId = this.managerId;
     this.newConfService.createConference(this.data).then((conf) => {
       if (conf){
         this.conf = conf;
