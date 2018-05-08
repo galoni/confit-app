@@ -13,6 +13,8 @@ export class myConfService {
   options = new RequestOptions({ headers: this.headers });
   private manager_url: String = 'https://confit-backend.herokuapp.com/manager';
   private visitor_url: String = 'https://confit-backend.herokuapp.com/visitor';
+  //private visitor_url: String = 'http://localhost:3000/visitor';
+
   visitorSelected = new EventEmitter<Visitor>();
 
   _lecture = new BehaviorSubject<Lecture>(new Lecture("new lec", "lecname", "desc", 0, "topic", ""));
@@ -109,20 +111,27 @@ _qrcode_lecture$= this._qrcode_lecture.asObservable();
   getLectureById(lectureId): Promise<Lecture> {
     return this.http.post(this.manager_url + '/getLectureById', { lectureId: lectureId }, this.options).toPromise().then((res) => res.json() as Lecture);
   }
+
+  matching(data, callback: Function){
+  console.log("inside matchingPercent in service");
+    let body=JSON.stringify(data) ;
+    console.log(body)
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: this.headers });
+    this.http.post(this.visitor_url +'/matching', body, options)
+      .subscribe((response: Response)=> {
+        let obj = response.json();
+        if(!obj.error) {
+          callback(obj);
+        }else{
+          callback('error');
+        }
+      });
+  }
+
+  matchingPercent(profilePie1,profilePie2):number{
+    var min=Math.min(profilePie1,profilePie2);
+    var max=Math.max(profilePie1,profilePie2);
+    return min/max;
+  }
 }
-  // registerToConf(data, callback: Function){
-  // console.log("inside registrt in service");
-  //   let body=JSON.stringify(data) ;
-  //   console.log(body)
-  //   let headers = new Headers({ 'Content-Type': 'application/json' });
-  //   let options = new RequestOptions({ headers: this.headers });
-  //   this.http.post(this.visitor_url +'/registerToConf', body, options)
-  //     .subscribe((response: Response)=> {
-  //       let obj = response.json();
-  //       if(!obj.error) {
-  //         callback(obj);
-  //       }else{
-  //         callback('error');
-  //       }
-  //     });
-  // }
