@@ -21,11 +21,13 @@ import { ShowConfComponent } from './show-conf/show-conf.component';
 import { ManageQrCodeComponent } from './manage-qr-code/manage-qr-code.component';
 import { ManageQrCodeDetailsComponent } from './manage-qr-code-details/manage-qr-code-details.component';
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
+import { MatchingPageComponent } from './matching-page/matching-page.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/signinSelection', pathMatch: 'full'},
     { path: 'registerToConf', component: RegisterConfComponent},
     { path: 'signinSelection', component: SigninSelectionComponent},
+    { path: 'matchingPage', component: MatchingPageComponent},
     { path: 'landing', component: LandingPageComponent},
     { path: 'visitorlanding', component: VisitorLandingComponent},
     { path: 'dashboard', component: ManagerDashboardComponent},
