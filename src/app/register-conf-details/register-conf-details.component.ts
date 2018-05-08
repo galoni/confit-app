@@ -15,6 +15,7 @@ export class RegisterConfDetailsComponent implements OnInit {
   confs: Conf[];
   selectedConf: Conf = null;
   visitor_id:string;
+
   @ViewChild('stepper') stepper;
   @Output() onStatusChange = new EventEmitter<boolean>();
 

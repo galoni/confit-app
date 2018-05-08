@@ -38,17 +38,4 @@ export class RegisterConfMatchingComponent implements OnInit {
       else console.log("success")
     });
   }
-
-  /*addPercent(form: NgForm) {
-    this.data.visitorid=this.visitor_id;
-    this.data.confid = this.selectedConf._id;
-    this.data.connection_precent = form.value.connection;
-    this.data.learn_precent = form.value.learn;
-    this.data.explore_precent = form.value.explore;
-    localStorage.setItem('confId',this.selectedConf._id);
-    this.RegToConfService.updatePercent(this.data,(data)=>{
-      if(data==='error') console.log("error")
-      else console.log("success")
-    });
-  }*/
 }

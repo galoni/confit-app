@@ -1,5 +1,4 @@
 <app-nav-visitor></app-nav-visitor>
-
 <mat-horizontal-stepper #stepper="matHorizontalStepper">
   <mat-step>
       <ng-template matStepLabel>Select Conference</ng-template>
@@ -22,66 +21,3 @@
     <h2>here go the landing page</h2>
   </mat-step>
 </mat-horizontal-stepper>
-
-<!--<app-nav-visitor></app-nav-visitor>
-<div class="row">
-  <div class="col-md-4">
-    <h2>Register To Conf</h2>
-    <form class="form-inline my-2 my-lg-0" (ngSubmit)="register(r)" #r="ngForm">
-      <div class="form-group">
-        <label>select conference</label><select title="choose" name="conf" class="form-control" [(ngModel)]="selectedConf">
-          <option *ngFor="let conf of confs; let i=index" [ngValue]="conf">{{conf.name}}</option>
-        </select>
-        <button  class="bg-primary" type="submit">Registe</button>
-      </div>
-    </form>
-  </div>
-  <div class="col-md-5">
-    <div *ngIf="register_bool != false">
-      <h2>Select main topics</h2>
-      <form class="form-inline my-2 my-lg-0" (ngSubmit)="addTopics(t)" #t="ngForm">
-        <div class="form-group">
-          <label>1.</label><select title="choose" name="topic1" class="form-control" [(ngModel)]="topic1">
-            <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
-          </select><br>
-          <label>2.</label><select title="choose" name="topic2" class="form-control" [(ngModel)]="topic2">
-            <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
-          </select><br>
-          <label>3.</label><select title="choose" name="topic3" class="form-control" [(ngModel)]="topic3">
-            <option *ngFor="let topic of selectedConf.main_topics; let i=index" [ngValue]="topic">{{topic}}</option>
-          </select><br>
-          <button class="bg-primary" type="submit">submit</button>
-        </div>
-      </form>
-      <h2>Select preferred lectures</h2>
-        <form class="form-inline my-2 my-lg-0" (ngSubmit)="addLectures(d)" #d="ngForm">
-          <div class="form-group">
-            <label>1.</label><select title="choose" name="lecture" class="form-control" [(ngModel)]="selectedLecture1">
-              <option *ngFor="let lecture of selectedConf.lectures; let i=index" [ngValue]="lecture">{{lecture.name}}</option>
-            </select><br>
-            <label>2.</label><select title="choose" name="lecture" class="form-control" [(ngModel)]="selectedLecture2">
-              <option *ngFor="let lecture of selectedConf.lectures; let i=index" [ngValue]="lecture">{{lecture.name}}</option>
-            </select><br>
-            <label>3.</label><select title="choose" name="lecture" class="form-control" [(ngModel)]="selectedLecture3">
-              <option *ngFor="let lecture of selectedConf.lectures; let i=index" [ngValue]="lecture">{{lecture.name}}</option>
-            </select><br>
-            <button class="bg-primary" type="submit">submit</button>
-          </div>
-        </form>
-      <h2>Select percent matching</h2>
-      <form class="form-inline my-2 my-lg-0" (ngSubmit)="addPercent(q)" #q="ngForm">
-      <div class="form-group"><label>Connection precent:</label>0%<input oninput="x.value=a.value" type="range" min="0" max="100" step="10" ngModel="connectionPrecent" name="connection" id="a" class="form-control mr-sm-2" placeholder="ConnectionPrecent">100%</div>
-      <output name="x" for="a"></output>
-      <div class="form-group"><label>Learn precent:</label>0%<input oninput="y.value=b.value" type="range" min="0" max="100" step="10" ngModel="learnPrecent" name="learn" id="b" class="form-control mr-sm-2" placeholder="LearnPrecent">100%</div>
-      <output name="y" for="b"></output>
-      <div class="form-group"><label>Explore precent:</label>0%<input oninput="z.value=c.value" type="range" min="0" max="100" step="10" ngModel="explorePrecent" name="explore" id="c" class="form-control mr-sm-2" placeholder="ExplorePrecent">100%</div>
-      <output name="z" for="c"></output><br>
-      <button class="bg-primary" type="submit">submit</button>
-      </form>
-      <h4 *ngIf="sign!=false">registration succeeded</h4>
-
-    </div>
-  </div>
-</div>
-
-<router-outlet></router-outlet>-->
