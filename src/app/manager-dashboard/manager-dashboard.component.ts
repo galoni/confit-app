@@ -32,13 +32,17 @@ export class ManagerDashboardComponent implements OnInit {
 
   confRemoved(conf) {
     console.log('remove conf: ' + JSON.stringify(conf));
+    console.log('this conf : ' + this.conf._id);
     //const index: number = this.confs.findIndex(conf);
     //console.log('index: ' + index);
     //if (index !== -1) {
     //  this.confs.splice(index, 1);
     //}
-    var f;
-    var found = this.confs.some(function(conf, index) { f = index; return conf._id == conf._id; });
+    let f;
+    const found = this.confs.some((conf, index) => {
+      f = index;
+      console.log('index: ' + index);
+      return conf._id === this.conf._id; });
 
     if (!found) {
         return false;
