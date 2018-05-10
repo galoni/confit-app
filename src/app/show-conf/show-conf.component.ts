@@ -10,6 +10,7 @@ import {NewConfSessionsComponent} from '../new-conf-sessions/new-conf-sessions.c
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {EditConfSessionComponent} from '../edit-conf-session/edit-conf-session.component';
 import {NewConfProgramComponent} from '../new-conf-program/new-conf-program.component';
+import {ConfStatsComponent} from '../conf-stats/conf-stats.component';
 
 @Component({
   selector: 'app-show-conf',
@@ -95,7 +96,18 @@ export class ShowConfComponent implements OnInit {
       // this.conf = result;
     });
   }
-  removeConf(){
+  openDialogStats(): void {
+    // console.log('dig conf: ' + JSON.stringify(this.conf));
+    let dialogRef = this.dialog.open(ConfStatsComponent, {
+      width: '830px',
+      data: this.conf
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.conf = result;
+    });
+  }
+  removeConf() {
     this.managerService.removeConf(this.managerId, this.conf._id).then((conf) => {
       console.log('delete: ' + JSON.stringify(this.conf));
       this.onConfRemove.emit(this.conf);
