@@ -11,7 +11,6 @@ import { ManagerService } from '../services/manager.service';
 export class ManagerDashboardComponent implements OnInit {
   manager: Manager;
   managerId: string;
-  rows: Conf[][] = [];
   confs: Conf[];
   conf: Conf;
 
@@ -22,26 +21,34 @@ export class ManagerDashboardComponent implements OnInit {
     this.managerService.getAllConfById(this.managerId).then((cnfs) => {
       console.log('Num confs: ' + cnfs.length);
       this.confs = cnfs;
-      this.rows = [];
-      for (let i = 0; i < this.numRows(); i++) {
-        this.rows.push(this.getRow(i));
-        }
     });
   }
 
   showInfo(conf) {
-    // console.log('selected conf: ' + JSON.stringify(conf));
+    // console.log('selected conf: ' + JSON.stringify(conf.program));
     this.managerService.setSelectedConf(conf);
     this.conf = conf;
   }
 
-  numRows(): number {
-    return Math.max(Math.ceil((this.confs.length) / 4), 0);
-  }
+  confRemoved(conf) {
+    console.log('remove conf: ' + JSON.stringify(conf));
+    console.log('this conf : ' + this.conf._id);
+    //const index: number = this.confs.findIndex(conf);
+    //console.log('index: ' + index);
+    //if (index !== -1) {
+    //  this.confs.splice(index, 1);
+    //}
+    let f;
+    const found = this.confs.some((conf, index) => {
+      f = index;
+      console.log('index: ' + index);
+      return conf._id === this.conf._id; });
 
-  getRow(i: number) {
-    const startIndex = (i) * 4;
-    return this.confs.slice(startIndex, startIndex + 4);
-  }
+    if (!found) {
+        return false;
+    }
 
+    this.confs.splice(f, 1);
+    console.log('confs num: ' + this.confs.length);
+  }
 }

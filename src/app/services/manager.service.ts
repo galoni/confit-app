@@ -36,4 +36,9 @@ export class ManagerService {
     return this.http.post(this.base_url + '/getAllConfById', {'managerId': managerId}, this.options)
       .toPromise().then((res) => res.json() as Conf[]);
   }
+
+  removeConf(managerId, confId): Promise<Manager> {
+    return this.http.post(this.base_url + '/removeConf', {'managerId': managerId, 'confId': confId}, this.options)
+    .toPromise().then((res) => res.json() as Manager);
+  }
 }

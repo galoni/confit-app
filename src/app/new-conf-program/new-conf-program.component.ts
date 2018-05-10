@@ -37,6 +37,16 @@ export class NewConfProgramComponent implements OnInit {
   ngOnInit() {
     this.numDays = this.data.duration;
     this.confId = this.data._id;
+    if (this.data.program.length !== this.numDays) {
+      for (let i = 0; i < this.numDays; i++) {
+        this.dataProg[i] = [];
+      }
+      // console.log('diag conf: ' + JSON.stringify(this.data.program));
+      for (let i = 0; i < this.data.program.length; i++) { // split confSessions by day
+        this.dataProg[this.data.program[i].dayNum - 1].push(this.data.program[i]);
+      }
+      this.data.program = this.dataProg;
+    }
     // console.log('data: ' + JSON.stringify(this.data.program[0]));
     if (this.data.program[0][0].lectures.length > 0) {
       this.conf = this.data;
