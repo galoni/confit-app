@@ -82,13 +82,28 @@
           </mat-expansion-panel-header>
 
           <mat-form-field>
-            <input matInput ngModel="" name="topic1" placeholder="Main Topic1">
+            <input matInput ngModel="" name="topic1" placeholder="Main Topic1" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of optionTopics" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
           <mat-form-field>
-            <input matInput ngModel="" name="topic2" placeholder="Main Topic2">
+            <input matInput ngModel="" name="topic2" placeholder="Main Topic2" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of optionTopics" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
           <mat-form-field>
-            <input matInput ngModel="" name="topic3" placeholder="Main Topic3">
+            <input matInput ngModel="" name="topic3" placeholder="Main Topic3" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of optionTopics" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
 
           <!--<mat-action-row>-->

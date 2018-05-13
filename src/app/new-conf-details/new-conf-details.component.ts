@@ -3,6 +3,7 @@ import { NewConfService } from '../services/newConf.service';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Conf} from '../models/conf';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-new-conf-details',
@@ -27,6 +28,13 @@ export class NewConfDetailsComponent implements OnInit {
     {value: 'student-0', viewValue: 'student'},
     {value: 'B.A-0', viewValue: 'B.A'}
   ];
+  optionTopics = [
+    'Web',
+    'Big data',
+    'IOT'
+  ];
+  filteredOptions: Observable<string[]>;
+
   constructor(private newConfService: NewConfService,
               private router: Router, private r: ActivatedRoute) { }
 

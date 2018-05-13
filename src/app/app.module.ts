@@ -50,6 +50,7 @@ import { RegisterConfTopicsComponent } from './register-conf-topics/register-con
 import { RegisterConfMatchingComponent } from './register-conf-matching/register-conf-matching.component';
 import { EditConfSessionComponent } from './edit-conf-session/edit-conf-session.component';
 import { MatchingPageComponent } from './matching-page/matching-page.component';
+import { ConfStatsComponent } from './conf-stats/conf-stats.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { MatchingPageComponent } from './matching-page/matching-page.component';
     RegisterConfTopicsComponent,
     RegisterConfMatchingComponent,
     EditConfSessionComponent,
-    MatchingPageComponent
+    MatchingPageComponent,
+    ConfStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +108,8 @@ import { MatchingPageComponent } from './matching-page/matching-page.component';
     ShowConfComponent,
     NewConfSessionsComponent,
     EditConfSessionComponent,
-    NewConfProgramComponent
+    NewConfProgramComponent,
+    ConfStatsComponent
   ],
   providers: [
     NewConfService,
