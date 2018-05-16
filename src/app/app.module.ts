@@ -121,7 +121,7 @@ import { ConfStatsComponent } from './conf-stats/conf-stats.component';
     CommonModule,
     ChartsModule,
     MaterialModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     ReactiveFormsModule
   ],
