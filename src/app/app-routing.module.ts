@@ -75,8 +75,8 @@ const appRoutes: Routes = [
     ]
   },
   { path: 'signup', component: SignupComponent },
-   {path: 'signin', component: SigninComponent},
-    {path: 'userProfile', component: UsersComponent ,canActivate:[UserAuthGuardService] },
+  { path: 'signin', component: SigninComponent },
+  { path: 'userProfile', component: UsersComponent, canActivate: [UserAuthGuardService] },
 ];
 
 @NgModule({
