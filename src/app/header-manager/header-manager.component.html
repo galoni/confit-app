@@ -1,4 +1,41 @@
+<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAvPxGAOGqGhOlMiLgRjmRx30qDcjSteQs",
+    authDomain: "confit-22c50.firebaseapp.com",
+    databaseURL: "https://confit-22c50.firebaseio.com",
+    projectId: "confit-22c50",
+    storageBucket: "confit-22c50.appspot.com",
+    messagingSenderId: "1086171890374"
+  };
+  firebase.initializeApp(config);
+</script>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
 
+            <ul class="nav navbar-nav">
+
+                <li><a routerLink="/signup">Sign Up</a></li>
+                <li><a routerLink="/signin">Sign In</a></li>
+                <li><a routerLink="/userProfile">ViewProfile</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right" *ngIf="isAuth()">
+
+                <li><a (click)="onLogout()" style="cursor: pointer;">Logout</a></li>
+            </ul>
+        </div>
+        <!-- /.container-fluid -->
+
+    </nav>
+
+</header>
+
+
+
+<!--
 <nav class="navbar navbar-default">
     <div class="navbar-default">
       <ul class="nav navbar-nav navbar-right" >
@@ -11,5 +48,4 @@
         </li>
       </ul>
     </div>
-  </nav>
-
+  </nav> -->

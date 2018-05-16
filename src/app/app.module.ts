@@ -5,9 +5,14 @@ import { HttpModule } from '@angular/http';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { CommonModule } from '@angular/common';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { AngularFireModule } from 'angularfire2';
+import * as firebase from 'firebase';
+import { firebaseConfig } from './../environments/firebase.config';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import {RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppDropdownDirective } from './directives/app-dropdown.directive';
 import { NewConfService } from "./services/newConf.service";
@@ -15,6 +20,10 @@ import { myConfService } from "./services/myConf.service";
 import { RegToConfService } from "./services/regToConf.service";
 import { ManageQRCodeService } from "./services/manageQRCode.service";
 import { ManagerService } from './services/manager.service';
+import { MessagingService } from './messaging.service';
+import { UserAuthService } from './services/user-auth.service';
+import { UserAuthGuardService } from './services/user-auth-guard.service';
+
 
 import { NewConfComponent } from './new-conf/new-conf.component';
 import { HeaderManagerComponent } from './header-manager/header-manager.component';
@@ -50,7 +59,15 @@ import { RegisterConfTopicsComponent } from './register-conf-topics/register-con
 import { RegisterConfMatchingComponent } from './register-conf-matching/register-conf-matching.component';
 import { EditConfSessionComponent } from './edit-conf-session/edit-conf-session.component';
 import { MatchingPageComponent } from './matching-page/matching-page.component';
+// import { ManageNotificationsComponent } from './manage-notifications/manage-notifications.component';
+import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
+import { UsersComponent } from './users/users.component';
 import { ConfStatsComponent } from './conf-stats/conf-stats.component';
+// firebase.initializeApp(firebaseConfig);
+// console.log("this is initialized "+ firebaseConfig);
+
+
 
 @NgModule({
   declarations: [
@@ -88,6 +105,10 @@ import { ConfStatsComponent } from './conf-stats/conf-stats.component';
     RegisterConfMatchingComponent,
     EditConfSessionComponent,
     MatchingPageComponent,
+    // ManageNotificationsComponent,
+    SignupComponent,
+    SigninComponent,
+    UsersComponent,
     ConfStatsComponent
   ],
   imports: [
@@ -99,7 +120,10 @@ import { ConfStatsComponent } from './conf-stats/conf-stats.component';
     Ng4LoadingSpinnerModule.forRoot(),
     CommonModule,
     ChartsModule,
-    MaterialModule
+    MaterialModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    ReactiveFormsModule
   ],
   exports: [
     MaterialModule
@@ -116,7 +140,10 @@ import { ConfStatsComponent } from './conf-stats/conf-stats.component';
     RegToConfService,
     myConfService,
     ManageQRCodeService,
-    ManagerService
+    ManagerService,
+    MessagingService,
+    UserAuthService,
+    UserAuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAuthService } from '../services/user-auth.service';
 
 @Component({
   selector: 'app-header-manager',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderManagerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userauthService: UserAuthService) { }
 
+  isAuth() {
+    return this.userauthService.isAuthenticated();
+  }
   ngOnInit() {
+  }
+  onLogout() {
+    alert("LogOut Called");
+    this.userauthService.logout();
   }
 
 }
