@@ -17,5 +17,4 @@ export class UserAuthGuardService {
       this.router.navigate(['/signin']);
     }
   }
-
 }
