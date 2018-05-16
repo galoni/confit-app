@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { AngularFireModule } from 'angularfire2';
 import * as firebase from 'firebase';
-import { firebaseConfig } from './../environments/firebase.config';
+// import { firebaseConfig } from './../environments/firebase.config';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -20,7 +20,7 @@ import { myConfService } from "./services/myConf.service";
 import { RegToConfService } from "./services/regToConf.service";
 import { ManageQRCodeService } from "./services/manageQRCode.service";
 import { ManagerService } from './services/manager.service';
-import { MessagingService } from './messaging.service';
+// import { MessagingService } from './messaging.service';
 import { UserAuthService } from './services/user-auth.service';
 import { UserAuthGuardService } from './services/user-auth-guard.service';
 
@@ -141,7 +141,7 @@ import { ConfStatsComponent } from './conf-stats/conf-stats.component';
     myConfService,
     ManageQRCodeService,
     ManagerService,
-    MessagingService,
+    // MessagingService,
     UserAuthService,
     UserAuthGuardService
   ],
