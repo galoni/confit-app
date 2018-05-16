@@ -39,10 +39,11 @@ export class ManagerDashboardComponent implements OnInit {
     //  this.confs.splice(index, 1);
     //}
     let f;
+    let confId = conf._id;
     const found = this.confs.some((conf, index) => {
       f = index;
       console.log('index: ' + index);
-      return conf._id === this.conf._id; });
+      return conf._id === confId; });
 
     if (!found) {
         return false;

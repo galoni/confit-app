@@ -59,13 +59,15 @@ import { RegisterConfTopicsComponent } from './register-conf-topics/register-con
 import { RegisterConfMatchingComponent } from './register-conf-matching/register-conf-matching.component';
 import { EditConfSessionComponent } from './edit-conf-session/edit-conf-session.component';
 import { MatchingPageComponent } from './matching-page/matching-page.component';
-import { ManageNotificationsComponent } from './manage-notifications/manage-notifications.component';
+// import { ManageNotificationsComponent } from './manage-notifications/manage-notifications.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { UsersComponent } from './users/users.component';
+import { ConfStatsComponent } from './conf-stats/conf-stats.component';
+// firebase.initializeApp(firebaseConfig);
+// console.log("this is initialized "+ firebaseConfig);
 
-firebase.initializeApp(firebaseConfig);
-console.log("this is initialized "+ firebaseConfig);
+
 
 @NgModule({
   declarations: [
@@ -103,10 +105,11 @@ console.log("this is initialized "+ firebaseConfig);
     RegisterConfMatchingComponent,
     EditConfSessionComponent,
     MatchingPageComponent,
-    ManageNotificationsComponent,
+    // ManageNotificationsComponent,
     SignupComponent,
     SigninComponent,
     UsersComponent,
+    ConfStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -129,7 +132,8 @@ console.log("this is initialized "+ firebaseConfig);
     ShowConfComponent,
     NewConfSessionsComponent,
     EditConfSessionComponent,
-    NewConfProgramComponent
+    NewConfProgramComponent,
+    ConfStatsComponent
   ],
   providers: [
     NewConfService,
