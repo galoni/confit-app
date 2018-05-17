@@ -1,20 +1,30 @@
+<header>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css">
+</header>
 <app-nav-visitor></app-nav-visitor>
 <h4 [hidden]="!wrongConf">you did not sign to this conf</h4>
-<div>
-  <h2>{{this.visitor.name.first_name}} {{this.visitor.name.last_name}}</h2>
+<div style="display:flex;flex-direction:column;align-self:center;align-items:center;">
   <div>
-    <span> Your QrCode : </span>
-    <!-- <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}"> -->
+    <img src="http://www.colegiodepadua.com.br/img/user.png" alt="user face" height="80" width="80">
   </div>
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-    <select name="type" ngModel>
-        <option value = "conference">conference</option>
-        <option value = "lecture">lecture</option>
-        <option value = "visitor">visitor</option>
-    </select>
-    <input name="id" ngModel>
-      <button>Submit</button>
-    </form>
+  <div>
+    <h2>{{this.visitor.name.first_name}} {{this.visitor.name.last_name}}</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;align-self:center;align-items:center;">
+    <span> Your QrCode : </span>
+     <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}">
+  </div>
+  <div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <select name="type" ngModel>
+          <option value = "conference">conference</option>
+          <option value = "lecture">lecture</option>
+          <option value = "visitor">visitor</option>
+      </select>
+      <input name="id" ngModel>
+        <button>Submit</button>
+      </form>
+  </div>
 </div>
 <app-pie-chart-data *ngIf="visitorId!=null" [visitorId]="visitorId"></app-pie-chart-data>
 <hr>
