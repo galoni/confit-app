@@ -7,6 +7,7 @@ import { UserAuthService } from '../services/user-auth.service';
   styleUrls: ['./header-manager.component.css']
 })
 export class HeaderManagerComponent implements OnInit {
+opendropdown: Boolean = false;
 
   constructor(private userauthService: UserAuthService) { }
 
@@ -18,6 +19,14 @@ export class HeaderManagerComponent implements OnInit {
   onLogout() {
     alert("LogOut Called");
     this.userauthService.logout();
+  }
+
+  dropdown() {
+    if(this.opendropdown===true){
+      this.opendropdown=false;
+    }
+    else{this.opendropdown=true;}
+
   }
 
 }
