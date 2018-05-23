@@ -4,10 +4,12 @@
                        (closed)="panelOpenState = false" >
     <mat-expansion-panel-header *ngIf="visitor._id !=visitor_id">
       <mat-panel-title>
-        {{visitor.visitorfirstname}}
+        <img src="http://www.colegiodepadua.com.br/img/user.png" alt="user face" height="30" width="30">
+          {{visitor.visitorfirstname}} {{visitor.visitorlastname}}
       </mat-panel-title>
 
     </mat-expansion-panel-header>
+    Matching percent:
     <span>{{visitor.matching}}%</span>
   </mat-expansion-panel>
 </mat-accordion>
