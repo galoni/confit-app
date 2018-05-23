@@ -27,6 +27,12 @@ export class ManagerService {
     return this.http.post(this.base_url + '/createManager', body, this.options).toPromise().then((res) => res.json() as Manager);
   }
 
+  login(data): Promise<Manager> {
+    const body = JSON.stringify(data);
+    console.log(body);
+    return this.http.post(this.base_url + '/login', body, this.options).toPromise().then((res) => res.json() as Manager);
+  }
+
   getManagerById(managerId): Promise<Manager> {
     return this.http.post(this.base_url + '/getManagerById', {'managerId': managerId}, this.options)
       .toPromise().then((res) => res.json() as Manager);

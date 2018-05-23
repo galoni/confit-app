@@ -64,6 +64,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { UsersComponent } from './users/users.component';
 import { ConfStatsComponent } from './conf-stats/conf-stats.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 // firebase.initializeApp(firebaseConfig);
 // console.log("this is initialized "+ firebaseConfig);
 
@@ -109,7 +110,8 @@ import { ConfStatsComponent } from './conf-stats/conf-stats.component';
     SignupComponent,
     SigninComponent,
     UsersComponent,
-    ConfStatsComponent
+    ConfStatsComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,

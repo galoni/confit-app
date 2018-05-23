@@ -17,7 +17,8 @@ export class ManagerDashboardComponent implements OnInit {
   constructor(private managerService: ManagerService) { }
 
   ngOnInit() {
-    this.managerId = '5ade1e1ef1c8043984217fe8';
+    this.manager = JSON.parse(localStorage.getItem('currentUser'));
+    this.managerId = this.manager._id;
     this.managerService.getAllConfById(this.managerId).then((cnfs) => {
       console.log('Num confs: ' + cnfs.length);
       this.confs = cnfs;
