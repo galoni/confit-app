@@ -1,5 +1,5 @@
 <app-nav-visitor></app-nav-visitor>
-<mat-accordion>
+<!--<mat-accordion>
   <mat-expansion-panel  *ngFor="let visitor of this.visitors" (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false" >
     <mat-expansion-panel-header *ngIf="visitor._id !=visitor_id">
@@ -12,4 +12,15 @@
     Matching percent:
     <span>{{visitor.matching}}%</span>
   </mat-expansion-panel>
-</mat-accordion>
+</mat-accordion>-->
+
+<div *ngFor="let visitor of this.visitors"  class="mathing-people">
+  <div class="matching-title">
+    <div><img src="http://www.colegiodepadua.com.br/img/user.png" alt="user face" height="50" width="50"></div>
+    <div>{{visitor.visitorfirstname}} {{visitor.visitorlastname}}</div>
+  </div>
+  <div class="matching-content">
+    Matching percent:
+    <span>{{visitor.matching}}%</span>
+  </div>
+</div>
