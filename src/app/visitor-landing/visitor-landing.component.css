@@ -1,0 +1,10 @@
+.mat-card{
+    display: inline-block;
+    margin: 20px;
+    vertical-align: top;
+    width: 260px;
+}
+
+.mat-card-title, .mat-card-f{
+  color:#006e8c;
+}
