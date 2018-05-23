@@ -1,4 +1,25 @@
 .canvas_ng{
   position: relative;
   left:33%;
+  display: block;
+  width:537px;
+  height:268px;
+}
+
+@media screen and (max-width: 768px) {
+  .canvas_ng{
+    position: relative;
+    left:-1%;
+    display: block;
+    width: 337px!important;
+    height: 168px!important;
+  }
+  .content[_ngcontent-c0]{
+    padding:0px!important;
+    margin:0px!important;
+  }
+  .col-md-12{
+    padding-right: 0px!important;
+    padding-left: 0px!important;
+  }
 }
