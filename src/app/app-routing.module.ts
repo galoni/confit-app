@@ -24,7 +24,7 @@ import { ManageQrCodeComponent } from './manage-qr-code/manage-qr-code.component
 import { ManageQrCodeDetailsComponent } from './manage-qr-code-details/manage-qr-code-details.component';
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 import { MatchingPageComponent } from './matching-page/matching-page.component';
-// import { ManageNotificationsComponent } from './manage-notifications/manage-notifications.component';
+import { ManageNotificationsComponent } from './manage-notifications/manage-notifications.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { UsersComponent } from './users/users.component';
@@ -65,9 +65,9 @@ const appRoutes: Routes = [
       { path: 'details', component: ManageQrCodeDetailsComponent }
     ]
   },
-  // {
-  //   path: 'Notifications', component: ManageNotificationsComponent
-  // },
+  {
+    path: 'Notifications', component: ManageNotificationsComponent
+  },
   {
     path: 'MyConference', component: MyConfComponent,
     children: [
@@ -75,8 +75,8 @@ const appRoutes: Routes = [
     ]
   },
   { path: 'signup', component: SignupComponent },
-   {path: 'signin', component: SigninComponent},
-    {path: 'userProfile', component: UsersComponent ,canActivate:[UserAuthGuardService] },
+  { path: 'signin', component: SigninComponent },
+  { path: 'userProfile', component: UsersComponent, canActivate: [UserAuthGuardService] },
 ];
 
 @NgModule({

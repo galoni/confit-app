@@ -17,6 +17,8 @@ export class ConfStatsComponent implements OnInit {
   public barChartLabels: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   public barChartType = 'bar';
   public barChartLegend = true;
+  chartHovered: any;
+  chartClicked: any;
   // Doughnut
   public doughnutChartLabels:string[] = [];
   public doughnutChartData:number[] = [];
