@@ -101,7 +101,7 @@ export class EditConfSessionComponent implements OnInit {
     this.confSessions[this.selectedDay].push(sess);
     console.log('conf session: ' + JSON.stringify(this.confSessions));
   }
-  editProgram(conf) {
+  editProgram() {
     for (let i = 0; i < this.confSessions.length; i++) {
       for (let j = 0; j < this.confSessions[i].length; j++) {
         this.confSessions[i][j].lectures = [];

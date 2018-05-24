@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import { RegToConfService } from "../services/regToConf.service";
 import {Conf} from "../models/conf";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ManagerService} from '../services/manager.service';
 
 
 @Component({
@@ -15,13 +16,14 @@ export class RegisterConfDetailsComponent implements OnInit {
   confs: Conf[];
   selectedConf: Conf = null;
   visitor_id:string;
+  msgToken: string;
 
   @ViewChild('stepper') stepper;
   @Output() onStatusChange = new EventEmitter<boolean>();
 
 
   constructor(private RegToConfService: RegToConfService,
-              private router: Router, private r:ActivatedRoute) { }
+              private router: Router, private r:ActivatedRoute,private managerService: ManagerService) { }
 
 
   ngOnInit() {
@@ -29,7 +31,9 @@ export class RegisterConfDetailsComponent implements OnInit {
     this.visitor_id = localStorage.getItem('visitorId');
         this.RegToConfService.getAllConfs().then((confs)=>{
                 this.confs = confs;
-          })
+          });
+    this.msgToken = localStorage.getItem("msgToken");
+    console.log("found token: " + this.msgToken);
     }
 
     register(form: NgForm) {
@@ -44,6 +48,8 @@ export class RegisterConfDetailsComponent implements OnInit {
         console.log("success")
       }
     });
+
+    this.managerService.subscribeToTopic(this.msgToken, this.selectedConf.name);
     this.onStatusChange.emit(true);
     }
 
