@@ -1,0 +1,8 @@
+.content{
+  display:flex;flex-direction:column;align-self:center;align-items:center;
+}
+
+.percent_data{
+  display:flex;flex-direction:column;align-self:center;align-items:center;
+
+}

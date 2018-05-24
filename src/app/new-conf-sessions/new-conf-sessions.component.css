@@ -8,3 +8,6 @@
   flex-direction: row;
   justify-content: flex-end;
 }
+.container{
+  width: 67em;
+}

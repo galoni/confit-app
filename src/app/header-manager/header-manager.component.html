@@ -16,12 +16,34 @@
 <header>
 
     <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!--<div style="display:flex;flex-direction:row;align-items:center;justify-content:flex-end;margin-top:20px;">
-            <i (click)="dropdown()" style="font-size:45px;color:#fdb813;background-color:none!important;" class="fas fa-bars"></i>
-          </div>-->
-
-            <ul class="nav navbar-nav" >
+        <div class="" >
+          <div class="hidden-xs" style="display: flex;align-items: flex-end;justify-content: flex-end;">
+            <button class="user" mat-button [matMenuTriggerFor]="menu_user"><i class="fas fa-user-tie"></i></button>
+            <mat-menu #menu_user="matMenu">
+              <button mat-menu-item><a routerLink="/signup">Sign Up</a></button>
+              <button mat-menu-item><a routerLink="/signin">Sign In</a></button>
+              <button mat-menu-item><a routerLink="/userProfile">ViewProfile</a></button>
+            </mat-menu>
+          </div>
+          <div class="visible-xs" style="display: flex;align-items: flex-start;justify-content: flex-start;">
+            <button class="user_mobile" mat-button [matMenuTriggerFor]="menu_user_mobile"><i class="fas fa-user-tie"></i></button>
+            <mat-menu #menu_user_mobile="matMenu">
+              <button mat-menu-item><a routerLink="/signup">Sign Up</a></button>
+              <button mat-menu-item><a routerLink="/signin">Sign In</a></button>
+              <button mat-menu-item><a routerLink="/userProfile">ViewProfile</a></button>
+            </mat-menu>
+          </div>
+          <div class="visible-xs" style="display: flex;align-items: flex-end;justify-content: flex-end;">
+            <button class="hamburger" mat-button [matMenuTriggerFor]="menu_hamburger"><i class="fas fa-bars"></i></button>
+            <mat-menu #menu_hamburger="matMenu">
+              <button mat-menu-item><a routerLink="/visitorlanding">Recent conferences</a></button>
+              <button mat-menu-item><a routerLink="/registerToConf">Register to conf</a></button>
+              <button mat-menu-item><a [routerLink]="'/ScanQRCode'">Scan Qrcode</a></button>
+              <button mat-menu-item><a [routerLink]="'/MyConference'">My conferences</a></button>
+              <button mat-menu-item><a routerLink="/matchingPage">Find People</a></button>
+            </mat-menu>
+          </div>
+            <!--<ul class="nav navbar-nav" >
 
                 <li><a routerLink="/signup">Sign Up</a></li>
                 <li><a routerLink="/signin">Sign In</a></li>
@@ -31,7 +53,7 @@
             <ul class="nav navbar-nav navbar-right" *ngIf="isAuth()">
 
                 <li><a (click)="onLogout()" style="cursor: pointer;">Logout</a></li>
-            </ul>
+            </ul>-->
         </div>
         <!-- /.container-fluid -->
 

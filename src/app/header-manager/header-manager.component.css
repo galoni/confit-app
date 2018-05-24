@@ -21,3 +21,23 @@ a.dropdown-toggle {
 ul .dropdown-menu {
   margin-right: 20px;
 }
+
+.user{
+  margin-top:15px!important;
+}
+
+ .fa-user-tie{
+      font-size: 50px;
+      color:#fec63d;
+}
+
+.hamburger{
+  font-size: 50px;
+  color:#fec63d;
+      float: right;
+}
+.user_mobile  .fa-user-tie{
+  margin-left: -30px;
+  font-size:25px;
+  color:#fec63d;
+}
