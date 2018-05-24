@@ -1,0 +1,11 @@
+<div class="container">
+  <form class="example-form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <mat-form-field class="example-full-width">
+      <input matInput ngModel="" placeholder="Topic" value="conf" name="topic">
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+      <input matInput ngModel="" placeholder="Message" name="message">
+    </mat-form-field>
+    <button type="submit">Send</button>
+  </form>
+</div>
