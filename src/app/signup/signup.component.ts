@@ -4,6 +4,7 @@ import { UserAuthService } from '../services/user-auth.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {EditConfSessionComponent} from '../edit-conf-session/edit-conf-session.component';
 import {ManagerService} from '../services/manager.service';
+import {VisitorService} from '../services/visitor.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -17,9 +18,13 @@ export class SignupComponent implements OnInit {
 
  constructor(private fb: FormBuilder, private userauthService: UserAuthService,
              private managerService: ManagerService,
+             private visitorService: VisitorService,
              public dialogRef: MatDialogRef<EditConfSessionComponent>,
              @Inject(MAT_DIALOG_DATA) public data: any) {}
   ngOnInit() {
+   if (this.data) {
+    console.log('data: ' + this.data);
+   }
   this.myForm = this.fb.group({
             email: ['', Validators.compose([
                 Validators.required,
@@ -70,9 +75,17 @@ export class SignupComponent implements OnInit {
    this.managerData.education = this.myForm.value.education;
    this.managerData.occupation = this.myForm.value.occupation;
    // console.log('manager: ' + JSON.stringify(this.managerData));
-   this.managerService.createManager(this.managerData).then((man) => {
-     console.log('manager: ' + JSON.stringify(man));
-     this.dialogRef.close();
-   });
-  }
+   if (this.data) {
+     this.managerService.createManager(this.managerData).then((man) => {
+       console.log('manager: ' + JSON.stringify(man));
+       this.dialogRef.close();
+     });
+    }
+    else {
+     this.visitorService.createVisitor(this.managerData).then((man) => {
+       console.log('visitor: ' + JSON.stringify(man));
+       this.dialogRef.close();
+     });
+   }
+   }
 }

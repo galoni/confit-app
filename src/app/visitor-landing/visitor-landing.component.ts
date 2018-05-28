@@ -14,19 +14,20 @@ export class VisitorLandingComponent implements OnInit {
   visitor: Visitor;
   visitorId:string;
   panelOpenState: boolean = false;
-  
+
   constructor(private myConfService: myConfService,
     private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
-        this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
-        this.visitorId = localStorage.getItem('visitorId');
-        this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
-          if (visitor) {
-            this.visitor=visitor;
-            console.log(this.visitor);
-          }
-        });
+        // this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
+        // this.visitorId = localStorage.getItem('visitorId');
+        // this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
+        //   if (visitor) {
+        //     this.visitor=visitor;
+        //     console.log(this.visitor);
+        //   }
+        // });
+    this.visitor = JSON.parse(localStorage.getItem('currentUser'));
   }
 
 }

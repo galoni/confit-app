@@ -65,6 +65,8 @@ import { SigninComponent } from './signin/signin.component';
 import { UsersComponent } from './users/users.component';
 import { ConfStatsComponent } from './conf-stats/conf-stats.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import {AlertService} from './services/alert.service';
+import {VisitorService} from './services/visitor.service';
 // firebase.initializeApp(firebaseConfig);
 // console.log("this is initialized "+ firebaseConfig);
 
@@ -143,8 +145,10 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     myConfService,
     ManageQRCodeService,
     ManagerService,
+    VisitorService,
     // MessagingService,
     UserAuthService,
+    AlertService,
     UserAuthGuardService
   ],
   bootstrap: [AppComponent]
