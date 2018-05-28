@@ -1,10 +1,13 @@
-<p>
-  manage-qr-code works!
-</p>
-<div class="row">
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-    ConfId <input name="id" ngModel>
-    <button>Submit</button>
-  </form>
+<div class="container">
+  <h2>Manage your QR codes: </h2>
+  <mat-form-field>
+    <mat-select placeholder="Select Conference" [formControl]="confControl" required >
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let conf of confs" [value]="conf" (click)="open($event, conf)">
+        {{conf.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="confControl.hasError('required')">Please choose a conference</mat-error>
+  </mat-form-field>
+  <app-manage-qr-code-details *ngIf="conf"></app-manage-qr-code-details>
 </div>
-<app-manage-qr-code-details></app-manage-qr-code-details>
