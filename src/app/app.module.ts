@@ -59,7 +59,6 @@ import { RegisterConfTopicsComponent } from './register-conf-topics/register-con
 import { RegisterConfMatchingComponent } from './register-conf-matching/register-conf-matching.component';
 import { EditConfSessionComponent } from './edit-conf-session/edit-conf-session.component';
 import { MatchingPageComponent } from './matching-page/matching-page.component';
-// import { ManageNotificationsComponent } from './manage-notifications/manage-notifications.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { UsersComponent } from './users/users.component';
@@ -67,6 +66,7 @@ import { ConfStatsComponent } from './conf-stats/conf-stats.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import {AlertService} from './services/alert.service';
 import {VisitorService} from './services/visitor.service';
+import { ManageNotificationsComponent } from './manage-notifications/manage-notifications.component';
 // firebase.initializeApp(firebaseConfig);
 // console.log("this is initialized "+ firebaseConfig);
 
@@ -113,7 +113,8 @@ import {VisitorService} from './services/visitor.service';
     SigninComponent,
     UsersComponent,
     ConfStatsComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    ManageNotificationsComponent
   ],
   imports: [
     BrowserModule,

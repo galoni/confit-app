@@ -1,12 +1,10 @@
-<p>
-  manage-qr-code-details works!
-</p>
-<div class="container">
+<mat-divider></mat-divider>
+<mat-card>
   <div *ngIf="confs">
     <h4>Download .zip file of conference</h4>
     <button type="button" name="button" (click)="get_multiple_images()">Generate</button>
     <h4>Conference</h4>
-    <table class="table">
+    <table mat-table class="table">
       <th>Conference name</th>
       <th>file name</th>
       <th>Download image</th>
@@ -40,4 +38,4 @@
       </tr>
     </table>
   </div>
-</div>
+</mat-card>

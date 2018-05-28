@@ -10,9 +10,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class ManageQRCodeService {
   headers = new Headers({ "content-type": "application/json" });
   options = new RequestOptions({ headers: this.headers });
-  private manager_url: String = 'https://confit-backend.herokuapp.com/manager';
-  private visitor_url: String = 'https://confit-backend.herokuapp.com/visitor';
-  private qrcode_url: String = 'http://confit-backend.herokuapp.com/qrcodeApi';
+  // private manager_url: String = 'https://confit-backend.herokuapp.com/manager';
+  // private visitor_url: String = 'https://confit-backend.herokuapp.com/visitor';
+  // private qrcode_url: String = 'http://confit-backend.herokuapp.com/qrcodeApi';
+  private manager_url: String = 'http://localhost:3000/manager';
+  private visitor_url: String = 'http://localhost:3000/visitor';
+  private qrcode_url: String = 'http://localhost:3000/qrcodeApi';
   _Conf = new BehaviorSubject<Conf>(new Conf("new conf", "type", "logo", "date", 2, "loc", "aud", []));
   Conf$ = this._Conf.asObservable();
 

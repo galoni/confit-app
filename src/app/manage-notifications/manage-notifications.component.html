@@ -1,0 +1,27 @@
+<div class="container">
+  <h3>Send Message to your conference</h3>
+  <mat-card>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" [formGroup]="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="conf" name="conf" placeholder="Select Conference" id="conf"  formControlName="conf">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let conf of confs" [value]="conf">
+            {{conf.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.hasError('required')">Please choose a conference</mat-error>
+      </mat-form-field>
+      <p>
+        <mat-form-field appearance="standard" class="full-width">
+          <mat-label>Type your message</mat-label>
+          <textarea matInput placeholder="Hello World!" name="message" [(ngModel)]="message" id="message" formControlName="message" maxlength="40"></textarea>
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-error *ngIf="form.hasError('required')">Please Enter a message</mat-error>
+        </mat-form-field>
+      </p>
+      <p class="submitButtons">
+        <button type="submit" color="primary" mat-raised-button [disabled]="!form.valid">SEND</button>
+      </p>
+    </form>
+  </mat-card>
+</div>

@@ -3,6 +3,7 @@ export class Visitor {
   public confs: any[]=[];
   public name:any={};
   public custome_path:any[] = [];
+  public qr_code:string;
   constructor(
               public linkedin: string, public education: string,
               public occupation: string,qr_code:string){}

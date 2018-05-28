@@ -47,4 +47,13 @@ export class ManagerService {
     return this.http.post(this.base_url + '/removeConf', {'managerId': managerId, 'confId': confId}, this.options)
     .toPromise().then((res) => res.json() as Manager);
   }
+
+  sendMessageByTopic(topic, msg_body): Promise<any> {
+    return this.http.post(this.base_url + '/sendMessage', {'topic': topic, 'msg_body': msg_body}, this.options)
+      .toPromise().then((res) => res.json() as any);
+  }
+  subscribeToTopic(token, topic): Promise<any> {
+    return this.http.post(this.base_url + '/subscribeToTopic', {'token': token, 'topic': topic}, this.options)
+      .toPromise().then((res) => res.json() as any);
+  }
 }

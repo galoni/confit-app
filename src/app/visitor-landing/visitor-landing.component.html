@@ -1,13 +1,16 @@
 <app-nav-visitor></app-nav-visitor>
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let conf of this.visitor.confs" (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{conf.confname}}
-      </mat-panel-title>
+<div style="display:flex; flex-grow: 1;">
+  <div style="display: flex;flex-wrap: wrap;padding: 20px;">
+    <div *ngFor="let conf of this.visitor.confs" style="display: inline-block;
+    margin: 20px;
+    vertical-align: top;
+    width: 260px;">
+      <mat-card class="mat-card">
 
-    </mat-expansion-panel-header>
-    <span>my profile pie on {{conf.confname}} conference :</span>{{conf.profile_pie}}
-  </mat-expansion-panel>
-</mat-accordion>
+        <mat-card-title class="mat-card-title">{{conf.confname}}</mat-card-title>
+        <img mat-card-image src="https://www.conferencesthatwork.com/wp-content/uploads/2014/03/audience-at-big-conference-2805860205_18b3dd9dc3_o.jpg">
+        <mat-card-footer class="mat-card-f">{{conf.mainTopic[0]}}</mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
+  MatMenuModule,
   MatButtonModule,
   MatCardModule,
   MatInputModule,
@@ -49,7 +50,8 @@ import {
     MatDialogModule,
     MatTabsModule,
     MatAutocompleteModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule {}
