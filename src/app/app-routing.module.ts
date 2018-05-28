@@ -28,12 +28,14 @@ import { ManageNotificationsComponent } from './manage-notifications/manage-noti
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { UsersComponent } from './users/users.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 
 
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/signinSelection', pathMatch: 'full' },
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+  { path: 'welcome', component: WelcomePageComponent },
   { path: 'registerToConf', component: RegisterConfComponent },
   { path: 'signinSelection', component: SigninSelectionComponent },
   { path: 'matchingPage', component: MatchingPageComponent },
@@ -75,8 +77,9 @@ const appRoutes: Routes = [
     ]
   },
   { path: 'signup', component: SignupComponent },
-  { path: 'signin', component: SigninComponent },
-  { path: 'userProfile', component: UsersComponent, canActivate: [UserAuthGuardService] },
+  { path: 'signin', component: SigninComponent},
+  { path: 'userProfile', component: UsersComponent , canActivate: [UserAuthGuardService] },
+
 ];
 
 @NgModule({
