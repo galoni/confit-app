@@ -3,6 +3,7 @@ import { NewConfService } from '../services/newConf.service';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Conf} from '../models/conf';
+import {Manager} from '../models/manager';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -13,6 +14,7 @@ import {Observable} from 'rxjs/Observable';
 export class NewConfDetailsComponent implements OnInit {
   data: any= {};
   conf: Conf;
+  manager: Manager;
   managerId: string;
   confType: string;
   confAudience: string;
@@ -39,7 +41,8 @@ export class NewConfDetailsComponent implements OnInit {
               private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
-    this.managerId = '5ade1e1ef1c8043984217fe8';
+    this.manager = JSON.parse(localStorage.getItem('currentUser'));
+    this.managerId = this.manager._id;
     this.data.main_topics = [];
     localStorage.removeItem('confSessions');
     localStorage.removeItem('timeTable');

@@ -9,8 +9,8 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 export class VisitorService {
   headers = new Headers({ 'content-type': 'application/json' });
   options = new RequestOptions({ headers: this.headers });
-  // private base_url: String = 'https://confit-backend.herokuapp.com/manager';
-  private base_url: String = 'http://localhost:3000/visitor';
+  private base_url: String = 'https://confit-backend.herokuapp.com/visitor';
+  // private base_url: String = 'http://localhost:3000/visitor';
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
 
   createVisitor(data): Promise<Visitor> {
