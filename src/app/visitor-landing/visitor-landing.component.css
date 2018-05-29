@@ -3,8 +3,18 @@
     margin: 20px;
     vertical-align: top;
     width: 260px;
+    cursor: pointer;
 }
 
 .mat-card-title, .mat-card-f{
   color:#006e8c;
+}
+
+.activeConf{
+  background-color: #fec63d;
+  font-weight: 500;
+}
+
+.mat-card:hover{
+  background-color: #fec63d;
 }

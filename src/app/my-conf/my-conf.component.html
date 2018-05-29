@@ -1,11 +1,13 @@
 <header>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 </header>
 <app-nav-visitor></app-nav-visitor>
 <h4 [hidden]="!wrongConf">you did not sign to this conf</h4>
 <div style="display:flex;flex-direction:column;align-self:center;align-items:center;">
-  <div>
+  <div class="class_img">
     <img class="img_profile" src="http://user-profile-storage.s3.amazonaws.com/{{visitor.profilePic}}" alt="user face" height="150" width="150">
+    <div class="edit_pic"><i class="fas fa-pencil-alt"></i></div>
   </div>
   <div>
     <h2>{{this.visitor.name.first_name}} {{this.visitor.name.last_name}}</h2>
