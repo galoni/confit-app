@@ -111,5 +111,4 @@ export class MyConfComponent implements OnInit {
         }
       }
 
-
   }
