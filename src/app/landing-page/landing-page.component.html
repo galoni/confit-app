@@ -1,3 +1,55 @@
-<p>
-  landing-page works!
-</p>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="body">
+  <div class="bg-header parallex ">
+    <div class="opacity">
+      <div class="header_headline">
+          <div><h1>{{selectedConf.name}}</h1></div>
+          <div class="data">
+            <div class="inside_data">
+              <div class="icon"><i class="far fa-calendar-alt"></i></div>
+              <div class="date"><span>{{selectedConf.start_date}}</span></div>
+            </div>
+            <div class="inside_data">
+              <div class="icon"><i class="far fa-map"></i></div>
+              <div class="date"><span>{{selectedConf.location}}</span></div>
+            </div>
+            <div class="inside_data">
+              <div class="view_program"><span>Gant</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="second_componenet">
+      <div class="inside_second">
+        <mat-list>
+          <mat-list-item class="header-list"> Main Topics </mat-list-item>
+           <mat-list-item *ngFor="let topic of selectedConf.main_topics"> # {{topic}} </mat-list-item>
+          </mat-list>
+      </div>
+      <div class="inside_second img_side">
+      </div>
+    </div>
+    <div class="bg-component parallex ">
+        <div class="opacity_component">
+          <div class="component_headline">
+              <div><h1>Are you ready to meet new people?!</h1></div>
+          </div>
+        </div>
+    </div>
+    <div class="lectures">
+      <h1>Our Lectures</h1>
+      <div style="display: flex;flex-wrap: wrap;padding: 20px;">
+          <mat-card *ngFor="let lecture of selectedConf.lectures" class="mat-card">
+            <mat-card-title class="mat-card-title">{{lecture.name}}</mat-card-title>
+            <mat-card-content class="mat-card-f"> By {{lecture.lecturer_name}}</mat-card-content>
+          </mat-card>
+      </div>
+    </div>
+</div>

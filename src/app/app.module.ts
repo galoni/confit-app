@@ -20,6 +20,7 @@ import { myConfService } from "./services/myConf.service";
 import { RegToConfService } from "./services/regToConf.service";
 import { ManageQRCodeService } from "./services/manageQRCode.service";
 import { ManagerService } from './services/manager.service';
+import {LandingService } from './services/landing.service';
 // import { MessagingService } from './messaging.service';
 import { UserAuthService } from './services/user-auth.service';
 import { UserAuthGuardService } from './services/user-auth-guard.service';
@@ -147,6 +148,7 @@ import { ManageNotificationsComponent } from './manage-notifications/manage-noti
     ManageQRCodeService,
     ManagerService,
     VisitorService,
+    LandingService,
     // MessagingService,
     UserAuthService,
     AlertService,

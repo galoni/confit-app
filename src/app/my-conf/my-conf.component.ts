@@ -4,6 +4,8 @@ import { myConfService } from "../services/myConf.service";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Conf } from "../models/conf";
+import { Response, Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
+import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'app-my-conf',
@@ -22,11 +24,18 @@ export class MyConfComponent implements OnInit {
     type: '',
     id: ''
   };
+<<<<<<< HEAD
 
   wrongConf: boolean = false;
   getmsg: string;
+=======
+  files : FileList;
+  uploadfile:any={};
+  wrongConf:boolean=false;
+
+>>>>>>> origin/master
   custom_path: any = {};
-  constructor(private myConfService: myConfService,
+  constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
@@ -118,6 +127,28 @@ export class MyConfComponent implements OnInit {
       console.log("bad input, no action");
     }
   }
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      let formData: FormData = new FormData();
+      formData.append('data', file, file.name);
+      formData.append('type', 'profilePic');
+      formData.append('id', this.visitorId);
+      console.log(formData.get("data"));
+      console.log(formData.get("id"));
+      let headers = new Headers();
+      headers.append('Content-Type', undefined);
+      headers.append('Accept', 'application/json');
+      let options = new RequestOptions({ headers: headers });
+      this.http.post('https://confit-backend.herokuapp.com/qrcodeApi/upload_image', formData, options)
+        .subscribe(
+          data => console.log('success'),
+          error => console.log(error)
+        )
+    }
+  }
+
 
 
 }
