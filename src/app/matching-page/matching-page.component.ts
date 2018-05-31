@@ -13,8 +13,9 @@ import { Visitor } from "../models/visitor";
 })
 export class MatchingPageComponent implements OnInit {
   visitor_id: string;
+  visitor:Visitor;
   confId:string;
-  visitors:any={};
+  visitors:any=[];
   data:any={};
   panelOpenState: boolean = false;
   profilePie:number;
@@ -23,8 +24,10 @@ export class MatchingPageComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-      this.visitor_id = localStorage.getItem('visitorId');
-      this.confId = '5ad3db7e42dd9425ecb5fc49';
+      this.visitor = JSON.parse(localStorage.getItem('currentUser'));
+      this.visitor_id = this.visitor._id;
+      console.log(this.visitor);
+      this.confId = localStorage.getItem("confId");
 
       this.data.visitorid=this.visitor_id;
       this.data.confid=this.confId;

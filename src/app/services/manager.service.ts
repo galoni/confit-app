@@ -12,8 +12,8 @@ export class ManagerService {
 
   headers = new Headers({ 'content-type': 'application/json' });
   options = new RequestOptions({ headers: this.headers });
-  // private base_url: String = 'https://confit-backend.herokuapp.com/manager';
-  private base_url: String = 'http://localhost:3000/manager';
+  private base_url: String = 'https://confit-backend.herokuapp.com/manager';
+  // private base_url: String = 'http://localhost:3000/manager';
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
 
   setSelectedConf(conf) {
@@ -25,6 +25,12 @@ export class ManagerService {
     const body = JSON.stringify(data);
     console.log(body);
     return this.http.post(this.base_url + '/createManager', body, this.options).toPromise().then((res) => res.json() as Manager);
+  }
+
+  login(data): Promise<Manager> {
+    const body = JSON.stringify(data);
+    console.log(body);
+    return this.http.post(this.base_url + '/login', body, this.options).toPromise().then((res) => res.json() as Manager);
   }
 
   getManagerById(managerId): Promise<Manager> {

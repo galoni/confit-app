@@ -14,8 +14,8 @@ export class NewConfService {
   confProgram = new EventEmitter<any>();
   headers = new Headers({ 'content-type': 'application/json' });
   options = new RequestOptions({ headers: this.headers });
-  // private base_url: String = 'https://confit-backend.herokuapp.com/manager';
-  private base_url: String = 'http://localhost:3000/manager';
+  private base_url: String = 'https://confit-backend.herokuapp.com/manager';
+  // private base_url: String = 'http://localhost:3000/manager';
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
 
   setNewConf(conf) {

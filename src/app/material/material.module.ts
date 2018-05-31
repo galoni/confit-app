@@ -22,7 +22,8 @@ import {
   MatListModule,
   MatDialogModule,
   MatTabsModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatSlideToggleModule
 } from '@angular/material';
 
 @NgModule({
@@ -49,6 +50,7 @@ import {
     MatDialogModule,
     MatTabsModule,
     MatAutocompleteModule,
+    MatSlideToggleModule,
     MatMenuModule
   ]
 })
