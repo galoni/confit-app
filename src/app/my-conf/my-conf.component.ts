@@ -113,7 +113,6 @@ export class MyConfComponent implements OnInit {
         console.log(localStorage.getItem('confId'));
 
       }
-
     }
     else {
       console.log("bad input, no action");
