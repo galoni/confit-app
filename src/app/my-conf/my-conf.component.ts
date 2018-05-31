@@ -35,11 +35,9 @@ export class MyConfComponent implements OnInit {
   ngOnInit() {
     localStorage.setItem('QRCode','');
     console.log("localStorage qrcode="+localStorage.getItem('QRCode')) ;
-
-    this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
-
-
-    this.visitorId = localStorage.getItem('visitorId');
+    this.visitor = JSON.parse(localStorage.getItem('currentUser'));
+    this.visitorId=this.visitor._id;
+    localStorage.setItem('visitorId',this.visitorId);
     this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
       if (visitor) {
         this.visitor=visitor;
