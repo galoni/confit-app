@@ -1,0 +1,172 @@
+
+
+.parallex {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-header{
+  background-image: url("../../assets/audience11.jpg");
+  background-size: cover;
+  height:750px;
+
+}
+
+.bg-component{
+  background-image: url("../../assets/matching.jpg");
+  background-size: cover;
+  height:400px;
+}
+
+.opacity_component{
+  background: rgba(4,9,16,0.65);
+  height: 400px;
+}
+
+.component_headline{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color:#ffffff;
+  flex-direction: column;
+  height: 400px;
+  font-size:50px;
+}
+
+.component_headline h1{
+  font-weight: 700;
+  text-shadow: 1px 1px #ffffff;
+}
+
+.body{
+  font-family: 'Poppins', sans-serif;
+}
+
+.header_headline{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color:#ffffff;
+  flex-direction: column;
+  height: 750px;
+
+}
+
+.data{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.inside_data{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  font-size:26px;
+  margin-bottom: 20px;
+}
+
+body{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.view_program{
+  margin-top:30px;
+    width:160px;
+    height:30px;
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+
+}
+
+.header-list{
+  font-size:40px;
+  font-weight: 700;
+}
+.second_componenet{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height:300px;
+  width: 100%;
+}
+.img_side{
+  background-image: url("../../assets/office.jpg");
+  background-size: cover;
+  height:300px;
+
+}
+
+.opacity_img{
+  background: rgba(4,9,16,0.65);
+  height:300px;
+}
+
+mat-list-item{
+  font-size:30px;
+}
+.inside_second{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.view_program span{
+  font-size:20px;
+  text-align: center;
+  padding:10px;
+}
+
+.opacity{
+  background: rgba(4,9,16,0.65);
+  height: 750px;
+}
+
+.icon{
+  margin-bottom: 5px;
+}
+
+.lectures{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top:15px;
+}
+
+.lectures h1{
+  font-weight: 700;
+}
+.mat-card{
+  width: 180px;
+  margin:15px;
+}
+
+mat-card-title{
+  font-weight: 700;
+}
+
+.date{
+  margin-left:10px;
+}
+.inside_data div{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.header_headline h1{
+  text-shadow: 2px 1px #ffffff;
+  font-size:70px;
+  margin-bottom: 100px;
+  font-weight: 700;
+}
