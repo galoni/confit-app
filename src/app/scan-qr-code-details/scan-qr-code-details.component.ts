@@ -46,7 +46,7 @@ export class ScanQRCodeDetailsComponent implements OnInit {
             if (this.data.data && this.data.id && this.data.type){
               console.log("good Input");
               localStorage.setItem('QRCode', JSON.stringify(this.data));
-              this.router.navigate(["../../MyConference"], { relativeTo: this.r });
+              this.router.navigate(["../../MyConference"], { relativeTo: this.r, queryParams: { data: this.data.data, type: this.data.type, id: this.data.id} } );
             }
 
 
