@@ -47,7 +47,7 @@ export class MyConfComponent implements OnInit {
       });
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
     this.visitor=JSON.parse(localStorage.getItem('currentUser'));
-    console.log("dfdfdf" + this.visitor._id);
+    this.confId=localStorage.getItem("confId");
       if (this.visitor) {
         this.myConfService.setVisitor(this.visitor);
         console.log(this.visitor);
