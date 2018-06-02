@@ -22,20 +22,21 @@ export class MyConfLectureComponent implements OnInit {
 
   ngOnInit() {
     this.myConfService._qrcode_lecture.subscribe((qrcode) => {
-
       this.myConfService._visitor.subscribe((visitor) => {
-        this.myConfService.getLectureById(qrcode.id)
-        .then((lecture) => {
-          this.lecture = lecture
-          console.log(this.lecture);
-          console.log(qrcode);
-          this.qrcode = qrcode;
-          this.visitor = visitor;
-          console.log("myvisitor: %j" ,this.visitor);
-          this.confId = localStorage.getItem('confId');
-          console.log(this.confId);
-          this.inConf = this.myConfService.lectureInConf(visitor, this.confId, qrcode.id)
-        });
+        if (qrcode.id){
+          this.myConfService.getLectureById(qrcode.id)
+          .then((lecture) => {
+            this.lecture = lecture
+            console.log(this.lecture);
+            console.log(qrcode);
+            this.qrcode = qrcode;
+            this.visitor = visitor;
+            console.log("myvisitor: %j" ,this.visitor);
+            this.confId = localStorage.getItem('confId');
+            console.log(this.confId);
+            this.inConf = this.myConfService.lectureInConf(visitor, this.confId, qrcode.id);
+          });
+        }
       });
     });
 

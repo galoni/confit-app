@@ -24,16 +24,10 @@ export class MyConfComponent implements OnInit {
     type: '',
     id: ''
   };
-<<<<<<< HEAD
-
   wrongConf: boolean = false;
   getmsg: string;
-=======
   files : FileList;
   uploadfile:any={};
-  wrongConf:boolean=false;
-
->>>>>>> origin/master
   custom_path: any = {};
   constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute) { }
@@ -51,18 +45,13 @@ export class MyConfComponent implements OnInit {
           this.qrcode.data = params.data;
         }
       });
-    // localStorage.setItem('QRCode', '');
-    // console.log("localStorage qrcode=" + localStorage.getItem('QRCode'));
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
-    this.visitorId = localStorage.getItem('visitorId');
-    this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
-      if (visitor) {
-        this.visitor = visitor;
+    this.visitor=JSON.parse(localStorage.getItem('currentUser'));
+    console.log("dfdfdf" + this.visitor._id);
+      if (this.visitor) {
         this.myConfService.setVisitor(this.visitor);
         console.log(this.visitor);
         if (this.qrcode.type != '') {
-          // this.qrcode = JSON.parse(localStorage.getItem('QRCode'));
-          //this.myConfService.setQRCode(this.qrcode);
           if (this.qrcode.type === 'lecture') {
             this.myConfService.setQRCode_lecture(this.qrcode);
           }
@@ -72,7 +61,7 @@ export class MyConfComponent implements OnInit {
           if (this.qrcode.type == 'conference') {
             console.log("THIS IS CONF!");
             this.myConfService.setQRCode_conf(this.qrcode);
-            if (visitor.confs.some(x => x.confId === this.qrcode.id)) {
+            if (this.visitor.confs.some(x => x.confId === this.qrcode.id)) {
               localStorage.setItem('confId', this.qrcode.id);
             }
             else {
@@ -92,7 +81,6 @@ export class MyConfComponent implements OnInit {
         }
 
       }
-    });
   }
   onSubmit(f: NgForm) {
     console.log(f.value);

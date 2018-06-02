@@ -10,6 +10,8 @@ import * as firebase from 'firebase';
 // import { firebaseConfig } from './../environments/firebase.config';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -129,7 +131,9 @@ import { ManageNotificationsComponent } from './manage-notifications/manage-noti
     MaterialModule,
     // AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   exports: [
     MaterialModule
