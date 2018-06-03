@@ -62,6 +62,9 @@ export class MyConfComponent implements OnInit {
       });
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
     this.visitor = JSON.parse(localStorage.getItem('currentUser'));
     console.log("dfdfdf" + this.visitor._id);
     if (this.visitor) {
@@ -79,7 +82,6 @@ export class MyConfComponent implements OnInit {
           this.myConfService.setQRCode_conf(this.qrcode);
           if (this.visitor.confs.some(x => x.confId === this.qrcode.id)) {
             localStorage.setItem('confId', this.qrcode.id);
-=======
     this.visitor=JSON.parse(localStorage.getItem('currentUser'));
     this.confId=localStorage.getItem("confId");
       if (this.visitor) {
@@ -102,7 +104,6 @@ export class MyConfComponent implements OnInit {
               this.wrongConf = true;
               this.qrcode.type = '';
             }
->>>>>>> origin/master
           }
           else {
             this.wrongConf = true;
