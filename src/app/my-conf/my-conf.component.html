@@ -7,14 +7,18 @@
 <h4 [hidden]="!wrongConf">you did not sign to this conf</h4>
 <!-- <div style="display:flex;flex-direction:column;align-self:center;align-items:center;"> -->
 <mat-card>
-  <h2>{{this.visitor.name.first_name}} {{this.visitor.name.last_name}} </h2>
-    <img class="img_profile" src="http://user-profile-storage.s3.amazonaws.com/{{this.visitor.profilePic}}" alt="user face" height="150" width="150">
-    <!-- <div class="edit_pic"> -->
-      <i class="fas fa-pencil-alt"></i>
-      <input type="file" name="file" (change)="fileChange($event)">
+  <div class="center_element">
+    <h2>{{this.visitor.name.first_name}} {{this.visitor.name.last_name}} </h2>
+      <img class="img_profile" src="http://user-profile-storage.s3.amazonaws.com/{{this.visitor.profilePic}}" alt="user face" height="150" width="150">
+       <div class="edit_pic">
+        <i class="fas fa-pencil-alt"></i>
+        <input type="file" name="file" (change)="fileChange($event)">
+      </div>
+  </div>
+
     <!-- </div> -->
   <!-- </div> -->
-  <div style="display:flex;flex-direction:column;align-self:center;align-items:center;">
+  <div  class="center_element">
     <span> Your QrCode : </span>
      <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}">
   <!-- </div> -->
@@ -38,10 +42,11 @@
       <input name="id" ngModel>
         <button>Submit</button>
       </form>
+      <app-pie-chart-data></app-pie-chart-data>
   </div>
 </mat-card>
 <!-- </div> -->
-<app-pie-chart-data *ngIf="visitorId!=null" [visitorId]="visitorId"></app-pie-chart-data>
+
 <hr>
 
 <app-my-conf-path *ngIf="qrcode.type==='conference'"></app-my-conf-path>
