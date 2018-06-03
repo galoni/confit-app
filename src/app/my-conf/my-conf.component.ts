@@ -183,4 +183,21 @@ fileChangeEvent(fileInput: any) {
     //this.product.photo = fileInput.target.files[0]['name'];
 }
 
+
+changeUrl(selectedValue){
+  console.log(JSON.stringify(selectedValue));
+  if(selectedValue.type="visitor"){
+    this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.linkedin, type: 'visitor', id: selectedValue._id} } );
+
+  }
+  else if (selectedValue.type="conf"){
+    this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id} } );
+
+  }
+  else{
+    this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.name, type: 'lecture', id: selectedValue._id} } );
+
+  }
+}
+
 }
