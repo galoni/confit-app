@@ -61,6 +61,7 @@ export class MyConfComponent implements OnInit {
         }
       });
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
+<<<<<<< HEAD
     this.visitor = JSON.parse(localStorage.getItem('currentUser'));
     console.log("dfdfdf" + this.visitor._id);
     if (this.visitor) {
@@ -78,6 +79,30 @@ export class MyConfComponent implements OnInit {
           this.myConfService.setQRCode_conf(this.qrcode);
           if (this.visitor.confs.some(x => x.confId === this.qrcode.id)) {
             localStorage.setItem('confId', this.qrcode.id);
+=======
+    this.visitor=JSON.parse(localStorage.getItem('currentUser'));
+    this.confId=localStorage.getItem("confId");
+      if (this.visitor) {
+        this.myConfService.setVisitor(this.visitor);
+        console.log(this.visitor);
+        if (this.qrcode.type != '') {
+          if (this.qrcode.type === 'lecture') {
+            this.myConfService.setQRCode_lecture(this.qrcode);
+          }
+          if (this.qrcode.type === 'visitor') {
+            this.myConfService.setQRCode_visitor(this.qrcode);
+          }
+          if (this.qrcode.type == 'conference') {
+            console.log("THIS IS CONF!");
+            this.myConfService.setQRCode_conf(this.qrcode);
+            if (this.visitor.confs.some(x => x.confId === this.qrcode.id)) {
+              localStorage.setItem('confId', this.qrcode.id);
+            }
+            else {
+              this.wrongConf = true;
+              this.qrcode.type = '';
+            }
+>>>>>>> origin/master
           }
           else {
             this.wrongConf = true;

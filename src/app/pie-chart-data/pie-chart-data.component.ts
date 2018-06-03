@@ -11,6 +11,7 @@ export class PieChartDataComponent implements OnInit {
   public pieChartLabels:string[] = ['Learn Percent', 'Connection Percent', 'Explore Percent'];
   public pieChartType:string = 'pie';
   public pieChartData:number[] = [];
+  isFound:boolean=false;
   connection:number;
   explore:number;
   learn:number;
@@ -30,10 +31,24 @@ export class PieChartDataComponent implements OnInit {
 
   ngOnInit() {
     this.confId=localStorage.getItem('confId');
-    console.log(this.confId);
-    console.log("befor piechart get visitor");
+    console.log("active conf:"+ this.confId)
+    this.visitor = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.visitor);
+    var confs=this.visitor.confs;
+    console.log(confs);
+    for(let i=0;i<this.visitor.confs.length;i++){
+      if(this.visitor.confs[i].confId===this.confId){
+        this.connection=this.visitor.confs[i].connection_percent;
+        this.learn=this.visitor.confs[i].learn_percent;
+        this.explore=this.visitor.confs[i].explore_percent;
+        this.isFound=true;
+        this.pieChartData=[this.learn,this.connection,this.explore];
 
-    this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
+      }
+    }
+    if(!this.isFound)console.log("there is no active conf");
+
+  /*  this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
       console.log("inside piechart get visitor");
 
       if (visitor) {
@@ -52,7 +67,7 @@ export class PieChartDataComponent implements OnInit {
         }
         this.pieChartData=[this.learn,this.connection,this.explore];
 
-      }});
+      }});*/
 
 
 
