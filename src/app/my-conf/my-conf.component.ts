@@ -167,7 +167,7 @@ upload() {
         formData.append('type', 'profilePic');
         formData.append('id', this.visitor._id);
     console.log('form data variable :   '+ formData.toString());
-    this.http.post('http://localhost:3000/qrcodeApi/upload_image', formData)
+    this.http.post('https://confit-backend.herokuapp.com/qrcodeApi/upload_image', formData)
         .map(files => files.json())
         .subscribe(files => {
           console.log('files', files);
