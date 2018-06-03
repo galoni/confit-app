@@ -113,6 +113,9 @@ _qrcode_lecture$= this._qrcode_lecture.asObservable();
   getLectureById(lectureId): Promise<Lecture> {
     return this.http.post(this.manager_url + '/getLectureById', { lectureId: lectureId }, this.options).toPromise().then((res) => res.json() as Lecture);
   }
+  getConfById(confId): Promise<Conf> {
+    return this.http.post(this.manager_url + '/getConfById', {confId: confId}, this.options).toPromise().then((res) => res.json() as Conf);
+  }
 
   matching(data, callback: Function){
   console.log("inside matchingPercent in service");

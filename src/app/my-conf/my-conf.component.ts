@@ -18,7 +18,22 @@ export class MyConfComponent implements OnInit {
   visitorId: string;
   confId: string;
   data: any = {};
-  conf: Conf;
+  conf: Conf
+  confList: any =
+    [
+    {
+      name: 'My Path',
+      item: []
+    },
+    {
+      name: 'Lecture',
+      item: []
+    },
+    {
+      name: 'Visitor',
+      item: []
+    }
+  ];
   qrcode: any = {
     data: '',
     type: '',
@@ -26,8 +41,8 @@ export class MyConfComponent implements OnInit {
   };
   wrongConf: boolean = false;
   getmsg: string;
-  files : FileList;
-  uploadfile:any={};
+  files: FileList;
+  uploadfile: any = {};
   custom_path: any = {};
   constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute) { }
@@ -46,41 +61,62 @@ export class MyConfComponent implements OnInit {
         }
       });
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
-    this.visitor=JSON.parse(localStorage.getItem('currentUser'));
+    this.visitor = JSON.parse(localStorage.getItem('currentUser'));
     console.log("dfdfdf" + this.visitor._id);
-      if (this.visitor) {
-        this.myConfService.setVisitor(this.visitor);
-        console.log(this.visitor);
-        if (this.qrcode.type != '') {
-          if (this.qrcode.type === 'lecture') {
-            this.myConfService.setQRCode_lecture(this.qrcode);
-          }
-          if (this.qrcode.type === 'visitor') {
-            this.myConfService.setQRCode_visitor(this.qrcode);
-          }
-          if (this.qrcode.type == 'conference') {
-            console.log("THIS IS CONF!");
-            this.myConfService.setQRCode_conf(this.qrcode);
-            if (this.visitor.confs.some(x => x.confId === this.qrcode.id)) {
-              localStorage.setItem('confId', this.qrcode.id);
-            }
-            else {
-              this.wrongConf = true;
-              this.qrcode.type = '';
-            }
-          }
-          if (localStorage.getItem('confId') != null)
-            this.confId = localStorage.getItem('confId');
-          this.myConfService.setConfId(this.confId);
-          if (this.qrcode.type == 'visitor') {
-            this.visitorSonId = this.qrcode.id;
-            console.log("visitorSonId:  " + this.visitorSonId);
-          }
-          console.log(this.qrcode.type);
-          console.log("qrcode_id" + this.qrcode.id)
+    if (this.visitor) {
+      this.myConfService.setVisitor(this.visitor);
+      console.log(this.visitor);
+      if (this.qrcode.type != '') {
+        if (this.qrcode.type === 'lecture') {
+          this.myConfService.setQRCode_lecture(this.qrcode);
         }
+        if (this.qrcode.type === 'visitor') {
+          this.myConfService.setQRCode_visitor(this.qrcode);
+        }
+        if (this.qrcode.type == 'conference') {
+          console.log("THIS IS CONF!");
+          this.myConfService.setQRCode_conf(this.qrcode);
+          if (this.visitor.confs.some(x => x.confId === this.qrcode.id)) {
+            localStorage.setItem('confId', this.qrcode.id);
+          }
+          else {
+            this.wrongConf = true;
+            this.qrcode.type = '';
+          }
+        }
+        if (localStorage.getItem('confId') != null)
+          this.confId = localStorage.getItem('confId');
+        this.myConfService.setConfId(this.confId);
+        if (this.qrcode.type == 'visitor') {
+          this.visitorSonId = this.qrcode.id;
+          console.log("visitorSonId:  " + this.visitorSonId);
+        }
+        this.myConfService.getConfById(this.confId)
+          .then(conf => {
+            this.conf = conf;
+            // { value: 'squirtle-3', viewValue: 'Squirtle' },
+            this.confList[0].item.push({
+            _id: this.conf._id,
+            viewValue: this.conf.name;
+          });
+              // conf.viewValue = this.conf.name;
+            // });
+            this.confList[0].viewValue = this.conf.name;
+            this.confList[1].item = this.conf.lectures;
+            this.confList[1].item.forEach(lct => {
+              lct.viewValue = lct.name;
+            });
+            this.confList[2].item = this.conf.visitors;
+            this.confList[2].item.forEach(visitor => {
+              visitor.viewValue = visitor.visitorid;
+            });
+            console.log("this is the confList");
+            console.log(this.confList);
+          });
 
       }
+
+    }
   }
   onSubmit(f: NgForm) {
     console.log(f.value);
