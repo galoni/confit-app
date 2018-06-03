@@ -11,6 +11,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {EditConfSessionComponent} from '../edit-conf-session/edit-conf-session.component';
 import {NewConfProgramComponent} from '../new-conf-program/new-conf-program.component';
 import {ConfStatsComponent} from '../conf-stats/conf-stats.component';
+import {LandingService} from '../services/landing.service';
 
 @Component({
   selector: 'app-show-conf',
@@ -33,6 +34,7 @@ export class ShowConfComponent implements OnInit {
 
   constructor(private newConfService: NewConfService,
               private managerService: ManagerService,
+              private landingService: LandingService,
               public dialog: MatDialog,
               private router: Router, private r: ActivatedRoute) { }
 
@@ -58,6 +60,7 @@ export class ShowConfComponent implements OnInit {
     else {
       // console.log('the conf: ' + JSON.stringify(this.conf));
       this.initData(this.conf);
+      this.landingService.setSelectedConf(this.conf);
     }
     console.log(this.confId);
   }

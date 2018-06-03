@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Conf} from '../models/conf';
 import {Subscription} from 'rxjs/Subscription';
 import {MatTableDataSource} from '@angular/material';
+import {LandingService} from '../services/landing.service';
 
 @Component({
   selector: 'app-new-conf-lectures',
@@ -27,6 +28,7 @@ export class NewConfLecturesComponent implements OnInit {
   tempConfs:  Lecture[]= [];
 
   constructor(private newConfService: NewConfService,
+              private landingService: LandingService,
               private router: Router, private r: ActivatedRoute,
               private changeDetectorRefs: ChangeDetectorRef) { }
 
