@@ -19,6 +19,7 @@ export class MyConfComponent implements OnInit {
   confId: string;
   data: any = {};
   conf: Conf
+  filesToUpload: Array<File> = [];
   confList: any =
     [
       {
@@ -62,6 +63,7 @@ export class MyConfComponent implements OnInit {
       });
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
     this.visitor = JSON.parse(localStorage.getItem('currentUser'));
+    this.visitorId = this.visitor._id;
     this.confId = localStorage.getItem("confId");
     if (this.visitor) {
       this.myConfService.setVisitor(this.visitor);
@@ -156,28 +158,29 @@ onSubmit(f: NgForm) {
     console.log("bad input, no action");
   }
 }
-fileChange(event) {
-  let fileList: FileList = event.target.files;
-  if (fileList.length > 0) {
-    let file: File = fileList[0];
-    let formData: FormData = new FormData();
-    formData.append('data', file, file.name);
-    formData.append('type', 'profilePic');
-    formData.append('id', this.visitorId);
-    console.log(formData.get("data"));
-    console.log(formData.get("id"));
-    let headers = new Headers();
-    headers.append('Content-Type', undefined);
-    headers.append('Accept', 'application/json');
-    let options = new RequestOptions({ headers: headers });
-    this.http.post('https://confit-backend.herokuapp.com/qrcodeApi/upload_image', formData, options)
-      .subscribe(
-        data => console.log('success'),
-        error => console.log(error)
-      )
-  }
+
+upload() {
+    const formData: any = new FormData();
+    const files: Array<File> = this.filesToUpload;
+    console.log(files);
+        formData.append("data", files[0], files[0]['name']);
+        formData.append('type', 'profilePic');
+        formData.append('id', this.visitor._id);
+    console.log('form data variable :   '+ formData.toString());
+    this.http.post('http://localhost:3000/qrcodeApi/upload_image', formData)
+        .map(files => files.json())
+        .subscribe(files => {
+          console.log('files', files);
+          this.visitor.profilePic = files.status;
+          console.log('visitor', this.visitor.profilePic);
+          localStorage.setItem('currentUser', JSON.stringify(this.visitor));
+      });
+
 }
 
-
+fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+    //this.product.photo = fileInput.target.files[0]['name'];
+}
 
 }
