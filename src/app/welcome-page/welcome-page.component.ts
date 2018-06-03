@@ -10,24 +10,23 @@ import {SignupComponent} from '../signup/signup.component';
   styleUrls: ['./welcome-page.component.css']
 })
 export class WelcomePageComponent implements OnInit {
+  checked = 0;
 
-  constructor(public dialog: MatDialog,) { }
-  checked: number = 0;
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+    localStorage.removeItem('currentUser');
   }
   onChange(value) {
     if (value.checked === true) {
       this.checked = 1;
-      console.log(this.checked);
     } else {
       this.checked = 0;
-      console.log(this.checked);
     }
   }
   openDialogSignIn(): void {
     // console.log('dig conf: ' + JSON.stringify(this.conf));
-    let dialogRef = this.dialog.open(SigninComponent, {
+    const dialogRef = this.dialog.open(SigninComponent, {
       width: '430px',
       data: this.checked
     });
@@ -37,7 +36,7 @@ export class WelcomePageComponent implements OnInit {
   }
   openDialogSignUp(): void {
     // console.log('dig conf: ' + JSON.stringify(this.conf));
-    let dialogRef = this.dialog.open(SignupComponent, {
+    const dialogRef = this.dialog.open(SignupComponent, {
       width: '430px',
       data: this.checked
     });
