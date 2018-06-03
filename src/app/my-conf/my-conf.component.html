@@ -23,6 +23,16 @@
      <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}">
   <!-- </div> -->
   <!-- <div> -->
+  <mat-form-field>
+  <mat-select placeholder="Path/Lecture/Visitor">
+    <mat-option>-- None --</mat-option>
+    <mat-optgroup *ngFor="let group of confList" [label]="group.name">
+      <mat-option *ngFor="let item of group.item" [value]="item.value">
+        {{ item.viewValue }}
+      </mat-option>
+    </mat-optgroup>
+  </mat-select>
+</mat-form-field>
     <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
       <select name="type" ngModel>
           <option value = "conference">conference</option>
