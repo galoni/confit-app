@@ -1,3 +1,27 @@
 .img_profile{
   border-radius: 50%;
 }
+
+.edit_pic{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center_element{
+   display:flex;flex-direction:column;align-self:center;align-items:center;
+}
+
+.edit_pic:hover{
+  color:#fec63d;
+  cursor: pointer;
+}
+
+.class_img{
+  display:flex;
+  flex-direction:column;
+  align-self:center;
+  align-items:center;
+  width:20%;
+}

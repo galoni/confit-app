@@ -10,6 +10,8 @@ import * as firebase from 'firebase';
 // import { firebaseConfig } from './../environments/firebase.config';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -20,6 +22,7 @@ import { myConfService } from "./services/myConf.service";
 import { RegToConfService } from "./services/regToConf.service";
 import { ManageQRCodeService } from "./services/manageQRCode.service";
 import { ManagerService } from './services/manager.service';
+import {LandingService } from './services/landing.service';
 // import { MessagingService } from './messaging.service';
 import { UserAuthService } from './services/user-auth.service';
 import { UserAuthGuardService } from './services/user-auth-guard.service';
@@ -128,7 +131,9 @@ import { ManageNotificationsComponent } from './manage-notifications/manage-noti
     MaterialModule,
     // AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   exports: [
     MaterialModule
@@ -147,6 +152,7 @@ import { ManageNotificationsComponent } from './manage-notifications/manage-noti
     ManageQRCodeService,
     ManagerService,
     VisitorService,
+    LandingService,
     // MessagingService,
     UserAuthService,
     AlertService,

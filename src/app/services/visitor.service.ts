@@ -19,6 +19,8 @@ export class VisitorService {
     return this.http.post(this.base_url + '/createVisitor', body, this.options).toPromise().then((res) => res.json() as Visitor);
   }
 
+
+
   login(data): Promise<Visitor> {
     const body = JSON.stringify(data);
     console.log(body);

@@ -4,7 +4,8 @@ import { RegToConfService } from "../services/regToConf.service";
 import {Conf} from "../models/conf";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ManagerService} from '../services/manager.service';
-
+import { LandingService } from '../services/landing.service';
+import { Visitor } from "../models/visitor";
 
 @Component({
   selector: 'app-register-conf-details',
@@ -17,17 +18,19 @@ export class RegisterConfDetailsComponent implements OnInit {
   selectedConf: Conf = null;
   visitor_id:string;
   msgToken: string;
-
+visitor:Visitor;
   @ViewChild('stepper') stepper;
   @Output() onStatusChange = new EventEmitter<boolean>();
 
 
   constructor(private RegToConfService: RegToConfService,
-              private router: Router, private r:ActivatedRoute,private managerService: ManagerService) { }
+              private router: Router, private r:ActivatedRoute,private managerService: ManagerService,private LandingService: LandingService) { }
 
 
   ngOnInit() {
-    localStorage.setItem('visitorId','5ad3aa87c284b342775e696a');
+    this.visitor = JSON.parse(localStorage.getItem('currentUser'));
+    this.visitor_id=this.visitor._id;
+    localStorage.setItem('visitorId',this.visitor_id);
     this.visitor_id = localStorage.getItem('visitorId');
         this.RegToConfService.getAllConfs().then((confs)=>{
                 this.confs = confs;
@@ -45,6 +48,7 @@ export class RegisterConfDetailsComponent implements OnInit {
       if(data==='error') console.log("error")
       else{
         this.RegToConfService.setRegConf(this.selectedConf);
+        this.LandingService.setSelectedConf(this.selectedConf);
         console.log("success")
       }
     });

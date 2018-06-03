@@ -1,17 +1,18 @@
-
-
-<div>
+<div class="container">
   <h2>Your Custome Path</h2>
   <div class="col-md-4" *ngFor="let day of data; let i = index">
     <h3>Day {{i + 1}}</h3>
     <table class="table">
       <tr *ngFor="let sess of day; let j = index">
         <td>
-          {{sess.time}}:00
+          {{sess.session.time}}:00
         </td>
         <td>
-          <div *ngFor="let lct of sess.lectures">
-            <h4>{{lct.name}}</h4>
+          <div *ngFor="let lct of sess.session.lectures">
+            <button class="btn btn-block" mat-raised-button matTooltip="{{lct.description}}" (click)="lctPressed($event, lct)">
+  {{lct.name}}
+</button>
+            <!-- <h4>{{lct.name}}</h4> -->
           </div>
         </td>
       </tr>
