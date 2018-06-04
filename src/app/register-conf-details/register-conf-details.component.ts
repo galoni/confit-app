@@ -43,6 +43,7 @@ visitor:Visitor;
     this.data.visitorid=this.visitor_id;
     this.data.confid = this.selectedConf._id;
     this.data.confname = this.selectedConf.name;
+    this.data.logo = this.selectedConf.logo;
     localStorage.setItem('confId',this.selectedConf._id);
     this.RegToConfService.registerToConf(this.data,(data)=>{
       if(data==='error') console.log("error")

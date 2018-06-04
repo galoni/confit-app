@@ -33,6 +33,8 @@ export class NewConfDetailsComponent implements OnInit {
   optionTopics = [
     'Web',
     'Big data',
+    'Cyber',
+    'AWS',
     'IOT'
   ];
   filteredOptions: Observable<string[]>;
@@ -50,10 +52,15 @@ export class NewConfDetailsComponent implements OnInit {
     localStorage.removeItem('confLectures');
   }
   createConference(form: NgForm) {
+    const date = form.value.start_date;
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+    const myFormattedDate = day + '-' + (monthIndex + 1) + '-' + year;
     this.data.name = form.value.name;
     this.data.type = form.value.type;
     this.data.logo = form.value.logo;
-    this.data.start_date = form.value.start_date;
+    this.data.start_date = myFormattedDate;
     this.data.duration = form.value.duration;
     this.data.location = form.value.location;
     this.data.audience = form.value.audience;
