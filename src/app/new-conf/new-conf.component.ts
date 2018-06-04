@@ -20,12 +20,13 @@ export class NewConfComponent implements OnInit {
     this.isCreated = bool;
   }
   upload() {
+    let confId = localStorage.getItem('confId');
     const formData: any = new FormData();
     const files: Array<File> = this.filesToUpload;
     console.log(files);
         formData.append("data", files[0], files[0]['name']);
         formData.append('type', 'logo');
-        formData.append('id', "5aeb7d196226470004135c4c");
+        formData.append('id', confId);
     console.log('form data variable :   '+ formData.toString());
     this.http.post('https://confit-backend.herokuapp.com/qrcodeApi/upload_image', formData)
         .map(files => files.json())
