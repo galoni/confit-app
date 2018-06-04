@@ -104,7 +104,9 @@ export class MyConfComponent implements OnInit {
           // { value: 'squirtle-3', viewValue: 'Squirtle' },
           this.confList[0].item.push({
             _id: this.conf._id,
-            viewValue: this.conf.name
+            viewValue: this.conf.name,
+            type:"conference"
+
           });
           // conf.viewValue = this.conf.name;
           // });
@@ -112,10 +114,12 @@ export class MyConfComponent implements OnInit {
           this.confList[1].item = this.conf.lectures;
           this.confList[1].item.forEach(lct => {
             lct.viewValue = lct.name;
+            lct.type="lecture"
           });
           this.confList[2].item = this.conf.visitors;
           this.confList[2].item.forEach(visitor => {
             visitor.viewValue = visitor.visitorid;
+            visitor.type="visitor"
           });
           console.log("this is the confList");
           console.log(this.confList);
@@ -186,18 +190,26 @@ fileChangeEvent(fileInput: any) {
 
 changeUrl(selectedValue){
   console.log(JSON.stringify(selectedValue));
-  if(selectedValue.type="visitor"){
-    this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.linkedin, type: 'visitor', id: selectedValue._id} } );
+  if (selectedValue.id && selectedValue.type) {
+      this.qrcode.id = selectedValue._id;
+      this.qrcode.type = selectedValue.type;
+      this.qrcode.data = '';
+    }
+    if(selectedValue.type==="visitor"){
+      this.myConfService.setVisitor(this.visitor);
+      this.myConfService.setQRCode_visitor(this.qrcode);
+      this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.linkedin, type: 'visitor', id: selectedValue.visitorid} } );
 
-  }
-  else if (selectedValue.type="conf"){
-    this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id} } );
-
-  }
-  else{
-    this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.name, type: 'lecture', id: selectedValue._id} } );
-
-  }
+    }
+    else if (selectedValue.type==="conference"){
+      this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id} } );
+      localStorage.setItem('confId', this.qrcode.id);
+    }
+    else if(selectedValue.type==="lecture"){
+      this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.name, type: 'lecture', id: selectedValue._id} } );
+      this.myConfService.setVisitor(this.visitor);
+      this.myConfService.setQRCode_lecture(this.qrcode);
+    }
 }
 
 }
