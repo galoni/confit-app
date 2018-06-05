@@ -15,9 +15,8 @@
         <input type="file" id="file" name="file" (change)="fileChange($event)">
       </div> -->
       <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
-      <button type="button" class="btn btn-success btn-s" (click)="upload()">
-    <i class="glyphicon glyphicon-open-file"></i>Upload
-</button>
+      <button class="uploadfile" type="submit" color="primary" mat-raised-button (click)="upload()">  <i class="glyphicon glyphicon-open-file"></i>Upload</button>
+
     </div>
 
     <!-- </div> -->
@@ -37,7 +36,7 @@
           </mat-optgroup>
         </mat-select>
       </mat-form-field>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <!--  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
         <select name="type" ngModel>
           <option value = "conference">conference</option>
           <option value = "lecture">lecture</option>
@@ -45,7 +44,7 @@
       </select>
         <input name="id" ngModel>
         <button>Submit</button>
-      </form>
+      </form>-->
       <app-pie-chart-data></app-pie-chart-data>
     </div>
   </mat-card>

@@ -45,6 +45,7 @@ export class MyConfComponent implements OnInit {
   files: FileList;
   uploadfile: any = {};
   custom_path: any = {};
+  fullnamevisitor:string;
   constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute) { }
 
@@ -63,6 +64,8 @@ export class MyConfComponent implements OnInit {
       });
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
     this.visitor = JSON.parse(localStorage.getItem('currentUser'));
+    this.fullnamevisitor=this.visitor.name.first_name + " " + this.visitor.name.last_name;
+    console.log("fullnamevisitor="+this.fullnamevisitor);
     this.visitorId = this.visitor._id;
     this.confId = localStorage.getItem("confId");
     if (this.visitor) {
@@ -118,7 +121,10 @@ export class MyConfComponent implements OnInit {
           });
           this.confList[2].item = this.conf.visitors;
           this.confList[2].item.forEach(visitor => {
-            visitor.viewValue = visitor.visitorid;
+            var visitorfirstname=visitor.visitorname.first_name;
+            var visitorlastname=visitor.visitorname.last_name;
+            var fullname=visitorfirstname +" " + visitorlastname;
+            visitor.viewValue = fullname;
             visitor.type="visitor"
           });
           console.log("this is the confList");
