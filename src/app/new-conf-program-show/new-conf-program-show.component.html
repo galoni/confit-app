@@ -1,30 +1,37 @@
-<div class="row">
-  <div class="col-md-6" *ngFor="let day of data; let i = index">
-    <h3>Day {{i + 1}}</h3>
-    <table class="table">
-      <tr *ngFor="let sess of day; let j = index">
-        <td>
-          {{sess.name}} {{sess.time}}:00
-        </td>
-        <td>
-          <div class="row">
-            <div class="col-md-4" *ngFor="let top of sess.lectures; let k = index">
-              <table class="table">
-                <tr>
-                  <th>
-                    {{topics[k]}}
-                  </th>
-                </tr>
-                <tr *ngFor="let lct of top;">
-                  <td>
-                    <h5>{{lct.name}} [{{lct.ratings}}]</h5>
-                  </td>
-                </tr>
-              </table>
+<!--<div class="row">-->
+  <!--<div class="col-md-6" *ngFor="let day of data; let i = index">-->
+<mat-tab-group>
+  <mat-tab *ngFor="let day of data; let i = index" label="Day {{i+1}}">
+    <div class="table100 ver1 m-b-110">
+      <table data-vertable="ver1">
+        <tr class="row100" *ngFor="let sess of day; let j = index">
+          <td class="column100 column1" data-column="column1">
+            {{sess.name}} {{sess.time}}:00
+          </td>
+          <td class="column100 column2" data-column="column2">
+            <div class="row">
+              <div class="col-md-4" *ngFor="let top of sess.lectures; let k = index">
+                <div class="table100 ver1 m-b-110">
+                  <table data-vertable="ver1">
+                    <tr>
+                      <th>
+                        {{topics[k]}}
+                      </th>
+                    </tr>
+                    <tr class="row100" *ngFor="let lct of top;">
+                      <td class="column100 column2" data-column="column2">
+                        <h5>{{lct.name}} [{{lct.ratings}}]</h5>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+  <!--</div>-->
+<!--</div>-->
