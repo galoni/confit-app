@@ -35,9 +35,12 @@ export class MatchingPageComponent implements OnInit {
       if(matchingPeople==='error') console.log("error")
       else {
         this.visitors=matchingPeople;
-
+        this.visitors.sort(function(obj1, obj2) {
+      	return obj2.matching - obj1.matching;
+      });
          console.log("success")
       }
       });
   }
+
 }
