@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-5" *ngFor="let day of data; let i = index">
+  <div class="col-md-6" *ngFor="let day of data; let i = index">
     <h3>Day {{i + 1}}</h3>
     <table class="table">
       <tr *ngFor="let sess of day; let j = index">
@@ -8,9 +8,13 @@
         </td>
         <td>
           <div class="row">
-            <div class="col-md-3" *ngFor="let top of sess.lectures">
-              <h4>{{top.topic}}</h4>
+            <div class="col-md-4" *ngFor="let top of sess.lectures; let k = index">
               <table class="table">
+                <tr>
+                  <th>
+                    {{topics[k]}}
+                  </th>
+                </tr>
                 <tr *ngFor="let lct of top;">
                   <td>
                     <h5>{{lct.name}} [{{lct.ratings}}]</h5>
