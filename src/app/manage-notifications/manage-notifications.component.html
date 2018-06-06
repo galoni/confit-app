@@ -1,10 +1,12 @@
 <app-nav-manager></app-nav-manager>
+<app-alerts></app-alerts>
+
 <div class="container">
   <h3>Send Message to your conference</h3>
   <mat-card>
     <form (ngSubmit)="onSubmit(f)" #f="ngForm" [formGroup]="form">
       <mat-form-field>
-        <mat-select [(ngModel)]="conf" name="conf" placeholder="Select Conference" id="conf"  formControlName="conf">
+        <mat-select [(ngModel)]="conf" name="conf" placeholder="Select Conference" id="conf" formControlName="conf">
           <mat-option>--</mat-option>
           <mat-option *ngFor="let conf of confs" [value]="conf">
             {{conf.name}}
@@ -25,4 +27,10 @@
       </p>
     </form>
   </mat-card>
+  <div *ngIf="this.push_notification">
+    <mat-card-title>Messages sent:</mat-card-title>
+    <mat-card *ngFor="let msg of this.push_notification.message"> {{msg}} </mat-card>
+  </div>
+
+
 </div>

@@ -75,10 +75,10 @@ export class MyConfComponent implements OnInit {
         if (this.qrcode.type === 'lecture') {
           this.myConfService.setQRCode_lecture(this.qrcode);
         }
-        if (this.qrcode.type === 'visitor') {
+        else if (this.qrcode.type === 'visitor') {
           this.myConfService.setQRCode_visitor(this.qrcode);
         }
-        if (this.qrcode.type == 'conference') {
+        else if (this.qrcode.type == 'conference') {
           this.myConfService.setQRCode_conf(this.qrcode);
           if (this.visitor.confs.some(x => x.confId === this.qrcode.id)) {
             localStorage.setItem('confId', this.qrcode.id);
@@ -88,10 +88,7 @@ export class MyConfComponent implements OnInit {
             this.qrcode.type = '';
           }
         }
-      }
-      else {
-        this.wrongConf = true;
-        this.qrcode.type = '';
+
       }
 
       if (localStorage.getItem('confId') != null)
