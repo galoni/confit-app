@@ -63,7 +63,7 @@ th, td {
   color: #fff;
 }
 
-.table100.ver1[_ngcontent-c17] .row100[_ngcontent-c17] td[_ngcontent-c17]:hover {
+.table100.ver1 .row100 td:hover {
   background-color: #6c7ae0;
   color: #fff;
 }
