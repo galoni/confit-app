@@ -19,3 +19,14 @@
   overflow: auto;
   max-height: 500px;
 }
+.container {
+    width: 94rem;
+}
+.showLecture{
+  right: 43px;
+  height: 100%;
+}
+.content{
+  max-height: 200px;
+  overflow-y: auto;
+}

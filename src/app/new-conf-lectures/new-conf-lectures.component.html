@@ -20,12 +20,17 @@
           </form>
           <button mat-button color="primary" (click)="addAll()">Add All</button>
         </div>
-        <div class="col-md-4" *ngIf="selectedLecture != null">
-          <h2>{{selectedLecture.name}}</h2>
-          <h3>{{selectedLecture.lecturer_name}}</h3>
-          <h4>{{selectedLecture.description}}</h4>
-          <button mat-button color="primary" (click)="addLecture()">ADD</button>
-        </div>
+        <mat-card class="col-md-4 showLecture" *ngIf="selectedLecture != null">
+          <mat-card-title>{{selectedLecture.name}}</mat-card-title>
+          <mat-card-content class="content">
+            <h4>{{selectedLecture.lecturer_name}}</h4>
+            <h4>{{selectedLecture.topic}}</h4>
+            <p>{{selectedLecture.description}}</p>
+          </mat-card-content>
+          <mat-card-footer>
+            <button mat-button color="primary" (click)="addLecture()">ADD</button>
+          </mat-card-footer>
+        </mat-card>
         <div class="col-md-4">
           <h2>New Lecture</h2>
           <form (ngSubmit)="createLecture(f)" #f="ngForm">
@@ -64,11 +69,11 @@
           </form>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="confLectures.length > 0">
         <div class="col-md-5">
           <div class="confLectures" >
             <h2>Conf Lectures</h2>
-            <div class="example-container mat-elevation-z8" *ngIf="confLectures.length > 0">
+            <div class="example-container mat-elevation-z8">
               <mat-table #table [dataSource]="confLectures">
                 <!-- Position Column -->
                 <ng-container matColumnDef="name">
