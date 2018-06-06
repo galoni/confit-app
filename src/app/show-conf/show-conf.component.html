@@ -1,17 +1,20 @@
 <mat-card *ngIf="conf != null">
-  <mat-card-title>{{conf.name}}</mat-card-title>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title class="title-dash">{{conf.name}}</mat-card-title>
+  </mat-card-header>
   <mat-card-content>
-    <h4>Date: {{conf.start_date}}</h4>
-    <h4>Type: {{conf.type}}</h4>
-    <h4>Location:: {{conf.location}}</h4>
-    <h4 *ngIf="conf.visitors != null">Registered Visitors: {{conf.visitors.length}}</h4>
-    <div>
-      <button mat-raised-button (click)="openDialogSess()">Edit Session</button>
-      <button mat-raised-button (click)="openDialogProg()">Program</button>
-      <button mat-raised-button (click)="openDialogStats()">Stats</button>
-      <a mat-raised-button routerLink="/landing">landing-page</a>
-      <button mat-raised-button (click)="removeConf()">Delete</button>
-    </div>
+    <h5>Date: {{conf.start_date}}</h5>
+    <h5>Type: {{conf.type}}</h5>
+    <h5>Location:: {{conf.location}}</h5>
+    <h5 *ngIf="conf.visitors != null">Registered Visitors: {{conf.visitors.length}}</h5>
   </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="openDialogSess()">Edit Session</button>
+    <button mat-raised-button (click)="openDialogProg()">Program</button>
+    <button mat-raised-button (click)="openDialogStats()">Stats</button>
+    <a mat-raised-button routerLink="/landing">landing-page</a>
+    <button mat-raised-button (click)="removeConf()">Delete</button>
+  </mat-card-actions>
 </mat-card>
 <!--<app-new-conf-program-show [fConf]="conf" *ngIf="avialble != true"></app-new-conf-program-show>-->
