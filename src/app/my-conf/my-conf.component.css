@@ -17,6 +17,9 @@
   color:#fec63d;
   cursor: pointer;
 }
+.uploadfile{
+  margin-bottom: 20px;
+}
 
 .class_img{
   display:flex;
