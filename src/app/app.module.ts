@@ -26,6 +26,7 @@ import {LandingService } from './services/landing.service';
 // import { MessagingService } from './messaging.service';
 import { UserAuthService } from './services/user-auth.service';
 import { UserAuthGuardService } from './services/user-auth-guard.service';
+import { Push_NotificationService } from './services/push_notification.service';
 
 
 import { NewConfComponent } from './new-conf/new-conf.component';
@@ -156,7 +157,8 @@ import { ManageNotificationsComponent } from './manage-notifications/manage-noti
     // MessagingService,
     UserAuthService,
     AlertService,
-    UserAuthGuardService
+    UserAuthGuardService,
+    Push_NotificationService
   ],
   bootstrap: [AppComponent]
 })
