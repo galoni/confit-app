@@ -170,3 +170,17 @@ mat-card-title{
   margin-bottom: 100px;
   font-weight: 700;
 }
+
+@media only screen and (max-width: 768px) {
+  .header_headline{
+    text-align:center;
+  }
+
+  .header-list{
+    font-size:27px;
+  }
+
+  .component_headline h1{
+    text-align:center;
+  }
+}
