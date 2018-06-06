@@ -45,7 +45,7 @@ export class MyConfComponent implements OnInit {
   files: FileList;
   uploadfile: any = {};
   custom_path: any = {};
-  fullnamevisitor:string;
+  fullnamevisitor: string;
   constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute) { }
 
@@ -64,8 +64,8 @@ export class MyConfComponent implements OnInit {
       });
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
     this.visitor = JSON.parse(localStorage.getItem('currentUser'));
-    this.fullnamevisitor=this.visitor.name.first_name + " " + this.visitor.name.last_name;
-    console.log("fullnamevisitor="+this.fullnamevisitor);
+    this.fullnamevisitor = this.visitor.name.first_name + " " + this.visitor.name.last_name;
+    console.log("fullnamevisitor=" + this.fullnamevisitor);
     this.visitorId = this.visitor._id;
     this.confId = localStorage.getItem("confId");
     if (this.visitor) {
@@ -79,7 +79,6 @@ export class MyConfComponent implements OnInit {
           this.myConfService.setQRCode_visitor(this.qrcode);
         }
         if (this.qrcode.type == 'conference') {
-          console.log("THIS IS CONF!");
           this.myConfService.setQRCode_conf(this.qrcode);
           if (this.visitor.confs.some(x => x.confId === this.qrcode.id)) {
             localStorage.setItem('confId', this.qrcode.id);
@@ -89,11 +88,12 @@ export class MyConfComponent implements OnInit {
             this.qrcode.type = '';
           }
         }
-        else {
-          this.wrongConf = true;
-          this.qrcode.type = '';
-        }
       }
+      else {
+        this.wrongConf = true;
+        this.qrcode.type = '';
+      }
+
       if (localStorage.getItem('confId') != null)
         this.confId = localStorage.getItem('confId');
       this.myConfService.setConfId(this.confId);
@@ -108,7 +108,7 @@ export class MyConfComponent implements OnInit {
           this.confList[0].item.push({
             _id: this.conf._id,
             viewValue: this.conf.name,
-            type:"conference"
+            type: "conference"
 
           });
           // conf.viewValue = this.conf.name;
@@ -117,15 +117,15 @@ export class MyConfComponent implements OnInit {
           this.confList[1].item = this.conf.lectures;
           this.confList[1].item.forEach(lct => {
             lct.viewValue = lct.name;
-            lct.type="lecture"
+            lct.type = "lecture"
           });
           this.confList[2].item = this.conf.visitors;
           this.confList[2].item.forEach(visitor => {
-            var visitorfirstname=visitor.visitorname.first_name;
-            var visitorlastname=visitor.visitorname.last_name;
-            var fullname=visitorfirstname +" " + visitorlastname;
+            var visitorfirstname = visitor.visitorname.first_name;
+            var visitorlastname = visitor.visitorname.last_name;
+            var fullname = visitorfirstname + " " + visitorlastname;
             visitor.viewValue = fullname;
-            visitor.type="visitor"
+            visitor.type = "visitor"
           });
           console.log("this is the confList");
           console.log(this.confList);
@@ -135,87 +135,87 @@ export class MyConfComponent implements OnInit {
 
   }
 
-onSubmit(f: NgForm) {
-  console.log(f.value);
-  if (f.value.id && f.value.type) {
-    this.qrcode.id = f.value.id;
-    this.qrcode.type = f.value.type;
-    this.qrcode.data = '';
-    console.log("qrcode.type=" + this.qrcode.type);
-    if (this.qrcode.type === 'visitor') {
-      console.log("inside visitor qrcode");
-      console.log("qrcode" + this.qrcode.id);
-      console.log("visitor=" + JSON.stringify(this.visitor));
-      this.myConfService.setVisitor(this.visitor);
-      this.myConfService.setQRCode_visitor(this.qrcode);
+  onSubmit(f: NgForm) {
+    console.log(f.value);
+    if (f.value.id && f.value.type) {
+      this.qrcode.id = f.value.id;
+      this.qrcode.type = f.value.type;
+      this.qrcode.data = '';
+      console.log("qrcode.type=" + this.qrcode.type);
+      if (this.qrcode.type === 'visitor') {
+        console.log("inside visitor qrcode");
+        console.log("qrcode" + this.qrcode.id);
+        console.log("visitor=" + JSON.stringify(this.visitor));
+        this.myConfService.setVisitor(this.visitor);
+        this.myConfService.setQRCode_visitor(this.qrcode);
 
+      }
+      if (this.qrcode.type === 'lecture') {
+        console.log("inside lecture qrcode");
+        console.log("visitor=" + JSON.stringify(this.visitor));
+        this.myConfService.setVisitor(this.visitor);
+        this.myConfService.setQRCode_lecture(this.qrcode);
+
+      }
+      if (this.qrcode.type === 'conference') {
+        console.log("inside conference qrcode");
+        localStorage.setItem('confId', this.qrcode.id);
+        console.log(localStorage.getItem('confId'));
+
+      }
     }
-    if (this.qrcode.type === 'lecture') {
-      console.log("inside lecture qrcode");
-      console.log("visitor=" + JSON.stringify(this.visitor));
-      this.myConfService.setVisitor(this.visitor);
-      this.myConfService.setQRCode_lecture(this.qrcode);
-
-    }
-    if (this.qrcode.type === 'conference') {
-      console.log("inside conference qrcode");
-      localStorage.setItem('confId', this.qrcode.id);
-      console.log(localStorage.getItem('confId'));
-
+    else {
+      console.log("bad input, no action");
     }
   }
-  else {
-    console.log("bad input, no action");
-  }
-}
 
-upload() {
+  upload() {
     const formData: any = new FormData();
     const files: Array<File> = this.filesToUpload;
     console.log(files);
-        formData.append("data", files[0], files[0]['name']);
-        formData.append('type', 'profilePic');
-        formData.append('id', this.visitor._id);
-    console.log('form data variable :   '+ formData.toString());
+    formData.append("data", files[0], files[0]['name']);
+    formData.append('type', 'profilePic');
+    formData.append('id', this.visitor._id);
+    console.log('form data variable :   ' + formData.toString());
     this.http.post('https://confit-backend.herokuapp.com/qrcodeApi/upload_image', formData)
-        .map(files => files.json())
-        .subscribe(files => {
-          console.log('files', files);
-          this.visitor.profilePic = files.status;
-          console.log('visitor', this.visitor.profilePic);
-          localStorage.setItem('currentUser', JSON.stringify(this.visitor));
+      .map(files => files.json())
+      .subscribe(files => {
+        console.log('files', files);
+        this.visitor.profilePic = files.status;
+        console.log('visitor', this.visitor.profilePic);
+        localStorage.setItem('currentUser', JSON.stringify(this.visitor));
       });
 
-}
+  }
 
-fileChangeEvent(fileInput: any) {
+  fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
     //this.product.photo = fileInput.target.files[0]['name'];
-}
+  }
 
 
-changeUrl(selectedValue){
-  console.log(JSON.stringify(selectedValue));
-  if (selectedValue.id && selectedValue.type) {
+  changeUrl(selectedValue) {
+    console.log(JSON.stringify(selectedValue));
+    if (selectedValue.id && selectedValue.type) {
       this.qrcode.id = selectedValue._id;
       this.qrcode.type = selectedValue.type;
       this.qrcode.data = '';
     }
-    if(selectedValue.type==="visitor"){
+    if (selectedValue.type === "visitor") {
       this.myConfService.setVisitor(this.visitor);
       this.myConfService.setQRCode_visitor(this.qrcode);
-      this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.linkedin, type: 'visitor', id: selectedValue.visitorid} } );
+      this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.linkedin, type: 'visitor', id: selectedValue.visitorid } });
 
     }
-    else if (selectedValue.type==="conference"){
-      this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id} } );
+    else if (selectedValue.type === "conference") {
+      this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id } });
       localStorage.setItem('confId', this.qrcode.id);
     }
-    else if(selectedValue.type==="lecture"){
-      this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.name, type: 'lecture', id: selectedValue._id} } );
+    else if (selectedValue.type === "lecture") {
+      this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: selectedValue.name, type: 'lecture', id: selectedValue._id } });
       this.myConfService.setVisitor(this.visitor);
       this.myConfService.setQRCode_lecture(this.qrcode);
     }
-}
+  }
 
 }
