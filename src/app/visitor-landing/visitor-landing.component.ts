@@ -37,6 +37,8 @@ export class VisitorLandingComponent implements OnInit {
     this.visitorService.getAllConfById(this.visitorId).then((cnfs) => {
       console.log('Num confs: ' + cnfs.length);
       this.confs = cnfs;
+      this.visitor.confs = cnfs;
+      localStorage.setItem('currentUser', JSON.stringify(this.visitor));
     });
   }
   activeConf(confactive: string) {
