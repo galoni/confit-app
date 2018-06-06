@@ -32,8 +32,8 @@ export class VisitorService {
   //     .toPromise().then((res) => res.json() as Manager);
   // }
   //
-  // getAllConfById(managerId): Promise<Conf[]> {
-  //   return this.http.post(this.base_url + '/getAllConfById', {'managerId': managerId}, this.options)
-  //     .toPromise().then((res) => res.json() as Conf[]);
-  // }
+  getAllConfById(visitorId): Promise<Conf[]> {
+    return this.http.post(this.base_url + '/getAllConfById', {'visitorId': visitorId}, this.options)
+      .toPromise().then((res) => res.json() as Conf[]);
+  }
 }

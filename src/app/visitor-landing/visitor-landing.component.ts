@@ -7,6 +7,7 @@ import { Conf } from '../models/conf';
 import {MatDialog} from '@angular/material';
 import {NewConfProgramComponent} from '../new-conf-program/new-conf-program.component';
 import {NewConfService} from '../services/newConf.service';
+import {VisitorService} from '../services/visitor.service';
 
 @Component({
   selector: 'app-visitor-landing',
@@ -20,15 +21,23 @@ export class VisitorLandingComponent implements OnInit {
   selected: string;
   confactive: string;
   conf: Conf;
+  confs: Conf[];
 
   constructor(private myConfService: myConfService,
               private newConfService: NewConfService,
+              private visitorService: VisitorService,
               public dialog: MatDialog,
               private router: Router,
               private r: ActivatedRoute) { }
 
   ngOnInit() {
     this.visitor = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('visitor: ' + JSON.stringify(this.visitor));
+    this.visitorId = this.visitor._id;
+    this.visitorService.getAllConfById(this.visitorId).then((cnfs) => {
+      console.log('Num confs: ' + cnfs.length);
+      this.confs = cnfs;
+    });
   }
   activeConf(confactive: string) {
     localStorage.setItem('confId', confactive);
