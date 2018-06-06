@@ -17,6 +17,7 @@ export class NewConfProgramShowComponent implements OnInit {
   subscription: Subscription;
   @Input() fConf: Conf;
   conf: Conf;
+  topics = [];
 
   constructor(private managerService: ManagerService,
               private router: Router, private r: ActivatedRoute) { }
@@ -32,18 +33,17 @@ export class NewConfProgramShowComponent implements OnInit {
     // Object.assign(this.data, this.fConf.program);
     this.conf = <Conf>this.deepCopy(this.fConf);
     this.data = this.conf.program;
-    const topics = [];
     const tLength = this.fConf.main_topics.length;
     for (let tIndex = 0; tIndex < tLength; tIndex++) {// init topics array
-      topics.push(this.fConf.main_topics[tIndex]);
+      this.topics.push(this.fConf.main_topics[tIndex]);
       this.topicsLectures[tIndex] = [];
     }
     console.log('topicsLectures: ' + JSON.stringify(this.topicsLectures));
-    console.log('topics: ' + JSON.stringify(topics));
+    console.log('topics: ' + JSON.stringify(this.topics));
     for (let i = 0; i < this.data.length; i++) {// loop over days
       for (let j = 0; j < this.data[i].length; j++) {// loop over session
         for (let tIndex = 0; tIndex < tLength; tIndex++) {// loop over topic
-          this.topicsLectures[tIndex] = this.data[i][j].lectures.filter(lct => lct.topic === topics[tIndex]);
+          this.topicsLectures[tIndex] = this.data[i][j].lectures.filter(lct => lct.topic === this.topics[tIndex]);
           // console.log("data[i][j]: "+ JSON.stringify(this.topicsLectures));
         }
         // console.log("topicsLectures: " + JSON.stringify(this.topicsLectures));

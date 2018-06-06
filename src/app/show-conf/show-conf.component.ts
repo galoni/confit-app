@@ -91,7 +91,7 @@ export class ShowConfComponent implements OnInit {
   openDialogProg(): void {
     // console.log('dig conf: ' + JSON.stringify(this.conf));
     let dialogRef = this.dialog.open(NewConfProgramComponent, {
-      width: '830px',
+      width: '1030px',
       data: this.conf
     });
     dialogRef.afterClosed().subscribe(result => {
