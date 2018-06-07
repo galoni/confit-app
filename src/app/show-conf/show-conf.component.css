@@ -1,0 +1,10 @@
+.mat-card-image{
+  height:317px;
+}
+.example-header-image {
+  background-image: url('http://logo-storage.s3.amazonaws.com/0c52b996-2b12-4065-a3b3-ae26dc01dfe9.png');
+  background-size: cover;
+}
+.title-dash{
+  font-size: 27px;
+}
