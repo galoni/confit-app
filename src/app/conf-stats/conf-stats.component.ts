@@ -76,7 +76,7 @@ export class ConfStatsComponent implements OnInit {
   }
   initDoughnutChart() {
     for (let i = 0; i < this.doughnutChartLabels.length; i++){
-      let visitorTopic = this.data.visitors.filter(vstr => vstr.topic === this.doughnutChartLabels[i]);
+      let visitorTopic = this.data.visitors.filter(vstr => vstr.mainTopic === this.doughnutChartLabels[i]);
       this.doughnutChartData[i] = visitorTopic.length;
     }
     console.log('topic length: ' + this.doughnutChartData);
