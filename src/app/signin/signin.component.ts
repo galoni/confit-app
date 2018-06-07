@@ -55,6 +55,7 @@ export class SigninComponent implements OnInit {
         if (man._id) {
           console.log('current visitor: ' + JSON.stringify(man));
           localStorage.setItem('currentUser', JSON.stringify(man));
+          localStorage.setItem('visitorId',man._id)
           this.manager = JSON.parse(localStorage.getItem('currentUser'));
           console.log(this.manager._id);
           this.router.navigate(['./visitorlanding']);
