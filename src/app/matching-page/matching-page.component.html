@@ -2,7 +2,7 @@
 <div *ngFor="let visitor of this.visitors">
 <div *ngIf="visitor._id !=visitor_id" class="mathing-people">
   <div class="matching-title">
-    <div><img src="http://www.colegiodepadua.com.br/img/user.png" alt="user face" height="50" width="50"></div>
+    <div><img src="http://user-profile-storage.s3.amazonaws.com/{{this.visitor.profilePic}}" alt="user face" height="50" width="50"></div>
     <div>{{visitor.visitorfirstname}} {{visitor.visitorlastname}}</div>
   </div>
   <div class="matching-content">
