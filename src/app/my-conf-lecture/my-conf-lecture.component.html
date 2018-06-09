@@ -14,7 +14,12 @@
       <mat-card-subtitle>
         Topic: {{lecture.topic}}
       </mat-card-subtitle>
-      {{lecture.description}}
+      <mat-card-content>
+        {{lecture.description}}
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button (click)="openDialogRate()">RATE US</button>
+      </mat-card-actions>
     </mat-card>
 
   </div>

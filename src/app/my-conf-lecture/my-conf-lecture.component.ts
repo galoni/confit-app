@@ -4,6 +4,9 @@ import { Lecture } from "../models/lecture";
 import { myConfService } from "../services/myConf.service";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import {MatDialog} from '@angular/material';
+import {ConfStatsComponent} from '../conf-stats/conf-stats.component';
+import {RateLectureComponent} from '../rate-lecture/rate-lecture.component';
 
 @Component({
   selector: 'app-my-conf-lecture',
@@ -18,7 +21,8 @@ export class MyConfLectureComponent implements OnInit {
   confId: string;
   inConf: boolean=false;
   constructor(private myConfService: myConfService,
-    private router: Router, private r: ActivatedRoute) { }
+              public dialog: MatDialog,
+              private router: Router, private r: ActivatedRoute) { }
 
   ngOnInit() {
     this.myConfService._qrcode_lecture.subscribe((qrcode) => {
@@ -26,7 +30,7 @@ export class MyConfLectureComponent implements OnInit {
         if (qrcode.id){
           this.myConfService.getLectureById(qrcode.id)
           .then((lecture) => {
-            this.lecture = lecture
+            this.lecture = lecture;
             console.log(this.lecture);
             console.log(qrcode);
             this.qrcode = qrcode;
@@ -56,5 +60,15 @@ export class MyConfLectureComponent implements OnInit {
               });
           });
       });
+  }
+  openDialogRate(): void {
+    // console.log('dig conf: ' + JSON.stringify(this.conf));
+    let dialogRef = this.dialog.open(RateLectureComponent, {
+      data: this.lecture
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.conf = result;
+    });
   }
 }

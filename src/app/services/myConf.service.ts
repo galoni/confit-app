@@ -5,6 +5,7 @@ import { Lecture } from "../models/lecture";
 import { Conf } from "../models/conf";
 import 'rxjs/add/operator/toPromise';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Manager} from '../models/manager';
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class myConfService {
    private manager_url: String = 'https://confit-backend.herokuapp.com/manager';
    private visitor_url: String = 'https://confit-backend.herokuapp.com/visitor';
   //private visitor_url: String = 'http://localhost:3000/visitor';
-  //private manager_url: String = 'http://localhost:3000/manager';
+  // private manager_url: String = 'http://localhost:3000/manager';
 
 
   visitorSelected = new EventEmitter<Visitor>();
@@ -115,6 +116,11 @@ _qrcode_lecture$= this._qrcode_lecture.asObservable();
   }
   getConfById(confId): Promise<Conf> {
     return this.http.post(this.manager_url + '/getConfById', {confId: confId}, this.options).toPromise().then((res) => res.json() as Conf);
+  }
+  rateLecture(data): Promise<Lecture> {
+    const body = JSON.stringify(data);
+    console.log(body);
+    return this.http.post(this.manager_url + '/addTotalRating', body, this.options).toPromise().then((res) => res.json() as Lecture);
   }
 
   matching(data, callback: Function){

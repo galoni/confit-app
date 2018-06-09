@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Rate {{data.name}}</h1>
+<div class="dialogRate" mat-dialog-content>
+  <h5 class="hRate">How was the lecture?</h5>
+  <mat-slider
+    [max]=5
+    [min]=0
+    [step]=1
+    [thumb-label]=true
+    [(ngModel)]="lecture">
+  </mat-slider>
+  <h5>How was the lecturer?</h5>
+  <mat-slider
+    [max]=5
+    [min]=0
+    [step]=1
+    [thumb-label]=true
+    [(ngModel)]="lecturer">
+  </mat-slider>
+  <h5>Is lecture related to your topic?</h5>
+  <mat-slider
+    [max]=5
+    [min]=0
+    [step]=1
+    [thumb-label]=true
+    [(ngModel)]="match">
+  </mat-slider>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button (click)="rate(lecture, lecturer, match)">Rate</button>
+</div>
+  <!--<mat-card-actions>-->
+    <!--<button mat-raised-button color="primary" (click)="rate(lecture, lecturer, match)">Add</button>-->
+  <!--</mat-card-actions>-->

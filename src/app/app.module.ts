@@ -71,6 +71,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import {AlertService} from './services/alert.service';
 import {VisitorService} from './services/visitor.service';
 import { ManageNotificationsComponent } from './manage-notifications/manage-notifications.component';
+import { RateLectureComponent } from './rate-lecture/rate-lecture.component';
 // firebase.initializeApp(firebaseConfig);
 // console.log("this is initialized "+ firebaseConfig);
 
@@ -118,7 +119,8 @@ import { ManageNotificationsComponent } from './manage-notifications/manage-noti
     UsersComponent,
     ConfStatsComponent,
     WelcomePageComponent,
-    ManageNotificationsComponent
+    ManageNotificationsComponent,
+    RateLectureComponent
   ],
   imports: [
     BrowserModule,
@@ -144,7 +146,8 @@ import { ManageNotificationsComponent } from './manage-notifications/manage-noti
     NewConfSessionsComponent,
     EditConfSessionComponent,
     NewConfProgramComponent,
-    ConfStatsComponent
+    ConfStatsComponent,
+    RateLectureComponent
   ],
   providers: [
     NewConfService,
