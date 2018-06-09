@@ -47,6 +47,7 @@ export class MyConfComponent implements OnInit {
   custom_path: any = {};
   fullnamevisitor: string;
   confName:string;
+  panelOpenState: boolean = false;
   constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute) { }
 
@@ -219,6 +220,10 @@ export class MyConfComponent implements OnInit {
       this.myConfService.setVisitor(this.visitor);
       this.myConfService.setQRCode_lecture(this.qrcode);
     }
+  }
+
+  gotoFindFriends(){
+    this.router.navigate(['./matchingPage']);
   }
 
 }
