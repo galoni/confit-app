@@ -5,7 +5,6 @@
       <mat-card (click)="activeConf(conf.confId)" [ngClass]="{activeConf: isActive(conf.confId)}" class="mat-card">
         <mat-card-title class="mat-card-title">{{conf.confname}}</mat-card-title>
         <img mat-card-image src="http://logo-storage.s3.amazonaws.com/{{conf.logo}}">
-        <!--  https://www.conferencesthatwork.com/wp-content/uploads/2014/03/audience-at-big-conference-2805860205_18b3dd9dc3_o.jpg-->
         <mat-card-footer class="mat-card-f">
           {{conf.mainTopic[0]}}<button mat-button (click)="openDialogProg()"><mat-icon>info</mat-icon></button>
         </mat-card-footer>

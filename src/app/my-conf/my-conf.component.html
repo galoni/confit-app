@@ -4,27 +4,18 @@
 </header>
 <app-nav-visitor></app-nav-visitor>
 <div class="container">
-  <!-- <div style="display:flex;flex-direction:column;align-self:center;align-items:center;"> -->
   <mat-card>
     <div class="center_element">
+      <h1>{{this.confName}}</h1>
       <h2>{{this.visitor.name.first_name}} {{this.visitor.name.last_name}} </h2>
       <img class="img_profile" src="http://user-profile-storage.s3.amazonaws.com/{{this.visitor.profilePic}}" alt="user face" height="150" width="150">
-      <!-- <div class="edit_pic">
-        <i class="fas fa-pencil-alt"></i>
-        <input type="file" id="file" name="file" (change)="fileChange($event)">
-      </div> -->
       <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
       <button class="uploadfile" type="submit" color="primary" mat-raised-button (click)="upload()">  <i class="glyphicon glyphicon-open-file"></i>Upload</button>
 
     </div>
-
-    <!-- </div> -->
-    <!-- </div> -->
     <div class="center_element">
       <span> Your QrCode : </span>
       <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}">
-      <!-- </div> -->
-      <!-- <div> -->
       <mat-form-field>
         <mat-select placeholder="Path/Lecture/Visitor">
           <mat-option>-- None --</mat-option>
@@ -35,20 +26,9 @@
           </mat-optgroup>
         </mat-select>
       </mat-form-field>
-    <!--  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-        <select name="type" ngModel>
-          <option value = "conference">conference</option>
-          <option value = "lecture">lecture</option>
-          <option value = "visitor">visitor</option>
-      </select>
-        <input name="id" ngModel>
-        <button>Submit</button>
-      </form>-->
       <app-pie-chart-data></app-pie-chart-data>
     </div>
   </mat-card>
-  <!-- </div> -->
-
   <hr>
 
   <app-my-conf-path *ngIf="qrcode.type==='conference'"></app-my-conf-path>

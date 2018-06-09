@@ -46,6 +46,7 @@ export class MyConfComponent implements OnInit {
   uploadfile: any = {};
   custom_path: any = {};
   fullnamevisitor: string;
+  confName:string;
   constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute) { }
 
@@ -62,12 +63,17 @@ export class MyConfComponent implements OnInit {
           this.qrcode.data = params.data;
         }
       });
+
     this.visitor = new Visitor("linkedin", "education", "occupation", "qr_code");
     this.visitor = JSON.parse(localStorage.getItem('currentUser'));
     this.fullnamevisitor = this.visitor.name.first_name + " " + this.visitor.name.last_name;
     console.log("fullnamevisitor=" + this.fullnamevisitor);
+
     this.visitorId = this.visitor._id;
     this.confId = localStorage.getItem("confId");
+    var currentConf =   this.visitor.confs.find(conf => conf.confId === this.confId);
+    console.log(JSON.stringify(currentConf));
+    this.confName=currentConf.confname;
     if (this.visitor) {
       this.myConfService.setVisitor(this.visitor);
       console.log(this.visitor);

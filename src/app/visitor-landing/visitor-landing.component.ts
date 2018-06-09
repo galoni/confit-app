@@ -47,6 +47,7 @@ export class VisitorLandingComponent implements OnInit {
     this.newConfService.getConfById(confactive).then((cnf) => {
       this.conf = cnf;
     });
+    this.router.navigate(['./MyConference']);
   }
   isActive(confid) {
     this.confactive = localStorage.getItem('confId');
