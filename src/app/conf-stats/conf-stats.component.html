@@ -21,4 +21,20 @@
               (chartClick)="chartClicked($event)"></canvas>
     </div>
   </mat-tab>
+  <mat-tab label="Lectures">
+    <table matSort (matSortChange)="sortData($event)">
+      <tr>
+        <th mat-sort-header="name">Lecture Name</th>
+        <th mat-sort-header="lecturer_name">Lecturer Name</th>
+        <th mat-sort-header="ratings">Rating</th>
+        <th mat-sort-header="topic">Topic</th>
+      </tr>
+      <tr *ngFor="let lecture of sortedData">
+        <td>{{lecture.name}}</td>
+        <td>{{lecture.lecturer_name}}</td>
+        <td>{{lecture.ratings}}</td>
+        <td>{{lecture.topic}}</td>
+      </tr>
+    </table>
+  </mat-tab>
 </mat-tab-group>

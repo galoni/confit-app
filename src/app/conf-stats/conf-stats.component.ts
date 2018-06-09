@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {NewConfService} from '../services/newConf.service';
 import {EditConfSessionComponent} from '../edit-conf-session/edit-conf-session.component';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, Sort} from '@angular/material';
 
 @Component({
   selector: 'app-conf-stats',
@@ -13,6 +13,7 @@ export class ConfStatsComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
+  sortedData;
   //bar
   public barChartLabels: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   public barChartType = 'bar';
@@ -35,7 +36,9 @@ export class ConfStatsComponent implements OnInit {
 
   constructor(private newConfService: NewConfService,
               public dialogRef: MatDialogRef<EditConfSessionComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.sortedData = this.data.lectures.slice();
+  }
 
   ngOnInit() {
     this.initTopic();
@@ -81,4 +84,25 @@ export class ConfStatsComponent implements OnInit {
     }
     console.log('topic length: ' + this.doughnutChartData);
   }
+  sortData(sort: Sort) {
+    const data = this.data.lectures.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      let isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name': return compare(a.name, b.name, isAsc);
+        case 'lecturer_name': return compare(a.lecturer_name, b.lecturer_name, isAsc);
+        case 'ratings': return compare(+a.ratings, +b.ratings, isAsc);
+        case 'topic': return compare(a.topic, b.topic, isAsc);
+        default: return 0;
+      }
+    });
+  }
+}
+function compare(a, b, isAsc) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
