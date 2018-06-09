@@ -1,16 +1,47 @@
 .img_profile{
+  border: 1px solid #006e8c;
   border-radius: 50%;
+  margin-bottom: 10px;
 }
-
+.mat-card{
+  color:#006e8c;
+}
 .edit_pic{
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+.conf_name{
+  font-weight: 700!important;
+}
 .center_element{
    display:flex;flex-direction:column;align-self:center;align-items:center;
+}
+
+.button_confPage{
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  align-items: center;
+  justify-content: flex-end;
+  width: 90%;
+  font-size: 18px;
+}
+.addFriends i{
+  border: 1px solid #006e8c;
+  border-radius: 15%;
+  padding: 5px;
+  cursor: pointer;
+}
+.accordion{
+  min-width: 350px;
+}
+
+input[type=file] {
+    display: flex;
+    width: 160px;
+    margin-bottom: 10px;
 }
 
 .edit_pic:hover{
@@ -19,6 +50,8 @@
 }
 .uploadfile{
   margin-bottom: 20px;
+  font-size: 12px;
+  padding: 0px 10px;
 }
 
 .class_img{
@@ -27,4 +60,11 @@
   align-self:center;
   align-items:center;
   width:20%;
+}
+
+
+@media screen and (max-width: 768px) {
+  .accordion{
+    min-width: 300px;
+  }
 }
