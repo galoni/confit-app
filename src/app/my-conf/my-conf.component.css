@@ -1,10 +1,10 @@
 .img_profile{
   border: 1px solid #006e8c;
-  border-radius: 50%;
-  margin-bottom: 10px;
+      margin-top: 55px;
 }
 .mat-card{
   color:#006e8c;
+  padding:0px;
 }
 .edit_pic{
   width: 100%;
@@ -21,23 +21,43 @@
 
 .button_confPage{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-self: center;
   align-items: center;
   justify-content: flex-end;
   width: 90%;
   font-size: 18px;
 }
+.addFriends{
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  align-items: center;
+  justify-content: space-around;
+}
 .addFriends i{
   border: 1px solid #006e8c;
   border-radius: 15%;
   padding: 5px;
   cursor: pointer;
+  min-width: 35px;
+  margin-left:10px;
+}
+
+.cover{
+  height: 180px;
+  width: 100%;
+  background-image: url("../../assets/cover.jpg");
+  background-size: cover;
 }
 .accordion{
   min-width: 350px;
 }
 
+.container{
+  padding-right:0px!important;
+  padding-left: 0px!important;
+}
 input[type=file] {
     display: flex;
     width: 160px;
@@ -62,6 +82,9 @@ input[type=file] {
   width:20%;
 }
 
+.component-2{
+  padding-bottom: 30px;
+}
 
 @media screen and (max-width: 768px) {
   .accordion{
