@@ -225,5 +225,10 @@ export class MyConfComponent implements OnInit {
   gotoFindFriends(){
     this.router.navigate(['./matchingPage']);
   }
-
+  scanQr(){
+    this.router.navigate(['./ScanQRCode']);
+  }
+  logout(){
+    this.router.navigate(['./welcome']);
+  }
 }
