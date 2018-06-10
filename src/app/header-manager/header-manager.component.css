@@ -41,3 +41,14 @@ ul .dropdown-menu {
   font-size:25px;
   color:#fec63d;
 }
+@media screen and (max-width: 768px) {
+  .hamburger{
+    font-size: 33px;
+    color: #fec63d;
+    margin-top: 22px;
+    float: right;
+  }
+  .navbar{
+    height: 90px;
+  }
+}
