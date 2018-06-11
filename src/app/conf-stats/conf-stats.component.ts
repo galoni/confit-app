@@ -21,9 +21,9 @@ export class ConfStatsComponent implements OnInit {
   chartHovered: any;
   chartClicked: any;
   // Doughnut
-  public doughnutChartLabels:string[] = [];
-  public doughnutChartData:number[] = [];
-  public doughnutChartType:string = 'doughnut';
+  public doughnutChartLabels: string[] = [];
+  public doughnutChartData: number[] = [];
+  public doughnutChartType = 'doughnut';
   topicsLectures: any = [];
   public barChartData: any[] = [];
   public static chartClicked(e: any): void {
@@ -62,9 +62,9 @@ export class ConfStatsComponent implements OnInit {
   }
   initBarChartData() {
     const tLength = this.data.main_topics.length;
-    let barData: any = {};
+    const barData: any = {};
     for (let tIndex = 0; tIndex < tLength; tIndex++) {
-      let sortLectures = this.topicsLectures[tIndex].sort(function(a, b) {
+      const sortLectures = this.topicsLectures[tIndex].sort(function(a, b) {
         return b.ratings - a.ratings;
       });
       barData.data = [];
@@ -78,9 +78,11 @@ export class ConfStatsComponent implements OnInit {
     console.log('barChartData: ' + JSON.stringify(this.barChartData));
   }
   initDoughnutChart() {
-    for (let i = 0; i < this.doughnutChartLabels.length; i++){
-      let visitorTopic = this.data.visitors.filter(vstr => vstr.mainTopic === this.doughnutChartLabels[i]);
+    for (let i = 0; i < this.doughnutChartLabels.length; i++) {
+      const visitorTopic = this.data.visitors.filter(vstr => vstr.mainTopic === this.doughnutChartLabels[i]);
       this.doughnutChartData[i] = visitorTopic.length;
+      const pNum = visitorTopic.length / this.data.visitors.length * 100;
+      this.doughnutChartLabels[i] = this.doughnutChartLabels[i] + ' - ' + Math.floor(pNum) + '%';
     }
     console.log('topic length: ' + this.doughnutChartData);
   }
@@ -92,7 +94,7 @@ export class ConfStatsComponent implements OnInit {
     }
 
     this.sortedData = data.sort((a, b) => {
-      let isAsc = sort.direction === 'asc';
+      const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
         case 'lecturer_name': return compare(a.lecturer_name, b.lecturer_name, isAsc);
