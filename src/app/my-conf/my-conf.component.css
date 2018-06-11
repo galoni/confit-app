@@ -44,6 +44,10 @@
   margin-left:10px;
 }
 
+.addFriends i:hover{
+  color:#fec63d;border: 1px solid #fec63d;
+}
+
 .cover{
   height: 180px;
   width: 100%;
@@ -51,7 +55,7 @@
   background-size: cover;
 }
 .accordion{
-  min-width: 350px;
+  min-width: 450px;
 }
 
 .container{
@@ -85,7 +89,10 @@ input[type=file] {
 .component-2{
   padding-bottom: 30px;
 }
-
+.mat-expansion-panel-body{
+  display:flex;
+  justify-content: center;
+}
 @media screen and (max-width: 768px) {
   .accordion{
     min-width: 300px;
