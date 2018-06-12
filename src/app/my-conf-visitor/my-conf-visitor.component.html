@@ -1,7 +1,5 @@
-<header>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css">
-</header>
-<div class="content">
+<mat-spinner *ngIf="loadedVisitor"></mat-spinner>
+<div *ngIf="!loadedVisitor">
   <div >
     <h1>Meet {{this.visitorSon.name.first_name}} {{this.visitorSon.name.last_name}}</h1>
   </div>
