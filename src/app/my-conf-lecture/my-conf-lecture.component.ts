@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { Visitor } from "../models/visitor";
 import { Lecture } from "../models/lecture";
 import { myConfService } from "../services/myConf.service";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import {MatDialog} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {ConfStatsComponent} from '../conf-stats/conf-stats.component';
 import {RateLectureComponent} from '../rate-lecture/rate-lecture.component';
+import {EditConfSessionComponent} from '../edit-conf-session/edit-conf-session.component';
 
 @Component({
   selector: 'app-my-conf-lecture',
@@ -22,7 +23,9 @@ export class MyConfLectureComponent implements OnInit {
   inConf: boolean=false;
   constructor(private myConfService: myConfService,
               public dialog: MatDialog,
-              private router: Router, private r: ActivatedRoute) { }
+              private router: Router, private r: ActivatedRoute,
+              public dialogRef: MatDialogRef<EditConfSessionComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.myConfService._qrcode_lecture.subscribe((qrcode) => {

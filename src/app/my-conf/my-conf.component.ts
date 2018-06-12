@@ -6,6 +6,10 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Conf } from "../models/conf";
 import { Response, Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import 'rxjs/add/operator/map'
+import {MatDialog} from '@angular/material';
+import {NewConfProgramComponent} from '../new-conf-program/new-conf-program.component';
+import {MyConfVisitorComponent} from '../my-conf-visitor/my-conf-visitor.component';
+import {MyConfLectureComponent} from '../my-conf-lecture/my-conf-lecture.component';
 
 @Component({
   selector: 'app-my-conf',
@@ -49,7 +53,8 @@ export class MyConfComponent implements OnInit {
   confName:string;
   panelOpenState: boolean = false;
   constructor(private myConfService: myConfService, private http: Http,
-    private router: Router, private r: ActivatedRoute) { }
+              private router: Router, private r: ActivatedRoute,
+              public dialog: MatDialog,) { }
 
   ngOnInit() {
     this.r.queryParams
@@ -62,6 +67,12 @@ export class MyConfComponent implements OnInit {
           this.qrcode.type = params.type;
           this.qrcode.id = params.id;
           this.qrcode.data = params.data;
+        }
+        switch (this.qrcode.type) {
+          case 'lecture': this.openDialogLecture(this.qrcode.id);
+          case 'visitor': this.openDialogVisitor(this.qrcode.id);
+          case 'conference': console.log('conf');
+          default: return 0;
         }
       });
 
@@ -230,5 +241,24 @@ export class MyConfComponent implements OnInit {
   }
   logout(){
     this.router.navigate(['./welcome']);
+    localStorage.removeItem('currentUser');
+  }
+  openDialogVisitor(id): void {
+    let dialogRef = this.dialog.open(MyConfVisitorComponent, {
+      data: id
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.conf = result;
+    });
+  }
+  openDialogLecture(id): void {
+    let dialogRef = this.dialog.open(MyConfLectureComponent, {
+      data: id
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.conf = result;
+    });
   }
 }

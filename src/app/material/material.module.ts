@@ -24,7 +24,8 @@ import {
   MatTabsModule,
   MatAutocompleteModule,
   MatSlideToggleModule,
-  MatSortModule
+  MatSortModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 @NgModule({
@@ -53,7 +54,8 @@ import {
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatMenuModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule {}
