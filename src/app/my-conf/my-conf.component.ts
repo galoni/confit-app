@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Visitor } from "../models/visitor";
 import { myConfService } from "../services/myConf.service";
+import { Push_NotificationService } from '../services/push_notification.service';
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Conf } from "../models/conf";
 import { Response, Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-my-conf',
@@ -18,8 +19,11 @@ export class MyConfComponent implements OnInit {
   visitorId: string;
   confId: string;
   data: any = {};
-  conf: Conf
+  conf: Conf;
   filesToUpload: Array<File> = [];
+  icon: string = "far fa-bell";
+  isSilenced: boolean= false;
+  deviceToken: string;
   confList: any =
     [
       {
@@ -49,8 +53,33 @@ export class MyConfComponent implements OnInit {
   confName:string;
   panelOpenState: boolean = false;
   constructor(private myConfService: myConfService, private http: Http,
-    private router: Router, private r: ActivatedRoute) { }
+    private router: Router, private r: ActivatedRoute, private Push_NotificationService: Push_NotificationService) { }
 
+
+    changeIcon(){
+      if (this.isSilenced == false){
+        this.icon = "far fa-bell-slash";
+        this.isSilenced = true;
+        this.deviceToken = localStorage.getItem("msgToken");
+        console.log(this.deviceToken);
+        this.Push_NotificationService.unsubscribeFromTopic(this.deviceToken, this.confName)
+        .then(res => {
+          console.log("unsubscribed: ");
+          console.log(res);
+        });
+      }
+      else{
+        this.icon = "far fa-bell";
+        this.isSilenced = false;
+        this.deviceToken = localStorage.getItem("msgToken");
+        console.log(this.deviceToken);
+        this.Push_NotificationService.subscribeToTopic(this.deviceToken, this.confName)
+        .then(res => {
+          console.log("subscribed: ");
+          console.log(res);
+        });
+      }
+    }
   ngOnInit() {
     this.r.queryParams
       .subscribe(params => {

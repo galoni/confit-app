@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material';
 import {NewConfProgramComponent} from '../new-conf-program/new-conf-program.component';
 import {NewConfService} from '../services/newConf.service';
 import {VisitorService} from '../services/visitor.service';
+import {ManagerService} from '../services/manager.service';
 
 @Component({
   selector: 'app-visitor-landing',
@@ -22,13 +23,16 @@ export class VisitorLandingComponent implements OnInit {
   confactive: string;
   conf: Conf;
   confs: Conf[];
+  msgToken: string;
+
 
   constructor(private myConfService: myConfService,
               private newConfService: NewConfService,
               private visitorService: VisitorService,
               public dialog: MatDialog,
               private router: Router,
-              private r: ActivatedRoute) { }
+              private r: ActivatedRoute,
+              private managerService: ManagerService) { }
 
   ngOnInit() {
     this.visitor = JSON.parse(localStorage.getItem('currentUser'));
@@ -46,6 +50,12 @@ export class VisitorLandingComponent implements OnInit {
     this.selected = confactive;
     this.newConfService.getConfById(confactive).then((cnf) => {
       this.conf = cnf;
+    });
+    this.msgToken = localStorage.getItem("msgToken");
+    console.log("found token: " + this.msgToken);
+    this.managerService.subscribeToTopic(localStorage.getItem("msgToken"), confactive)
+    .then(res => {
+      console.log(res);
     });
     this.router.navigate(['./MyConference']);
   }
