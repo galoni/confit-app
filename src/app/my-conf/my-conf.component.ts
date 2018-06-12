@@ -1,14 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { Visitor } from "../models/visitor";
-import { myConfService } from "../services/myConf.service";
-import { Push_NotificationService } from '../services/push_notification.service';
-import { NgForm } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Conf } from "../models/conf";
-import { Response, Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
-import 'rxjs/add/operator/map';
-=======
 import { Visitor } from '../models/visitor';
 import { myConfService } from '../services/myConf.service';
 import { NgForm } from '@angular/forms';
@@ -20,7 +10,8 @@ import {MatDialog} from '@angular/material';
 import {NewConfProgramComponent} from '../new-conf-program/new-conf-program.component';
 import {MyConfVisitorComponent} from '../my-conf-visitor/my-conf-visitor.component';
 import {MyConfLectureComponent} from '../my-conf-lecture/my-conf-lecture.component';
->>>>>>> origin/master
+import { Push_NotificationService } from '../services/push_notification.service';
+
 
 @Component({
   selector: 'app-my-conf',
@@ -67,7 +58,7 @@ export class MyConfComponent implements OnInit {
   confName: string;
   panelOpenState = false;
   constructor(private myConfService: myConfService, private http: Http,
-    private router: Router, private r: ActivatedRoute, private Push_NotificationService: Push_NotificationService) { }
+    private router: Router, private r: ActivatedRoute, private Push_NotificationService: Push_NotificationService, private dialog: MatDialog) { }
 
 
     changeIcon(){
