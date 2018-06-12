@@ -10,6 +10,8 @@ import {MatDialog} from '@angular/material';
 import {NewConfProgramComponent} from '../new-conf-program/new-conf-program.component';
 import {MyConfVisitorComponent} from '../my-conf-visitor/my-conf-visitor.component';
 import {MyConfLectureComponent} from '../my-conf-lecture/my-conf-lecture.component';
+import { Push_NotificationService } from '../services/push_notification.service';
+
 
 @Component({
   selector: 'app-my-conf',
@@ -24,6 +26,9 @@ export class MyConfComponent implements OnInit {
   data: any = {};
   conf: Conf;
   filesToUpload: Array<File> = [];
+  icon: string = "far fa-bell";
+  isSilenced: boolean= false;
+  deviceToken: string;
   confList: any =
     [
       {
@@ -53,9 +58,33 @@ export class MyConfComponent implements OnInit {
   confName: string;
   panelOpenState = false;
   constructor(private myConfService: myConfService, private http: Http,
-              private router: Router, private r: ActivatedRoute,
-              public dialog: MatDialog) { }
+    private router: Router, private r: ActivatedRoute, private Push_NotificationService: Push_NotificationService, private dialog: MatDialog) { }
 
+
+    changeIcon(){
+      if (this.isSilenced == false){
+        this.icon = "far fa-bell-slash";
+        this.isSilenced = true;
+        this.deviceToken = localStorage.getItem("msgToken");
+        console.log(this.deviceToken);
+        this.Push_NotificationService.unsubscribeFromTopic(this.deviceToken, this.confName)
+        .then(res => {
+          console.log("unsubscribed: ");
+          console.log(res);
+        });
+      }
+      else{
+        this.icon = "far fa-bell";
+        this.isSilenced = false;
+        this.deviceToken = localStorage.getItem("msgToken");
+        console.log(this.deviceToken);
+        this.Push_NotificationService.subscribeToTopic(this.deviceToken, this.confName)
+        .then(res => {
+          console.log("subscribed: ");
+          console.log(res);
+        });
+      }
+    }
   ngOnInit() {
     this.r.queryParams
       .subscribe(params => {
