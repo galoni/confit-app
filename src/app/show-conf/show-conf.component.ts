@@ -80,7 +80,7 @@ export class ShowConfComponent implements OnInit {
   openDialogSess(): void {
     // console.log('dig conf: ' + JSON.stringify(this.conf));
     let dialogRef = this.dialog.open(EditConfSessionComponent, {
-      width: '830px',
+      width:  '830px',
       data: this.conf
     });
     dialogRef.afterClosed().subscribe(result => {

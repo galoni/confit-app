@@ -147,7 +147,9 @@ import { RateLectureComponent } from './rate-lecture/rate-lecture.component';
     EditConfSessionComponent,
     NewConfProgramComponent,
     ConfStatsComponent,
-    RateLectureComponent
+    RateLectureComponent,
+    MyConfVisitorComponent,
+    MyConfLectureComponent
   ],
   providers: [
     NewConfService,

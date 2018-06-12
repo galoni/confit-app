@@ -9,3 +9,10 @@
 .container{
   width: 78em;
 }
+.mat-list-item:hover{
+  border: solid;
+}
+.activeConf{
+  background-color: #fec63d;
+  font-weight: 500;
+}
