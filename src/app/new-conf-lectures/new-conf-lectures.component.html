@@ -10,9 +10,14 @@
               <p>
                 <mat-form-field>
                   <mat-select [(ngModel)]="selectedLecture" name="lecture" placeholder="Choose Lecture" >
-                    <mat-option *ngFor="let lct of lectures; let i=index" [value]="lct">
-                      {{lct.name}}
-                    </mat-option>
+                    <mat-optgroup *ngFor="let group of selectData" [label]="group.topic">
+                      <mat-option *ngFor="let lct of group.lectures ; let i=index" [value]="lct">
+                        {{lct.name}}
+                      </mat-option>
+                    </mat-optgroup>
+                    <!--<mat-option *ngFor="let lct of lectures; let i=index" [value]="lct">-->
+                      <!--{{lct.name}}-->
+                    <!--</mat-option>-->
                   </mat-select>
                 </mat-form-field>
               </p>

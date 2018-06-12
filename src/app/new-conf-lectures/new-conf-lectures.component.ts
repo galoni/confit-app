@@ -18,6 +18,7 @@ export class NewConfLecturesComponent implements OnInit {
   selectedLecture: Lecture = null;
   confLectures: Lecture[]= [];
   data: any= {};
+  selectData: any= [];
   confId: string;
   confTopics: string[]= [];
   newConf: Conf;
@@ -41,7 +42,11 @@ export class NewConfLecturesComponent implements OnInit {
       this.topics = [];
       for (let i = 0; i < this.newConf.main_topics.length; i++){
         this.topics.push(this.newConf.main_topics[i]);
-        // console.log("topic: " + this.topics);
+        const lctObj: any = {};
+        lctObj.topic = this.newConf.main_topics[i];
+        lctObj.lectures = [];
+        this.selectData.push(lctObj);
+        //console.log("topic: " + this.selectData);
       }
     }
     console.log('topic: ' + this.topics);
@@ -62,6 +67,10 @@ export class NewConfLecturesComponent implements OnInit {
       this.newConfService.getAllLecturesByTopic(this.topics).then((lectures) => {
         console.log(lectures);
         this.lectures = lectures;
+        for (let tIndex = 0; tIndex < this.topics.length; tIndex++) {// loop over topic
+          this.selectData[tIndex].lectures = this.lectures.filter(lct => lct.topic === this.topics[tIndex]);
+        }
+        console.log('select data: ' + JSON.stringify(this.selectData));
       });
     }
   }
