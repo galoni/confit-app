@@ -42,6 +42,9 @@ export class PieChartDataComponent implements OnInit {
         this.learn=this.visitor.confs[i].learn_percent;
         this.explore=this.visitor.confs[i].explore_percent;
         this.isFound=true;
+        this.learn=Math.floor(this.learn*100);
+        this.connection=Math.floor(this.connection*100);
+        this.explore=Math.floor(this.explore*100);
         this.pieChartData=[this.learn,this.connection,this.explore];
 
       }
