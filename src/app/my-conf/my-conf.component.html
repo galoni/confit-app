@@ -20,7 +20,8 @@
         <div class="addFriends">
           <i (click)="gotoFindFriends()" class="fas fa-user-plus"></i>
           <i (click)="scanQr()" class="fas fa-qrcode"></i>
-          <i class="far fa-bell-slash"></i>
+          <i class={{icon}} (click)="changeIcon()"></i>
+          <!-- <md-icon (click)="changeIcon()">{{icon}}</md-icon> -->
           <i (click)="logout()" class="fas fa-sign-out-alt"></i>
         </div>
         <hr style="width:100%;margin: 10px;">
