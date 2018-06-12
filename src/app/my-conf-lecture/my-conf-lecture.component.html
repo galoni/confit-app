@@ -1,26 +1,21 @@
-<div class="container">
-  <mat-card *ngIf="!inConf">
-    <p> This lecture is not in your Path!<br> Would you like us to build a new Path?</p>
-    <button a href="#" (click)="buildPath()">yes</button>
-  </mat-card>
-  <div *ngIf="lecture">
-    <mat-card>
-      <mat-card-title>
-        {{lecture.name}}
-      </mat-card-title>
-      <mat-card-subtitle>
-        Lecture By: {{lecture.lecturer_name}}
-      </mat-card-subtitle>
-      <mat-card-subtitle>
-        Topic: {{lecture.topic}}
-      </mat-card-subtitle>
-      <mat-card-content>
-        {{lecture.description}}
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button (click)="openDialogRate()">RATE US</button>
-      </mat-card-actions>
-    </mat-card>
-
-  </div>
-</div>
+<mat-card *ngIf="!inConf">
+<p> This lecture is not in your Path!<br> Would you like us to build a new Path?</p>
+<button a href="#" (click)="buildPath()">yes</button>
+</mat-card>
+<mat-card *ngIf="lecture">
+  <mat-card-title>
+    {{lecture.name}}
+  </mat-card-title>
+  <mat-card-subtitle>
+    Lecture By: {{lecture.lecturer_name}}
+  </mat-card-subtitle>
+  <mat-card-subtitle>
+    Topic: {{lecture.topic}}
+  </mat-card-subtitle>
+  <mat-card-content>
+    {{lecture.description}}
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="openDialogRate()">RATE US</button>
+  </mat-card-actions>
+</mat-card>

@@ -24,7 +24,7 @@ export class MyConfVisitorComponent implements OnInit {
   // @Input() visitorSonId: string;
   constructor(private myConfService: myConfService,
               private router: Router, private r: ActivatedRoute,
-              public dialogRef: MatDialogRef<EditConfSessionComponent>,
+              public dialogRef: MatDialogRef<MyConfVisitorComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
