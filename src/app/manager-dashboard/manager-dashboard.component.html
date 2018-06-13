@@ -3,22 +3,10 @@
   <mat-card>
     <mat-card-title>Dashboard</mat-card-title>
     <mat-card-content>
-      <mat-grid-list cols="4" rowHeight="600px">
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-list class="confList">
-            <h3 mat-subheader>Your Confs</h3>
-            <mat-list-item *ngFor="let conf of confs" (click)="showInfo(conf)">
-              <mat-icon mat-list-icon>event available</mat-icon>
-              <h4 mat-line>{{conf.name}}</h4>
-              <p mat-line> {{conf.start_date}} </p>
-              <p mat-line> {{conf.type}} </p>
-            </mat-list-item>
-          </mat-list>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="3" [rowspan]="1">
-          <app-show-conf class="showConf" *ngIf="conf != null" (onConfRemove)="confRemoved($event)"></app-show-conf>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <h3 mat-subheader>Your Confs</h3>
+      <mat-card *ngFor="let cnf of confs">
+        <app-show-conf [conf]="cnf"></app-show-conf>
+      </mat-card>
     </mat-card-content>
   </mat-card>
 </div>

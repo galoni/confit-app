@@ -4,17 +4,40 @@
     <mat-card-title class="title-dash">{{conf.name}}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <h5>Date: {{conf.start_date}}</h5>
-    <h5>Type: {{conf.type}}</h5>
-    <h5>Location:: {{conf.location}}</h5>
-    <h5 *ngIf="conf.visitors != null">Registered Visitors: {{conf.visitors.length}}</h5>
+    <div style="display: flex;flex-direction: row;flex-align: center;">
+      <div style="width:30%;">
+        <h4>Date: {{conf.start_date}}</h4>
+        <h4>Type: {{conf.type}}</h4>
+        <h4>Location:: {{conf.location}}</h4>
+        <h4 *ngIf="conf.visitors != null">Registered Visitors: {{conf.visitors.length}}</h4>
+      </div>
+      <div>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Choose Conf Logo:
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
+            <button mat-raised-button color="primary" (click)="upload()">
+              <i class="glyphicon glyphicon-open-file"></i>Upload
+            </button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div [ngStyle]="getMyStyles()"  class="logoConf">
+        <!--<img mat-card-image src="http://logo-storage.s3.amazonaws.com/{{conf.logo}}">-->
+      </div>
+    </div>
+
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="openDialogSess()">Edit Session</button>
-    <button mat-raised-button (click)="openDialogProg()">Program</button>
-    <button mat-raised-button (click)="openDialogStats()">Stats</button>
-    <a mat-raised-button target="_blank" routerLink="/landingPage">landing-page</a>
-    <button mat-raised-button (click)="removeConf()">Delete</button>
+    <button mat-raised-button color="primary" (click)="openDialogSess()">Edit Session</button>
+    <button mat-raised-button color="primary" (click)="openDialogProg()">Program</button>
+    <button mat-raised-button color="accent" (click)="openDialogStats()">Stats</button>
+    <a mat-raised-button color="accent" target="_blank" (click)="landClick()">landing-page</a>
+    <button mat-raised-button color="warn" (click)="removeConf()">Delete</button>
   </mat-card-actions>
 </mat-card>
 <!--<app-new-conf-program-show [fConf]="conf" *ngIf="avialble != true"></app-new-conf-program-show>-->
