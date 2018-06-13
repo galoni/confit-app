@@ -20,12 +20,13 @@
 .navbar-nav{
   list-style-type: none;
   float:none;
-  margin:7.5px -15px;
+  margin:16.5px -15px;
 }
 .nav-item{
   width:15%;
+  margin-right:5px;
 }
 
-.navbar-nav[_ngcontent-qns-5]{
+.navbar-nav{
   float:none!important;
 }
