@@ -24,6 +24,7 @@ export class MyConfComponent implements OnInit {
   visitorId: string;
   confId: string;
   data: any = {};
+  data_matching: any ={};
   conf: Conf;
   filesToUpload: Array<File> = [];
   icon: string = "far fa-bell";
@@ -49,6 +50,7 @@ export class MyConfComponent implements OnInit {
     type: '',
     id: ''
   };
+  matchingOpenState=false;
   wrongConf = false;
   getmsg: string;
   files: FileList;
@@ -57,6 +59,9 @@ export class MyConfComponent implements OnInit {
   fullnamevisitor: string;
   confName: string;
   panelOpenState = false;
+  visitors:any=[];
+  visitors_4:any=[];
+  currentState:number;
   constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute, private Push_NotificationService: Push_NotificationService, private dialog: MatDialog) { }
 
@@ -111,6 +116,13 @@ export class MyConfComponent implements OnInit {
     console.log('fullnamevisitor=' + this.fullnamevisitor);
 
     this.visitorId = this.visitor._id;
+    if(!localStorage.getItem('currentState')){
+      localStorage.setItem('currentState','1');
+      this.currentState=1;
+    }
+    else{
+      this.currentState=parseInt(localStorage.getItem('currentState'));
+    }
     this.confId = localStorage.getItem('confId');
     const currentConf =   this.visitor.confs.find(conf => conf.confId === this.confId);
     console.log(JSON.stringify(currentConf));
@@ -143,7 +155,7 @@ export class MyConfComponent implements OnInit {
       this.myConfService.setConfId(this.confId);
       if (this.qrcode.type == 'visitor') {
         this.visitorSonId = this.qrcode.id;
-        console.log('visitorSonId:  ' + this.visitorSonId);
+        console.log('visitorSonId: ' + this.visitorSonId);
       }
       this.myConfService.getConfById(this.confId)
         .then(conf => {
@@ -176,6 +188,21 @@ export class MyConfComponent implements OnInit {
         });
 
     }
+
+    this.data_matching.visitorid=this.visitorId;
+    this.data_matching.confid=this.confId;
+    this.myConfService.matching(this.data_matching,(matchingPeople)=>{
+    if(matchingPeople==='error') console.log("error")
+    else {
+      this.visitors=matchingPeople;
+      this.visitors.sort(function(obj1, obj2) {
+      return obj2.matching - obj1.matching;
+
+    });
+    this.visitors=this.visitors.slice(0,5);
+       console.log("success")
+    }
+    });
 
   }
 
@@ -252,8 +279,8 @@ export class MyConfComponent implements OnInit {
 
     }
     else if (selectedValue.type === 'conference') {
-      this.router.navigate(['./'], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id } });
       localStorage.setItem('confId', this.qrcode.id);
+      this.router.navigate(['./'], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id } });
     }
     else if (selectedValue.type === 'lecture') {
       this.router.navigate(['./'], { relativeTo: this.r, queryParams: { data: selectedValue.name, type: 'lecture', id: selectedValue._id } });
@@ -297,5 +324,13 @@ export class MyConfComponent implements OnInit {
         id: ''
       };
     });
+  }
+
+  updateState(newstate){
+    this.currentState=newstate;
+    localStorage.setItem('currentState',newstate);
+    if(newstate===2){
+      this.matchingOpenState=true
+    }
   }
 }

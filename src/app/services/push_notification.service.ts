@@ -8,8 +8,8 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 export class Push_NotificationService {
   headers = new Headers({ 'content-type': 'application/json' });
   options = new RequestOptions({ headers: this.headers });
-  // private base_url: String = 'https://confit-backend.herokuapp.com/push';
-  private base_url: String = 'http://localhost:3000/push';
+  private base_url: String = 'https://confit-backend.herokuapp.com/push';
+  // private base_url: String = 'http://localhost:3000/push';
   constructor(private http: Http,  defaultOptions: RequestOptions) { }
 
 

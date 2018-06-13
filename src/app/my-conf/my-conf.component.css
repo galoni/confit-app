@@ -19,6 +19,44 @@
    display:flex;flex-direction:column;align-self:center;align-items:center;
 }
 
+.data_matching{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+.imgMatching{
+  margin-right:10px;
+  border-radius: 50%;
+}
+
+.icon{
+  margin-right:10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerAccordion{
+  width:100%;
+}
+.linkedin{
+  font-size:30px;
+  margin-left:10px;
+}
+.headerAccordion .titleA{
+  display: flex;
+  justify-content: flex-flex-start;
+  align-items: center;
+}
+.ngforPeople{
+  display: flex;
+  justify-content: flex-flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
 .button_confPage{
   display: flex;
   flex-direction: column;
@@ -59,7 +97,7 @@
   background-size: cover;
 }
 .accordion{
-  min-width: 450px;
+  min-width: 550px;
 }
 
 .container{
@@ -97,8 +135,54 @@ input[type=file] {
   display:flex;
   justify-content: center;
 }
+
+ul.menufavth-basic {
+    border: 1px solid #e7e7e7;
+    list-style-type: none;
+    padding-left: 0;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    padding:10px;
+    position: absolute;
+    top: 190px;
+    left: 80px;
+}
+ul.menufavth-basic li {
+    line-height: 1.6em;
+    cursor: pointer;
+}
+.item-101 span i{
+  margin-right:5px;
+  font-size:20px;
+}
+
+#learn:hover{
+  color:rgb(155, 237, 196);
+}
+
+#learn.active{
+  color:rgb(155, 237, 196);
+}
+
+#connect:hover{
+  color:rgba(240, 111, 175, 0.3);
+}
+#connect.active{
+    color:rgba(240, 111, 175, 0.3);
+}
+#explore:hover{
+  color:rgba(111, 175, 240, 0.57);
+}
+#explore.active{
+  color:rgba(111, 175, 240, 0.57);
+}
 @media screen and (max-width: 768px) {
   .accordion{
-    min-width: 300px;
+    min-width: 350px;
+  }
+  ul.menufavth-basic{
+    position: absolute;
+    top: 190px;
+    left: 13px;
   }
 }
