@@ -64,6 +64,10 @@ export class MyConfLectureComponent implements OnInit {
             this.myConfService.buildPath(this.visitor._id, this.confId)
               .then((path) => {
                 console.log(path);
+                this.myConfService.getVisitorById(this.visitor._id).then((visitor) => {
+                  localStorage.setItem('currentUser', JSON.stringify(visitor));
+                  console.log("currentUser changed");
+                });
                 this.alertService.success("New Path Built! :)");
               })
               .catch(err => {
