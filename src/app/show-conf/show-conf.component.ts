@@ -12,6 +12,7 @@ import {EditConfSessionComponent} from '../edit-conf-session/edit-conf-session.c
 import {NewConfProgramComponent} from '../new-conf-program/new-conf-program.component';
 import {ConfStatsComponent} from '../conf-stats/conf-stats.component';
 import {LandingService} from '../services/landing.service';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'app-show-conf',
@@ -24,46 +25,51 @@ export class ShowConfComponent implements OnInit {
   confSession: ConfSession[];
   lectures: Lecture[] = [];
   data: any = [];
-  avialble= true;
-  conf: Conf;
+  avialble = true;
+  @Input() conf: Conf;
   subscription: Subscription;
   selectedConf: Conf;
-  @Input() fConf: Conf;
   confSessions: ConfSession[][] = [];
+  filesToUpload: Array<File> = [];
   @Output() onConfRemove = new EventEmitter<Conf>();
 
   constructor(private newConfService: NewConfService,
               private managerService: ManagerService,
               private landingService: LandingService,
               public dialog: MatDialog,
-              private router: Router, private r: ActivatedRoute) { }
+              private http: Http,
+              private router: Router, private r: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    this.managerId = '5ade1e1ef1c8043984217fe8';
-    this.subscription = this.managerService.selectedConf$
-      .subscribe(conf => {
-        this.conf = <Conf>this.deepCopy(conf);
-        // console.log('sub conf: ' + JSON.stringify(this.conf.program));
-      });
-    // console.log('new conf: ' + JSON.stringify(this.conf));
-    // this.confId = this.selectedConf._id;
-    // this.conf = <Conf>this.deepCopy(this.fConf);
-    if (!this.conf) {
-      this.confId = '5aeb7d196226470004135c4c';
-      this.newConfService.getConfById(this.confId).then((conf) => {
-        this.conf = conf;
-        // console.log('the conf2: ' + JSON.stringify(this.conf));
-        this.initData(conf);
-        // this.newConfService.newConf.emit(this.conf);
-      });
-    }
-    else {
-      // console.log('the conf: ' + JSON.stringify(this.conf));
-      this.initData(this.conf);
-      this.landingService.setSelectedConf(this.conf);
-    }
-    console.log(this.confId);
+    console.log('conf: ' + this.conf);
+    this.initData(this.conf);
+    // this.managerId = '5ade1e1ef1c8043984217fe8';
+    // this.subscription = this.managerService.selectedConf$
+    //   .subscribe(conf => {
+    //     this.conf = <Conf>this.deepCopy(conf);
+    //     // console.log('sub conf: ' + JSON.stringify(this.conf.program));
+    //   });
+    // // console.log('new conf: ' + JSON.stringify(this.conf));
+    // // this.confId = this.selectedConf._id;
+    // // this.conf = <Conf>this.deepCopy(this.fConf);
+    // if (!this.conf) {
+    //   this.confId = '5aeb7d196226470004135c4c';
+    //   this.newConfService.getConfById(this.confId).then((conf) => {
+    //     this.conf = conf;
+    //     // console.log('the conf2: ' + JSON.stringify(this.conf));
+    //     this.initData(conf);
+    //     // this.newConfService.newConf.emit(this.conf);
+    //   });
+    // }
+    // else {
+    //   // console.log('the conf: ' + JSON.stringify(this.conf));
+    //   this.initData(this.conf);
+    //   this.landingService.setSelectedConf(this.conf);
+    // }
+    // console.log(this.confId);
   }
+
   initData(conf) {
     for (let i = 0; i < conf.duration; i++) {
       this.data[i] = [];
@@ -77,10 +83,11 @@ export class ShowConfComponent implements OnInit {
     this.conf.program = this.data;
     this.avialble = false;
   }
+
   openDialogSess(): void {
     // console.log('dig conf: ' + JSON.stringify(this.conf));
     let dialogRef = this.dialog.open(EditConfSessionComponent, {
-      width:  '830px',
+      width: '830px',
       data: this.conf
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -88,6 +95,7 @@ export class ShowConfComponent implements OnInit {
       // this.confSession = result;
     });
   }
+
   openDialogProg(): void {
     // console.log('dig conf: ' + JSON.stringify(this.conf));
     let dialogRef = this.dialog.open(NewConfProgramComponent, {
@@ -99,6 +107,7 @@ export class ShowConfComponent implements OnInit {
       // this.conf = result;
     });
   }
+
   openDialogStats(): void {
     // console.log('dig conf: ' + JSON.stringify(this.conf));
     let dialogRef = this.dialog.open(ConfStatsComponent, {
@@ -110,6 +119,7 @@ export class ShowConfComponent implements OnInit {
       // this.conf = result;
     });
   }
+
   removeConf() {
     this.managerService.removeConf(this.managerId, this.conf._id).then((conf) => {
       console.log('delete: ' + JSON.stringify(this.conf));
@@ -117,37 +127,42 @@ export class ShowConfComponent implements OnInit {
       this.conf = null;
     });
   }
-  deepCopy(obj) {
-    let copy;
 
-    // Handle the 3 simple types, and null or undefined
-    if (null == obj || 'object' !== typeof obj) { return obj; }
+  landClick() {
+    localStorage.setItem('showConf', JSON.stringify(this.conf));
+    this.router.navigate(['./landingPage']);
+  }
 
-    // Handle Date
-    if (obj instanceof Date) {
-      copy = new Date();
-      copy.setTime(obj.getTime());
-      return copy;
-    }
+  getMyStyles() {
+    let myStyles = {
+      'background-image': 'url(\'http://logo-storage.s3.amazonaws.com/' + this.conf.logo + '\')',
+      'background-size': 'cover',
+      'background-repeat': 'no-repeat'
+    };
+    return myStyles;
+  }
 
-    // Handle Array
-    if (obj instanceof Array) {
-      copy = [];
-      for (let i = 0, len = obj.length; i < len; i++) {
-        copy[i] = this.deepCopy(obj[i]);
-      }
-      return copy;
-    }
+  upload() {
+    let confId = this.conf._id;
+    const formData: any = new FormData();
+    const files: Array<File> = this.filesToUpload;
+    console.log(files);
+    formData.append("data", files[0], files[0]['name']);
+    formData.append('type', 'logo');
+    formData.append('id', confId);
+    console.log('form data variable :   ' + formData.toString());
+    this.http.post('https://confit-backend.herokuapp.com/qrcodeApi/upload_image', formData)
+      .map(files => files.json())
+      .subscribe(files => {
+        console.log('files', files);
+        // this.visitor.profilePic = files.status;
+        // console.log('visitor', this.visitor.profilePic);
+        // localStorage.setItem('currentUser', JSON.stringify(this.visitor));
+      });
+  }
 
-    // Handle Object
-    if (obj instanceof Object) {
-      copy = {};
-      for (const attr in obj) {
-        if (obj.hasOwnProperty(attr)) copy[attr] = this.deepCopy(obj[attr]);
-      }
-      return copy;
-    }
-
-    throw new Error('Unable to copy obj! Its type isn\'t supported.');
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+    //this.product.photo = fileInput.target.files[0]['name'];
   }
 }

@@ -8,3 +8,10 @@
 .title-dash{
   font-size: 27px;
 }
+.logoConf{
+  width: 50%;
+  height: 150px;
+}
+mat-expansion-panel{
+  width: 70%;
+}
