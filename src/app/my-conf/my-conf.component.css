@@ -97,7 +97,7 @@
   background-size: cover;
 }
 .accordion{
-  min-width: 450px;
+  min-width: 550px;
 }
 
 .container{
@@ -137,6 +137,6 @@ input[type=file] {
 }
 @media screen and (max-width: 768px) {
   .accordion{
-    min-width: 300px;
+    min-width: 350px;
   }
 }
