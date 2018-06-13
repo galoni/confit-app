@@ -44,16 +44,6 @@
         </li>
       </ul>
       <app-pie-chart-data></app-pie-chart-data>
-      <mat-form-field>
-        <mat-select placeholder="Path/Lecture/Visitor">
-          <mat-option>-- None --</mat-option>
-          <mat-optgroup *ngFor="let group of confList" [label]="group.name">
-            <mat-option *ngFor="let item of group.item" [value]="item.value" (click)="changeUrl(item)">
-              {{ item.viewValue }}
-            </mat-option>
-          </mat-optgroup>
-        </mat-select>
-      </mat-form-field>
       <mat-accordion class="accordion">
         <mat-expansion-panel class="center_element" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header class="headerAccordion">
@@ -88,6 +78,23 @@
             </div>
             <hr style="width:100%;">
           </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="center_element" (opened)="matchingOpenState = true" (closed)="matchingOpenState = false">
+        <mat-expansion-panel-header class="headerAccordion">
+          <mat-panel-title class="titleA">
+            <i class="icon far fa-hand-point-up"></i>Scan manually
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <mat-select placeholder="Path/Lecture/Visitor">
+            <mat-option>-- None --</mat-option>
+            <mat-optgroup *ngFor="let group of confList" [label]="group.name">
+              <mat-option *ngFor="let item of group.item" [value]="item.value" (click)="changeUrl(item)">
+                {{ item.viewValue }}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
         </mat-expansion-panel>
 
       </mat-accordion>
