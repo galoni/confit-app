@@ -38,25 +38,20 @@ export class MyConfPathComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.r.queryParams
-      .subscribe(params => {
-        if (params.type && params.id) {
-          // this.qrcode.type = params.type;
-          this.confId = params.id;
-          // this.qrcode.data = params.data;
-        }
-      });
-    // this.confId = localStorage.getItem('confId');
+    // this.r.queryParams
+    //   .subscribe(params => {
+    //     if (params.type && params.id) {
+    //       // this.qrcode.type = params.type;
+    //       this.confId = params.id;
+    //       // this.qrcode.data = params.data;
+    //     }
+    //   });
+    this.confId = localStorage.getItem('confId');
     console.log("this.confId in path=" + this.confId);
     this.visitorId = localStorage.getItem('visitorId');
     // this.myConfService.visitorSelected.subscribe((visitor) => {
-    this.myConfService.getVisitorById(this.visitorId).then((visitor) => {
+    this.visitorSon = JSON.parse(localStorage.getItem('currentUser'));
       console.log("inside path get visitor");
-
-      this.visitorSon = visitor;
-      if (this.visitorSon == null) {
-        return;
-      }
       console.log("kaka" + this.visitorSon);
 
       this.program = this.visitorSon.confs.find(x => x.confId == this.confId);
@@ -83,7 +78,7 @@ export class MyConfPathComponent implements OnInit {
       }
       console.log("data: " + JSON.stringify(this.data[0]));
 
-    })
+
 
   }
   lctPressed(event, lct) {
