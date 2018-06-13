@@ -1,13 +1,14 @@
 <mat-spinner *ngIf="loadedVisitor"></mat-spinner>
 <div *ngIf="!loadedVisitor">
-  <div >
+  <div class="centerDiv" >
     <h1>Meet {{this.visitorSon.name.first_name}} {{this.visitorSon.name.last_name}}</h1>
   </div>
-  <div>
+  <div class="centerDiv">
     <img src="http://user-profile-storage.s3.amazonaws.com/{{this.visitorSon.profilePic}}" alt="user face" height="80" width="80">
   </div>
   <div class="percent_data">
     <h4>Percent matching with : {{this.visitorSon.name.first_name}}</h4>
-    <h4>Percent : {{this.percent  | number}}%</h4>
+    <h4> {{this.percent  | number}}% Match</h4>
+    <a class="linkedin" target="_blank" href="{{this.visitorSon.linkedin}}"><i class="fab fa-linkedin"></i></a>
   </div>
 </div>
