@@ -18,7 +18,8 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.LandingService.selectedConf$
       .subscribe(conf => this.selectedConf = conf);
-      console.log(this.selectedConf );
+    console.log(this.selectedConf );
+    this.selectedConf = JSON.parse(localStorage.getItem('showConf'));
   }
 
 }

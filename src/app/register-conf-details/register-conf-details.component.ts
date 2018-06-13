@@ -50,6 +50,7 @@ visitor:Visitor;
       else{
         this.RegToConfService.setRegConf(this.selectedConf);
         this.LandingService.setSelectedConf(this.selectedConf);
+        localStorage.setItem('showConf', JSON.stringify(this.selectedConf));
         console.log("success")
       }
     });
