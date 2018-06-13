@@ -91,9 +91,15 @@ export class NewConfLecturesComponent implements OnInit {
       this.confLectures.push(this.lectures[i]);
     }
     this.lectures = [];
+    for (let tIndex = 0; tIndex < this.topics.length; tIndex++) {// loop over topic
+      this.selectData[tIndex].lectures = [];
+    }
     this.changeDetectorRefs.detectChanges();
   }
   removeAll() {
+    for (let tIndex = 0; tIndex < this.topics.length; tIndex++) {// loop over topic
+      this.selectData[tIndex].lectures = this.confLectures.filter(lct => lct.topic === this.topics[tIndex]);
+    }
     for (let i = 0; i < this.confLectures.length; i++){
       this.lectures.push(this.confLectures[i]);
     }
