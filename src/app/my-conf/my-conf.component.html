@@ -44,35 +44,42 @@
         </mat-select>
       </mat-form-field>
       <mat-accordion class="accordion">
-      <mat-expansion-panel class="center_element" (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="headerAccordion">
-          <mat-panel-title  class="titleA">
-            <i class="icon fas fa-qrcode"></i>Show My QrCode
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}">
-      </mat-expansion-panel>
-      <mat-expansion-panel class="center_element" (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
-        <mat-expansion-panel-header class="headerAccordion">
-          <mat-panel-title class="titleA">
-            <i class="icon fas fa-users"></i>People you my interest
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div *ngFor="let visitor of this.visitors">
-          <div *ngIf="visitor._id !=visitorId" class="mathing-people">
-            <div class="data_matching">
+        <mat-expansion-panel class="center_element" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="headerAccordion">
+            <mat-panel-title class="titleA">
+              <i class="icon far fa-calendar-alt"></i>Show My Path
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-my-conf-path></app-my-conf-path>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="center_element" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="headerAccordion">
+            <mat-panel-title class="titleA">
+              <i class="icon fas fa-qrcode"></i>Show My QrCode
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}">
+        </mat-expansion-panel>
+        <mat-expansion-panel class="center_element" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header class="headerAccordion">
+            <mat-panel-title class="titleA">
+              <i class="icon fas fa-users"></i>People you my interest
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div *ngFor="let visitor of this.visitors">
+            <div *ngIf="visitor._id !=visitorId" class="mathing-people">
+              <div class="data_matching">
                 <div><img class="imgMatching" src="http://user-profile-storage.s3.amazonaws.com/{{this.visitor.profilePic}}" alt="user face" height="50" width="50"></div>
                 <div>{{visitor.visitorfirstname}} {{visitor.visitorlastname}}</div>
                 <span [ngStyle]="{'font-weight':visitor.matching > '80' ? 'bold' : 'normal' }">&nbsp;{{visitor.matching}}% Match </span>
                 <a class="linkedin" target="_blank" href="{{visitor.linkedin}}"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
+            <hr style="width:100%;">
           </div>
-          <hr style="width:100%;">
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
+        </mat-expansion-panel>
+
+      </mat-accordion>
 
       <!--<span> Your QrCode : </span>
       <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}">-->
