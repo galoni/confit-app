@@ -1,6 +1,14 @@
 <mat-card *ngIf="!inConf">
-<p> This lecture is not in your Path!<br> Would you like us to build a new Path?</p>
-<button a href="#" (click)="buildPath()">yes</button>
+  <app-alerts></app-alerts>
+  <mat-card-title>
+    This lecture is not in your Path!
+  </mat-card-title>
+  <mat-card-subtitle>
+    Would you like us to build a new Path?
+  </mat-card-subtitle>
+  <mat-card-actions>
+    <button mat-raised-button (click)="buildPath()">YES</button>
+  </mat-card-actions>
 </mat-card>
 <mat-card *ngIf="lecture">
   <mat-card-title>
