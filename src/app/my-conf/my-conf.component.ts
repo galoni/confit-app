@@ -146,7 +146,7 @@ export class MyConfComponent implements OnInit {
       this.myConfService.setConfId(this.confId);
       if (this.qrcode.type == 'visitor') {
         this.visitorSonId = this.qrcode.id;
-        console.log('visitorSonId:  ' + this.visitorSonId);
+        console.log('visitorSonId: ' + this.visitorSonId);
       }
       this.myConfService.getConfById(this.confId)
         .then(conf => {
@@ -270,8 +270,8 @@ export class MyConfComponent implements OnInit {
 
     }
     else if (selectedValue.type === 'conference') {
-      this.router.navigate(['./'], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id } });
       localStorage.setItem('confId', this.qrcode.id);
+      this.router.navigate(['./'], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id } });
     }
     else if (selectedValue.type === 'lecture') {
       this.router.navigate(['./'], { relativeTo: this.r, queryParams: { data: selectedValue.name, type: 'lecture', id: selectedValue._id } });
