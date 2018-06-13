@@ -21,7 +21,7 @@ export class MyConfLectureComponent implements OnInit {
   visitor: Visitor;
   lecture: Lecture;
   loadedLecture = true;
-  confId: string = localStorage.getItem('confId');
+  confId: string;
   inConf: boolean=false;
   constructor(private myConfService: myConfService,
               public dialog: MatDialog,
