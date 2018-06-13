@@ -47,7 +47,11 @@
 .addFriends i:hover{
   color:#fec63d;border: 1px solid #fec63d;
 }
-
+.addFriends i{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 .cover{
   height: 180px;
   width: 100%;
