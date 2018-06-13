@@ -24,6 +24,7 @@ export class MyConfComponent implements OnInit {
   visitorId: string;
   confId: string;
   data: any = {};
+  data_matching: any ={};
   conf: Conf;
   filesToUpload: Array<File> = [];
   icon: string = "far fa-bell";
@@ -57,6 +58,8 @@ export class MyConfComponent implements OnInit {
   fullnamevisitor: string;
   confName: string;
   panelOpenState = false;
+  visitors:any=[];
+  visitors_4:any=[];
   constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute, private Push_NotificationService: Push_NotificationService, private dialog: MatDialog) { }
 
@@ -176,6 +179,21 @@ export class MyConfComponent implements OnInit {
         });
 
     }
+
+    this.data_matching.visitorid=this.visitorId;
+    this.data_matching.confid=this.confId;
+    this.myConfService.matching(this.data_matching,(matchingPeople)=>{
+    if(matchingPeople==='error') console.log("error")
+    else {
+      this.visitors=matchingPeople;
+      this.visitors.sort(function(obj1, obj2) {
+      return obj2.matching - obj1.matching;
+
+    });
+    this.visitors=this.visitors.slice(0,5);
+       console.log("success")
+    }
+    });
 
   }
 
