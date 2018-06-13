@@ -5,7 +5,7 @@
       {{sess.session.time}}:00
     </p>
     <div *ngFor="let lct of sess.session.lectures">
-      <button class="btn btn-block" mat-raised-button matTooltip="{{lct.description}}" (click)="lctPressed($event, lct)">
+      <button [ngStyle]="setMyStyles(sess.elc_mode)" class="btn btn-block" mat-raised-button matTooltip="{{lct.description}}" (click)="lctPressed($event, lct)">
 {{lct.name}}
 </button>
     </div>

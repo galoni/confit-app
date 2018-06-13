@@ -33,10 +33,6 @@ export class MyConfComponent implements OnInit {
   confList: any =
     [
       {
-        name: 'My Path',
-        item: []
-      },
-      {
         name: 'Lecture',
         item: []
       },
@@ -117,7 +113,7 @@ export class MyConfComponent implements OnInit {
 
     this.visitorId = this.visitor._id;
     if(!localStorage.getItem('currentState')){
-      localStorage.setItem('currentState','1');
+      this.updateState(1);
       this.currentState=1;
     }
     else{
@@ -132,6 +128,10 @@ export class MyConfComponent implements OnInit {
       console.log(this.visitor);
       if (this.qrcode.type != '') {
         if (this.qrcode.type === 'lecture') {
+          this.updateState(1);
+          if(this.isSilenced == false){
+            this.changeIcon();
+          }
           this.myConfService.setQRCode_lecture(this.qrcode);
         }
         else if (this.qrcode.type === 'visitor') {
@@ -161,22 +161,22 @@ export class MyConfComponent implements OnInit {
         .then(conf => {
           this.conf = conf;
           // { value: 'squirtle-3', viewValue: 'Squirtle' },
-          this.confList[0].item.push({
-            _id: this.conf._id,
-            viewValue: this.conf.name,
-            type: 'conference'
-
-          });
-          // conf.viewValue = this.conf.name;
+          // this.confList[0].item.push({
+          //   _id: this.conf._id,
+          //   viewValue: this.conf.name,
+          //   type: 'conference'
+          //
           // });
-          this.confList[0].viewValue = this.conf.name;
-          this.confList[1].item = this.conf.lectures;
-          this.confList[1].item.forEach(lct => {
+          // // conf.viewValue = this.conf.name;
+          // // });
+          // this.confList[0].viewValue = this.conf.name;
+          this.confList[0].item = this.conf.lectures;
+          this.confList[0].item.forEach(lct => {
             lct.viewValue = lct.name;
             lct.type = 'lecture';
           });
-          this.confList[2].item = this.conf.visitors;
-          this.confList[2].item.forEach(visitor => {
+          this.confList[1].item = this.conf.visitors;
+          this.confList[1].item.forEach(visitor => {
             const visitorfirstname = visitor.visitorname.first_name;
             const visitorlastname = visitor.visitorname.last_name;
             const fullname = visitorfirstname + ' ' + visitorlastname;
@@ -223,6 +223,10 @@ export class MyConfComponent implements OnInit {
       }
       if (this.qrcode.type === 'lecture') {
         console.log('inside lecture qrcode');
+        this.updateState(1);
+        if(this.isSilenced == false){
+          this.changeIcon();
+        }
         console.log('visitor=' + JSON.stringify(this.visitor));
         this.myConfService.setVisitor(this.visitor);
         this.myConfService.setQRCode_lecture(this.qrcode);
@@ -283,6 +287,10 @@ export class MyConfComponent implements OnInit {
       this.router.navigate(['./'], { relativeTo: this.r, queryParams: { data: selectedValue.viewValue, type: 'conference', id: selectedValue._id } });
     }
     else if (selectedValue.type === 'lecture') {
+      this.updateState(1);
+      if(this.isSilenced == false){
+        this.changeIcon();
+      }
       this.router.navigate(['./'], { relativeTo: this.r, queryParams: { data: selectedValue.name, type: 'lecture', id: selectedValue._id } });
       this.myConfService.setVisitor(this.visitor);
       this.myConfService.setQRCode_lecture(this.qrcode);
@@ -329,8 +337,17 @@ export class MyConfComponent implements OnInit {
   updateState(newstate){
     this.currentState=newstate;
     localStorage.setItem('currentState',newstate);
-    if(newstate===2){
-      this.matchingOpenState=true
+    if(newstate==2){
+      this.matchingOpenState=true;
+      if(this.isSilenced == true){
+        this.changeIcon();
+      }
+      this.gotoFindFriends();
+    }
+    if (newstate == 3){
+      if(this.isSilenced == true){
+        this.changeIcon();
+      }
     }
   }
 }
