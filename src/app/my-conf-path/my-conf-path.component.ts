@@ -98,7 +98,6 @@ export class MyConfPathComponent implements OnInit {
           "color": '#747274'
         };
         return styles;
-        break;
       }
       case 'learn': {
         let styles = {
@@ -106,7 +105,6 @@ export class MyConfPathComponent implements OnInit {
           "color": '#747274'
         };
         return styles;
-        break;
       }
       case 'explore': {
         let styles = {
@@ -114,14 +112,12 @@ export class MyConfPathComponent implements OnInit {
           "color": '#747274'
         };
         return styles;
-        break;
       }
       default: {
         let styles = {
           "color": '#747274'
         };
         return styles;
-        break;
       }
     }
   }
