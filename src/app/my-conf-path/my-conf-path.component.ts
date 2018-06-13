@@ -6,7 +6,7 @@ import { Conf } from "../models/conf";
 import { ConfSession } from "../models/confSession";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import {MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions} from '@angular/material';
+import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
@@ -20,7 +20,7 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   templateUrl: './my-conf-path.component.html',
   styleUrls: ['./my-conf-path.component.css'],
   providers: [
-    {provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults}
+    { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults }
   ]
 })
 
@@ -51,32 +51,32 @@ export class MyConfPathComponent implements OnInit {
     this.visitorId = localStorage.getItem('visitorId');
     // this.myConfService.visitorSelected.subscribe((visitor) => {
     this.visitorSon = JSON.parse(localStorage.getItem('currentUser'));
-      console.log("inside path get visitor");
-      console.log("kaka" + this.visitorSon);
+    console.log("inside path get visitor");
+    console.log("kaka" + this.visitorSon);
 
-      this.program = this.visitorSon.confs.find(x => x.confId == this.confId);
-      // console.log(this.program);
-      console.log("this is the length" + this.program.custome_path[0].session_list.length );
-      for (let i = 0; i < this.program.custome_path[0].session_list.length; i++) {
-        this.sessions.push(this.program.custome_path[0].session_list[i]);
+    this.program = this.visitorSon.confs.find(x => x.confId == this.confId);
+    // console.log(this.program);
+    console.log("this is the length" + this.program.custome_path[0].session_list.length);
+    for (let i = 0; i < this.program.custome_path[0].session_list.length; i++) {
+      this.sessions.push(this.program.custome_path[0].session_list[i]);
+    }
+    console.log(this.sessions[0].session.dayNum);
+    var maxDay = 0;
+    for (let j = 0; j < this.sessions.length; j++) {
+      var dayNum = this.sessions[j].session.dayNum;
+      if (dayNum > maxDay) {
+        maxDay = dayNum;
       }
-      console.log(this.sessions[0].session.dayNum);
-      var maxDay = 0;
-      for (let j = 0; j < this.sessions.length; j++) {
-        var dayNum = this.sessions[j].session.dayNum;
-        if (dayNum > maxDay) {
-          maxDay = dayNum;
-        }
-      }
-      console.log(maxDay);
-      for (let i = 0; i < maxDay; i++) {
-        this.data[i] = [];
-      }
-      for (let i = 0; i < this.sessions.length; i++) {
-        dayNum = this.sessions[i].session.dayNum;
-        this.data[dayNum - 1].push(this.sessions[i]);
-      }
-      console.log("data: " + JSON.stringify(this.data[0]));
+    }
+    console.log(maxDay);
+    for (let i = 0; i < maxDay; i++) {
+      this.data[i] = [];
+    }
+    for (let i = 0; i < this.sessions.length; i++) {
+      dayNum = this.sessions[i].session.dayNum;
+      this.data[dayNum - 1].push(this.sessions[i]);
+    }
+    console.log("data: " + JSON.stringify(this.data[0]));
 
 
 
@@ -86,7 +86,43 @@ export class MyConfPathComponent implements OnInit {
     this.btnData.id = lct._id;
     this.btnData.data = lct.name;
     this.myConfService.setQRCode_lecture(this.btnData);
-    this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: lct.name, type: 'lecture', id: lct._id} } );
+    this.router.navigate(["./"], { relativeTo: this.r, queryParams: { data: lct.name, type: 'lecture', id: lct._id } });
 
+  }
+
+  setMyStyles(elc_mode) {
+    switch (elc_mode) {
+      case 'connect': {
+        let styles = {
+          "background-color": 'rgba(240, 111, 175, 0.3)',
+          "color": '#747274'
+        };
+        return styles;
+        break;
+      }
+      case 'learn': {
+        let styles = {
+          "background-color": 'rgb(155, 237, 196)',
+          "color": '#747274'
+        };
+        return styles;
+        break;
+      }
+      case 'explore': {
+        let styles = {
+          "background-color": 'rgba(111, 175, 240, 0.57)',
+          "color": '#747274'
+        };
+        return styles;
+        break;
+      }
+      default: {
+        let styles = {
+          "color": '#747274'
+        };
+        return styles;
+        break;
+      }
+    }
   }
 }
