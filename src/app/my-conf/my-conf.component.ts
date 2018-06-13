@@ -50,6 +50,7 @@ export class MyConfComponent implements OnInit {
     type: '',
     id: ''
   };
+  matchingOpenState=false;
   wrongConf = false;
   getmsg: string;
   files: FileList;
@@ -60,6 +61,7 @@ export class MyConfComponent implements OnInit {
   panelOpenState = false;
   visitors:any=[];
   visitors_4:any=[];
+  currentState:number;
   constructor(private myConfService: myConfService, private http: Http,
     private router: Router, private r: ActivatedRoute, private Push_NotificationService: Push_NotificationService, private dialog: MatDialog) { }
 
@@ -114,6 +116,13 @@ export class MyConfComponent implements OnInit {
     console.log('fullnamevisitor=' + this.fullnamevisitor);
 
     this.visitorId = this.visitor._id;
+    if(!localStorage.getItem('currentState')){
+      localStorage.setItem('currentState','1');
+      this.currentState=1;
+    }
+    else{
+      this.currentState=parseInt(localStorage.getItem('currentState'));
+    }
     this.confId = localStorage.getItem('confId');
     const currentConf =   this.visitor.confs.find(conf => conf.confId === this.confId);
     console.log(JSON.stringify(currentConf));
@@ -315,5 +324,13 @@ export class MyConfComponent implements OnInit {
         id: ''
       };
     });
+  }
+
+  updateState(newstate){
+    this.currentState=newstate;
+    localStorage.setItem('currentState',newstate);
+    if(newstate===2){
+      this.matchingOpenState=true
+    }
   }
 }
