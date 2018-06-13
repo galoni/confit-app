@@ -20,6 +20,8 @@ export class RegisterConfLecturesComponent implements OnInit {
   subscription: Subscription;
   selectedConf: Conf;
   visitor_id:string;
+  selectData: any= [];
+  confTopics: string[]= [];
 
   constructor(private RegToConfService: RegToConfService,
               private router: Router, private r:ActivatedRoute) { }
@@ -27,7 +29,20 @@ export class RegisterConfLecturesComponent implements OnInit {
   ngOnInit() {
     this.visitor_id = localStorage.getItem('visitorId');
     this.subscription = this.RegToConfService.RegConf$
-      .subscribe(conf => this.selectedConf = conf);
+      .subscribe(conf => {
+        this.selectedConf = conf;
+        for (let i = 0; i < this.selectedConf.main_topics.length; i++){
+          this.confTopics.push(this.selectedConf.main_topics[i]);
+          const lctObj: any = {};
+          lctObj.topic = this.selectedConf.main_topics[i];
+          lctObj.lectures = [];
+          this.selectData.push(lctObj);
+          //console.log("topic: " + this.selectData);
+        }
+        for (let tIndex = 0; tIndex < this.confTopics.length; tIndex++) {// loop over topic
+          this.selectData[tIndex].lectures = this.selectedConf.lectures.filter(lct => lct.topic === this.confTopics[tIndex]);
+        }
+      });
   }
 
   addLectures(form: NgForm) {

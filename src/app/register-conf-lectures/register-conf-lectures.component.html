@@ -7,27 +7,36 @@
           <p>
             <mat-form-field>
               <mat-select [(ngModel)]="selectedLecture1" name="lecture" placeholder="select lecture 1" >
-                <mat-option *ngFor="let lecture of selectedConf.lectures; let i=index" [value]="lecture">
-                  {{lecture.name}}
-                </mat-option>
+                <mat-optgroup *ngFor="let group of selectData" [label]="group.topic">
+                  <mat-option *ngFor="let lct of group.lectures ; let i=index" [value]="lct">
+                    {{lct.name}}
+                  </mat-option>
+                </mat-optgroup>
+                <!--<mat-option *ngFor="let lecture of selectedConf.lectures; let i=index" [value]="lecture">-->
+                  <!--{{lecture.name}}-->
+                <!--</mat-option>-->
               </mat-select>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field>
               <mat-select [(ngModel)]="selectedLecture2" name="lecture" placeholder="select lecture 2" >
-                <mat-option *ngFor="let lecture of selectedConf.lectures; let i=index" [value]="lecture">
-                  {{lecture.name}}
-                </mat-option>
+                <mat-optgroup *ngFor="let group of selectData" [label]="group.topic">
+                  <mat-option *ngFor="let lct of group.lectures ; let i=index" [value]="lct">
+                    {{lct.name}}
+                  </mat-option>
+                </mat-optgroup>
               </mat-select>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field>
               <mat-select [(ngModel)]="selectedLecture3" name="lecture" placeholder="select lecture 3" >
-                <mat-option *ngFor="let lecture of selectedConf.lectures; let i=index" [value]="lecture">
-                  {{lecture.name}}
-                </mat-option>
+                <mat-optgroup *ngFor="let group of selectData" [label]="group.topic">
+                  <mat-option *ngFor="let lct of group.lectures ; let i=index" [value]="lct">
+                    {{lct.name}}
+                  </mat-option>
+                </mat-optgroup>
               </mat-select>
             </mat-form-field>
           </p>
