@@ -19,6 +19,44 @@
    display:flex;flex-direction:column;align-self:center;align-items:center;
 }
 
+.data_matching{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+.imgMatching{
+  margin-right:10px;
+  border-radius: 50%;
+}
+
+.icon{
+  margin-right:10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerAccordion{
+  width:100%;
+}
+.linkedin{
+  font-size:30px;
+  margin-left:10px;
+}
+.headerAccordion .titleA{
+  display: flex;
+  justify-content: flex-flex-start;
+  align-items: center;
+}
+.ngforPeople{
+  display: flex;
+  justify-content: flex-flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
 .button_confPage{
   display: flex;
   flex-direction: column;
