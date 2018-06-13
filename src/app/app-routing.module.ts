@@ -39,7 +39,7 @@ const appRoutes: Routes = [
   { path: 'registerToConf', component: RegisterConfComponent },
   { path: 'signinSelection', component: SigninSelectionComponent },
   { path: 'matchingPage', component: MatchingPageComponent },
-  { path: 'landing', component: LandingPageComponent },
+  { path: 'landingPage', component: LandingPageComponent },
   { path: 'visitorlanding', component: VisitorLandingComponent },
   { path: 'dashboard', component: ManagerDashboardComponent },
   { path: 'showConf', component: ShowConfComponent },
