@@ -6,8 +6,12 @@
     <div>{{visitor.visitorfirstname}} {{visitor.visitorlastname}}</div>
   </div>
   <div class="matching-content">
-    Matching percent:
-    <span>{{visitor.matching}}%</span>
+    <span  [ngClass]="{
+    'class80':visitor.matching >= 80,
+    'class60':visitor.matching >= 60 && visitor.matching < 80 ,
+    'class0':visitor.matching >0 && visitor.matching <60}"> {{visitor.matching}}% Match</span>
+  <!--linkedin-->
+  <a class="linkedin" target="_blank" href="{{visitor.linkedin}}"><i class="fab fa-linkedin"></i></a>
   </div>
 </div>
 </div>
