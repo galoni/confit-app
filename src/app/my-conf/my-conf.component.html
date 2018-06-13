@@ -32,6 +32,17 @@
 
     </div>
     <div class="center_element component-2">
+      <ul class="nav menufavth-basic">
+        <li class="item-101 default">
+          <span (click)="updateState(1)" [ngClass]="{'active':currentState == 1}" id="learn"><i class="fab fa-leanpub"></i>Learn</span>
+        </li>
+        <li class="item-101 default">
+          <span (click)="updateState(2)" [ngClass]="{'active':currentState == 2}" id="connect"><i class="fas fa-plug"></i>Connect</span>
+        </li>
+        <li class="item-101 default">
+          <span (click)="updateState(3)" [ngClass]="{'active':currentState == 3}" id="explore"><i class="fab fa-wpexplorer"></i>Explore</span>
+        </li>
+      </ul>
       <app-pie-chart-data></app-pie-chart-data>
       <mat-form-field>
         <mat-select placeholder="Path/Lecture/Visitor">
@@ -60,7 +71,7 @@
           </mat-expansion-panel-header>
           <img src="http://qr-code-storage.s3.amazonaws.com/{{visitor.qr_code}}">
         </mat-expansion-panel>
-        <mat-expansion-panel class="center_element" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel class="center_element" (opened)="matchingOpenState = true" (closed)="matchingOpenState = false">
           <mat-expansion-panel-header class="headerAccordion">
             <mat-panel-title class="titleA">
               <i class="icon fas fa-users"></i>People you my interest
