@@ -76,6 +76,9 @@ export class MyConfLectureComponent implements OnInit {
           });
       });
   }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
   openDialogRate(): void {
     // console.log('dig conf: ' + JSON.stringify(this.conf));
     let dialogRef = this.dialog.open(RateLectureComponent, {

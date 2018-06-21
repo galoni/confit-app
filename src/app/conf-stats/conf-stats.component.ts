@@ -104,6 +104,9 @@ export class ConfStatsComponent implements OnInit {
       }
     });
   }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }
 function compare(a, b, isAsc) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);

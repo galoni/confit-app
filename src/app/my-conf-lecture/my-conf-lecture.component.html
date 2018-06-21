@@ -21,9 +21,21 @@
     Topic: {{lecture.topic}}
   </mat-card-subtitle>
   <mat-card-content>
-    {{lecture.description}}
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Lecture Description:
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        {{lecture.description}}
+      </mat-expansion-panel>
+    </mat-accordion>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="openDialogRate()">RATE US</button>
   </mat-card-actions>
 </mat-card>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>

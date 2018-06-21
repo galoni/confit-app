@@ -1,16 +1,5 @@
+<h1 mat-dialog-title>{{data.name}} Conf Stats</h1>
 <mat-tab-group>
-  <mat-tab label="Lecturs Votes">
-    <div style="display: block">
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </mat-tab>
   <mat-tab label="Topics">
     <div style="display: block">
       <canvas baseChart
@@ -37,4 +26,19 @@
       </tr>
     </table>
   </mat-tab>
+  <mat-tab label="Lecturs Votes">
+    <div style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </mat-tab>
 </mat-tab-group>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>

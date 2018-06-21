@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>{{data.name}} Conf Program</h1>
+<h1 mat-dialog-title>{{data.name}} Conf Sessions</h1>
 <div mat-dialog-content>
   <div *ngIf="confSessions.length > 0" class="row">
     <div class="col-md-4" *ngFor="let in of counter(numDays); let i = index" value="i+1">
@@ -55,5 +55,4 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="confSessions" cdkFocusInitial>Ok</button>
 </div>
