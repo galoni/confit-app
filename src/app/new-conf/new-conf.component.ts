@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Response, Headers, Http, RequestOptions, URLSearchParams, RequestOptionsArgs } from '@angular/http';
 import {FileSystemDirectoryEntry, FileSystemFileEntry, UploadEvent, UploadFile} from 'ngx-file-drop';
+import {AlertService} from '../services/alert.service';
 
 @Component({
   selector: 'app-new-conf',
@@ -11,8 +12,9 @@ export class NewConfComponent implements OnInit {
   isCreated: Boolean = false;
   filesToUpload: Array<File> = [];
   public files: UploadFile[] = [];
+  done = false;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private alertService: AlertService,) { }
 
   ngOnInit() {
     // localStorage.clear();
@@ -67,7 +69,9 @@ export class NewConfComponent implements OnInit {
           this.http.post('https://confit-backend.herokuapp.com/qrcodeApi/upload_image', formData)
             .map(files => files.json())
             .subscribe(files => {
-              console.log('files', files);
+              console.log('files ', files);
+              this.alertService.success('Logo successfully uploaded!');
+              this.done = true;
             });
         });
       } else {

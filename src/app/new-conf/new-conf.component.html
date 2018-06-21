@@ -22,6 +22,7 @@
                  (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
       </file-drop>
     </div>
+    <h2 *ngIf="done">Logo successfully uploaded!</h2>
   </mat-step>
 </mat-horizontal-stepper>
 
