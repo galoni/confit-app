@@ -74,7 +74,7 @@ import { ManageNotificationsComponent } from './manage-notifications/manage-noti
 import { RateLectureComponent } from './rate-lecture/rate-lecture.component';
 // firebase.initializeApp(firebaseConfig);
 // console.log("this is initialized "+ firebaseConfig);
-
+import { FileDropModule } from 'ngx-file-drop';
 
 
 @NgModule({
@@ -136,7 +136,8 @@ import { RateLectureComponent } from './rate-lecture/rate-lecture.component';
     AngularFireDatabaseModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FileDropModule
   ],
   exports: [
     MaterialModule

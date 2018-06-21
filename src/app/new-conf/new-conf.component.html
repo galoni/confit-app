@@ -14,27 +14,14 @@
     <app-new-conf-lectures *ngIf="isCreated" ></app-new-conf-lectures>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Landing Page</ng-template>
-    <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
-    <button type="button" class="btn btn-success btn-s" (click)="upload()">
-        <i class="glyphicon glyphicon-open-file"></i>Upload
-    </button>
+    <ng-template matStepLabel>Done</ng-template>
+    <!--<input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>-->
     <h2>You have successfully created a new conference!</h2>
+    <div class="center">
+      <file-drop headertext="Drop logo file here" (onFileDrop)="dropped($event)"
+                 (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+      </file-drop>
+    </div>
   </mat-step>
 </mat-horizontal-stepper>
 
-<!--<mat-sidenav-container class="example-container">-->
-  <!--<mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav">-->
-    <!--<div>-->
-      <!--<p>-->
-        <!--<a mat-raised-button [routerLink]="['details']">Details</a>-->
-      <!--</p>-->
-      <!--<p>-->
-        <!--<a mat-raised-button [routerLink]="['sessions']">Sessions</a>-->
-      <!--</p>-->
-      <!--<p>-->
-        <!--<a mat-raised-button [routerLink]="['lectures']">Lectures</a>-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</mat-sidenav>-->
-<!--<router-outlet></router-outlet>-->
