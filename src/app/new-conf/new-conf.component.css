@@ -17,3 +17,7 @@
   width: 150px;
   background: rgba(45, 122, 255, 0.5);
 }
+.center {
+  margin: auto;
+  width: 590px;
+}

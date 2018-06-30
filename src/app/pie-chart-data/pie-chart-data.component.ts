@@ -8,7 +8,7 @@ import { myConfService } from "../services/myConf.service";
   styleUrls: ['./pie-chart-data.component.css']
 })
 export class PieChartDataComponent implements OnInit {
-  public pieChartLabels:string[] = ['Learn Percent', 'Connection Percent', 'Explore Percent'];
+  public pieChartLabels:string[] = ['Learn %', 'Connection %', 'Explore %'];
   public pieChartType:string = 'pie';
   public pieChartData:number[] = [];
   isFound:boolean=false;

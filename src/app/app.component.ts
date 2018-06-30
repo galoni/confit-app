@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'app works!';
   router: string;
 
-  constructor(private _router: Router) {
+  constructor(public _router: Router) {
     this.router = _router.url;
   }
 }
