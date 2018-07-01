@@ -179,10 +179,11 @@ ul.menufavth-basic li {
 @media screen and (max-width: 768px) {
   .accordion{
     min-width: 350px;
+    max-width: 360px;
   }
   ul.menufavth-basic{
     position: absolute;
     top: 190px;
-    left: 13px;
+    left: 2px;
   }
 }
